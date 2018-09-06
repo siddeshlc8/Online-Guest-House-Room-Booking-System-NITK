@@ -1,0 +1,215 @@
+
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+
+
+<title>HOME &#8226; Online Guest House Room Booking System</title>
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+<link rel='stylesheet' id='responsive-lightbox-swipebox-front-css'  href='https://www.iot-lab.info/wp-content/plugins/responsive-lightbox/assets/swipebox/source/swipebox.css?ver=4.1' type='text/css' media='all' />
+<link rel='stylesheet' id='toc-screen-css'  href='https://www.iot-lab.info/wp-content/plugins/table-of-contents-plus/screen.css?ver=1404' type='text/css' media='all' />
+<link rel='stylesheet' id='parent-style-css'  href='https://www.iot-lab.info/wp-content/themes/alienship-1.2.5/style.css?ver=4.1' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-css'  href='https://www.iot-lab.info/wp-content/themes/alienship-1.2.5/css/bootstrap.min.css?ver=0.1' type='text/css' media='all' />
+<link rel='stylesheet' id='alienship-style-css'  href='https://www.iot-lab.info/wp-content/themes/alienship-1.2.5-child/style.css?ver=0.1' type='text/css' media='all' />
+<link rel='stylesheet' id='onelab-css-css'  href='https://www.iot-lab.info/wp-content/themes/alienship-1.2.5-child/onelab.css?ver=4.1' type='text/css' media='all' />
+
+</head>
+
+
+
+<body class="home page page-id-176 page-template page-template-templates page-template-page-onelab page-template-templatespage-onelab-php layout-default">
+
+
+
+
+	<nav class="navbar navbar-default navbar-onelab navbar-fixed-top top-navigation" role="navigation">
+	    <div class="container">
+
+            <div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+            {% load static %}
+							<a href="{% url 'home' %}"><img src="{% static "home/images/Logo.png" %}" /></a>
+            </div>
+
+
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul id="menu-topmainmenu" class="nav navbar-nav">
+
+                <li id="menu-item-2066" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2066"><a title="News" href="#"><b>News</b></a></li>
+
+                <li id="menu-item-2066" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2066"><a title="Platform"  href="#"><b>NITK Website</b> </a></li>
+
+                <li id="menu-item-2066" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2066"><a title="Dev Center"  href="#"><b>IRIS Website</b>  </a></li>
+
+                <li id="menu-item-2066" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2066"><a title="Community" href="#"><b>Team</b> </a></li>
+
+                <li id="menu-item-2066" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2066"><a title="Get Started" href="#"><b>Get Started</b></a></li>
+            </ul>
+
+			<ul class="nav navbar-nav navbar-right">
+
+				<li class="dropdown"> <a href="{% url 'home' %}" title="Testbed activity"><span class="glyphicon glyphicon-calendar"></span> <b>Events</b> </a> </li>
+
+                <li><span><a href="{% url 'home' %}" class="btn btn-primary testbed" title="Login"><b>Admin Login</b></a></span></li>
+
+            </ul>
+		</div>
+	    </div>
+	</nav>
+
+
+
+
+
+
+
+
+
+
+	<div class="site-content jumbotron home" style="background-image:url('{% static "home/images/NITK_Aieal.jpg" %}')">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-8 slogan">
+                    <h2>
+                        Book Your Rooms
+                    </h2>
+                    <h3>
+                        Online, in a few click!
+                    </h3>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4  login-column">
+                    <div class="login-form">
+                        <div class="text-center">Access the testbed</div>
+                        <br/>
+                        <div class="text-center">
+                            <a href="#" type="button" class="btn btn-primary btn-lg">
+                                <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                                <b>Book Room</b>
+                            </a>
+                        </div>
+
+                        <div class="login-signup">
+                            You don't have an account yet?
+                            <br><a href="#">Register!</a>
+                        </div>
+                    </div>
+
+                    <div class="login-header">
+                        Since FIT platforms are part of the OneLab Experimental Facility, you can also access FIT IoT-Lab platform with your <a href="http://www.onelab.eu">Onelab</a> account information.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div id="content" class="site-content">
+        <div class="container">
+		    <div class="entry-content">
+                <div class="pf-content">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h1>IoT-LAB: a very large scale open testbed</h1>
+                            <p class="lead text-muted">IoT-LAB provides a very large scale infrastructure facility suitable for testing small wireless sensor devices and heterogeneous communicating objects.</p>
+                        </div>
+                    </div>
+                    <p>&nbsp;</p>
+
+                    <div class="row">
+                        <div class="col-md-8 col-md-push-4">
+                            <h3>Heterogeneous Platform</h3>
+                            <p>IoT-LAB features over 1500 wireless sensor nodes spread across six different sites in France.  Nodes are either fixed or mobile and can be allocated in various topologies throughout all sites.  A variety of wireless sensors are available, with different processor architectures (MSP430, STM32 and Cortex-A8) and different wireless chips (802.15.4 PHY @ 800 MHz or 2.4 GHz).  In addition, “open nodes” can receive custom wireless sensors for inclusion in IoT-LAB testbed.</p>
+                            <p><a href="/what-is-iot-lab/">Learn more about the <strong>platform</strong></a></p>
+                        </div>
+
+                        <div class="col-md-4 col-md-pull-8"><img class="aligncenter wp-image-5430 size-medium" src="https://www.iot-lab.info/wp-content/uploads/2018/01/carte-home-300x281.png" alt="" width="300" height="281" /></div>
+                    </div>
+            <div class="row">
+            <div class="col-md-8">
+            <h3>Mobility in Experimentation</h3>
+            <p>IoT applications involve mobile entities with either controlled or uncontrolled mobility. That&#8217;s why IoT-LAB testbed offers some mobile nodes. They move on the ground in the space that contains the fixed nodes. The user interaction with the mobile open-node is similar to that of a fixed node.</p>
+            <p><a href="/robots/">Learn more about the <strong>mobile nodes</strong></a></p>
+            </div>
+            <div class="col-md-4"><img class="aligncenter size-medium wp-image-3534" src="https://www.iot-lab.info/wp-content/uploads/2014/10/lille_8035-300x199.png" alt="lille_8035" width="300" height="199" /></div>
+            </div>
+            <div class="row">
+            <div class="col-md-8 col-md-push-4">
+            <h3>Application Development</h3>
+            <p>IoT-LAB offers web-based reservation and tooling for applications development, along with direct command-line access to the platform.  Sensor nodes firmwares can be built from source and deployed on reserved nodes, application activity can be controlled and monitored, power consumption or radio interference can be measured using the provided tools.</p>
+            <p><a href="/dev-center/">Take a tour on the <strong>Dev Center</strong></a></p>
+            </div>
+            <div class="col-md-4 col-md-pull-8"><img class="aligncenter size-medium wp-image-973" src="https://www.iot-lab.info/wp-content/uploads/2013/10/IMG_3423_DxO_bis-300x200.jpg" alt="Develop on IoT-LAB" width="300" height="200" /></div>
+            </div>
+            <div class="row">
+            <div class="col-md-7">
+            <h3>Part of Larger Federations</h3>
+            <p>IoT-LAB is part of the FIT experimental platform, a set of complementary components that enable experimentation on innovative services for academic and industrial users.  The project gives French Internet stakeholders a way to experiment with mobile wireless communications, both on network and application layers, thereby accelerating the design of advanced networking technologies for the Future Internet.<br />
+            FIT is part of OneLab facility which provides single entry point for federated infrastructures.</p>
+            <p><a href="/about-us/">Learn more about the <strong>Federation</strong></a></p>
+            </div>
+            <div class="col-md-5"><img class="aligncenter size-medium wp-image-4289" src="https://www.iot-lab.info/wp-content/themes/alienship-1.2.5-child/templates/parts/fit+fit-iotlab.svg" alt="federation" /></div>
+            </div>
+            <div class="row">
+            <div class="col-md-12 text-center">
+            <div style="padding: 40px 0;">
+            <h2>Register now and start using IoT-LAB.</h2>
+            <p class="text-muted">It&#8217;s quick and sounds fantastic!</p>
+            <p><a class="btn btn-primary btn-lg" href="#">Register</a></p>
+            </div>
+            </div>
+            </div>
+</div></div><!-- .entry-content -->
+	</div><!-- /container -->
+</div><!-- #content -->
+
+
+
+
+
+
+
+	</div><!-- #content -->
+
+</div><!-- #page -->
+
+<footer class="site-footer" id="colophon" role="contentinfo">
+
+	<div class="container">
+		<div class="row">
+
+			<div class="bottom-navigation col-sm-6 col-sm-push-6">
+							</div><!-- .bottom-navigation -->
+                </div><!-- .row -->
+
+		<div class="row">
+			<div class="footer-text col-sm-9">
+				<a href="/what-is-iot-lab/">WHAT IS IOT-LAB?</a> <a href="/about-us/">ABOUT US</a> <a href="mailto:admin@iot-lab.info">CONTACT US</a> <a href="https://github.com/iot-lab/iot-lab/issues" target="_blank">SUPPORT</a>   Copyright © FIT IoT-LAB			</div><!-- .footer-text -->
+			<div class="col-sm-3">
+				<a href="http://fit-equipex.fr/"><img class="fit-logo center-block" src="https://www.iot-lab.info/wp-content/themes/alienship-1.2.5-child/templates/parts/fit-white.svg"></a>
+			</div>
+
+		</div><!-- .row -->
+	</div><!-- .container -->
+
+	</footer><!-- #colophon -->
+
+
+</body>
+</html>

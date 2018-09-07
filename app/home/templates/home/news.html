@@ -1,0 +1,128 @@
+
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+
+
+<title>HOME &#8226; Online Guest House Room Booking System</title>
+<link rel="shortcut icon" href="http://nitk.ac.in/sites/all/themes/custom/edu/img/favicon.ico" type="image/x-icon"/>
+
+
+    {% load staticfiles %}
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
+<link rel='stylesheet' id='responsive-lightbox-swipebox-front-css'  href='{% static 'home/css/swipebox.css' %}' type='text/css' media='all' />
+
+<link rel='stylesheet' id='toc-screen-css'  href='{% static 'home/css/screen.css' %}' type='text/css' media='all' />
+
+<link rel='stylesheet' id='parent-style-css'  href='{% static 'home/css/style.css' %}' type='text/css' media='all' />
+
+<link rel='stylesheet' id='bootstrap-css'  href='{% static "home/css/bootstrap_min.css" %}' type='text/css' media='all' />
+
+<link rel='stylesheet' id='alienship-style-css'  href='{% static "home/css/style1.css" %}' type='text/css' media='all' />
+
+<link rel='stylesheet' id='onelab-css-css'  href='{% static "home/css/onelab.css" %}' type='text/css' media='all' />
+
+</head>
+
+
+
+<body class="home page page-id-176 page-template page-template-templates page-template-page-onelab page-template-templatespage-onelab-php layout-default">
+
+
+
+
+	<nav class="navbar navbar-default navbar-onelab navbar-fixed-top top-navigation" role="navigation">
+	    <div class="container">
+
+            <div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+            {% load static %}
+							<a href="{% url 'home' %}"><img src="{% static "home/images/Logo.png" %}" /></a>
+            </div>
+
+
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul id="menu-topmainmenu" class="nav navbar-nav">
+
+                <li id="menu-item-2066" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2066"><a title="News" href="{% url 'news' %}"><b>News</b></a></li>
+
+                <li id="menu-item-2066" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2066"><a title="Platform"  href="http://nitk.ac.in/"><b>NITK Website</b> </a></li>
+
+                <li id="menu-item-2066" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2066"><a title="Dev Center"  href="https://iris.nitk.ac.in/hrms/"><b>IRIS Website</b>  </a></li>
+
+                <li id="menu-item-2066" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2066"><a title="Community" href="{% url 'team' %}"><b>Team</b> </a></li>
+
+                <li id="menu-item-2066" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2066"><a title="Get Started" href="#"><b>Get Started</b></a></li>
+            </ul>
+
+			<ul class="nav navbar-nav navbar-right">
+
+				<li class="dropdown"> <a href="{% url 'home' %}" title="Testbed activity"><span class="glyphicon glyphicon-calendar"></span> <b>Events</b> </a> </li>
+
+                <li><span><a href="{% url 'admin_login' %}" class="btn btn-primary testbed" title="Login"><b>Admin Login</b></a></span></li>
+
+            </ul>
+		</div>
+	    </div>
+	</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</div><!-- #content -->
+
+</div><!-- #page -->
+
+<footer class="site-footer" id="colophon" role="contentinfo">
+
+	<div class="container">
+		<div class="row">
+
+			<div class="bottom-navigation col-sm-6 col-sm-push-6">
+							</div><!-- .bottom-navigation -->
+                </div><!-- .row -->
+
+		<div class="row">
+			<div class="footer-text col-sm-9">
+				<a href="#">WHAT IS IOT-LAB?</a> <a href="#">ABOUT US</a> <a href="mailto:admin@iot-lab.info">CONTACT US</a> <a href="#" target="_blank">SUPPORT</a>   Copyright © NITK 2018			</div><!-- .footer-text -->
+			<div class="col-sm-3">
+				<a href="http://fit-equipex.fr/"><img class="fit-logo center-block" src="https://www.iot-lab.info/wp-content/themes/alienship-1.2.5-child/templates/parts/fit-white.svg"></a>
+			</div>
+
+		</div><!-- .row -->
+	</div><!-- .container -->
+
+	</footer><!-- #colophon -->
+
+
+</body>
+</html>

@@ -158,15 +158,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<h2>CHECK AVAILABILITY</h2>
 </div>
 <div class="col-md-9 book-form">
-			   <form action="#" method="post">
+
+			   <form action="#" method="post">{% csrf_token %}
 					<div class="fields-w3ls form-left-agileits-w3layouts ">
 							<p>Room Type</p>
 							<select class="form-control">
 								<option>Select a Room</option>
-								<option>Luxury Room</option>
-								<option>Deluxe Room</option>
-								<option>Single Room</option>
-								<option>Double Room</option>
+								<option>A/C Single Room</option>
+								<option>A/C Double Room</option>
+								<option>Non A/C Single Room</option>
+								<option>Non A/C Double Room Room</option>
 							</select>
 					</div>
 					<div class="fields-w3ls form-date-w3-agileits">
@@ -182,6 +183,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						  <input type="submit" value="Check Availability">
 					</div>
 				</form>
+
 			</div>
 			<div class="clearfix"> </div>
 </div>

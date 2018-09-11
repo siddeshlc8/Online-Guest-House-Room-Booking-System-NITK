@@ -1,9 +1,3 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +5,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <title>Home | Online Guest House Room Booking</title>
     <link rel="shortcut icon" href="http://www.nitk.ac.in/sites/default/files/public/favicon.ico" type="image/vnd.microsoft.icon" />
+
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -18,6 +13,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+
 <!-- //for-mobile-apps -->
 <link href="../../static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="../../static/css/font-awesome.css" rel="stylesheet">
@@ -27,13 +24,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="../../static/css/jquery-ui.css" />
 <link href="../../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="../../static/js/modernizr-2.6.2.min.js"></script>
+
+
 <!--fonts-->
 <link href="//fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
 <link href="//fonts.googleapis.com/css?family=Federo" rel="stylesheet">
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
 <!--//fonts-->
+
 </head>
 <body>
+
+
+
 <!-- header -->
 
 	<div class="w3_navigation">
@@ -46,13 +49,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<h1><a class="navbar-brand" href="index.html">Resort <span>Inn</span><p class="logo_w3l_agile_caption">Your Dreamy Resort</p></a></h1>
+					<h1><a class="navbar-brand" href="{% url 'home' %}">NITK <span>Surathkal</span><p class="logo_w3l_agile_caption">Guest House Room Booking Portal</p></a></h1>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 					<nav class="menu menu--iris">
 						<ul class="nav navbar-nav menu__list">
-							<li class="menu__item menu__item--current"><a href="index.html" class="menu__link">Home</a></li>
+							<li class="menu__item menu__item--current"><a href="{% url 'home' %}" class="menu__link">Home</a></li>
 							<li class="menu__item"><a href="#about" class="menu__link scroll">About</a></li>
 							<li class="menu__item"><a href="#team" class="menu__link scroll">Team</a></li>
 							<li class="menu__item"><a href="#gallery" class="menu__link scroll">Gallery</a></li>
@@ -77,9 +80,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 							<div class="container">
 								<div class="agileits-banner-info">
-								<h4>Star Hotel</h4>
+								<h4>NITK GUEST HOUSE</h4>
 									<h3>We know what you love</h3>
-										<p>Welcome to our hotels</p>
+										<p>Welcome to our Campus</p>
 									<div class="agileits_w3layouts_more menu__item">
 				<a href="#" class="menu__link" data-toggle="modal" data-target="#myModal">Learn More</a>
 			</div>
@@ -91,7 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="w3layouts-banner-top w3layouts-banner-top1">
 							<div class="container">
 								<div class="agileits-banner-info">
-								<h4>Star Hotel</h4>
+								<h4>NITK GUEST HOUSE</h4>
 									<h3>Stay with friends & families</h3>
 										<p>Come & enjoy precious moment with us</p>
 									<div class="agileits_w3layouts_more menu__item">
@@ -105,8 +108,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="w3layouts-banner-top w3layouts-banner-top2">
 							<div class="container">
 								<div class="agileits-banner-info">
-								<h4>Star Hotel</h4>
-								<h3>want luxurious vacation?</h3>
+								<h4>NITK GUEST HOUSE</h4>
+								<h3>want comforatable stay?</h3>
 										<p>Get accommodation today</p>
 									<div class="agileits_w3layouts_more menu__item">
 											<a href="#" class="menu__link" data-toggle="modal" data-target="#myModal">Learn More</a>
@@ -136,10 +139,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4>Resort <span>Inn</span></h4>
+										<h4>NITK <span>Surathkal</span></h4>
 										<img src="../../static/images/1.jpg" alt=" " class="img-responsive">
 										<h5>We know what you love</h5>
-										<p>Providing guests unique and enchanting views from their rooms with its exceptional amenities, makes Star Hotel one of bests in its kind.Try our food menu, awesome services and friendly staff while you are here.</p>
+										<p>
+                                            The Institute has three guest houses within the campus.
+                                            The guest houses are located on the western side of the National Highway (NH66), near the beach (Arabian Sea).
+                                            They are named as JCBose, Vikram Sarabhai and Homi J Bhaba. J C Bose Guest house furnished with A/C Suites with a telephone, TV and Internet connections in each room. VIPs, Institute guests and invited guests are accommodated here. The Vikram Sarabhai and Homi J Baba Guest House have A/C, telephone and TV connections in each rooms.
+
+                                        </p>
 									</div>
 								</div>
 							</div>
@@ -184,16 +192,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  	<div class="about-wthree" id="about">
 		  <div class="container">
 				   <div class="ab-w3l-spa">
-                            <h3 class="title-w3-agileits title-black-wthree">About Our Resort Inn</h3> 
-						   <p class="about-para-w3ls">Lorem Ipsum is simply dummy text of the printing and typesetting industry.Sed tempus vestibulum lacus blandit faucibus. Nunc imperdiet, diam nec rhoncus ullamcorper, nisl nulla suscipit ligula, at imperdiet urna</p>
-						   <img src="../../static/images/about.jpg" class="img-responsive" alt="Hair Salon">
+                            <h3 class="title-w3-agileits title-black-wthree">About Our Guest House</h3>
+						   <p class="about-para-w3ls">The Institute has three guest houses within the campus.
+                                            The guest houses are located on the western side of the National Highway (NH66), near the beach (Arabian Sea).
+                                            They are named as JCBose, Vikram Sarabhai and Homi J Bhaba. J C Bose Guest house furnished with A/C Suites with a telephone, TV and Internet connections in each room. VIPs, Institute guests and invited guests are accommodated here. The Vikram Sarabhai and Homi J Baba Guest House have A/C, telephone and TV connections in each rooms.
+</p>
+						   <img src="../../static/images/About.jpg" class="img-responsive" alt="Hair Salon">
 										<div class="w3l-slider-img">
-											<img src="../../static/images/a1.jpg" class="img-responsive" alt="Hair Salon">
+											<img src="../../static/images/A1.jpg" class="img-responsive" alt="Hair Salon" style="width: 600px;height: 300px;">
 										</div>
-                                       <div class="w3ls-info-about">
-										    <h4>You'll love all the amenities we offer!</h4>
-											<p>Lorem ipsum dolor sit amet, ut magna aliqua. </p>
-										</div>
+
 		          </div>
 		   	<div class="clearfix"> </div>
     </div>
@@ -207,24 +215,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div id="horizontalTab">
 					<ul class="resp-tabs-list">
 					<li>
-						<img src="../../static/images/teams1.jpg" alt=" " class="img-responsive" />
+						<img src="../../static/images/siddesh.jpg" alt=" " class="img-responsive" style="width: 120px;height: 120px;"/>
 					</li>
 					<li>
 						<img src="../../static/images/teams2.jpg" alt=" " class="img-responsive" />
 					</li>
-					<li>
-						<img src="../../static/images/teams3.jpg" alt=" " class="img-responsive" />
-					</li>
-					<li>
-						<img src="../../static/images/teams4.jpg" alt=" " class="img-responsive" />
-					</li>
 					</ul>
 					<div class="resp-tabs-container">
 					<div class="tab1">
-						<div class="col-md-6 team-img-w3-agile">
+                        {% load staticfiles %}
+						<div class="col-md-6 team-img-w3-agile" style="background-image: url('{% static 'images/siddesh.jpg' %}')">
 						</div>
 						<div class="col-md-6 team-Info-agileits">
-							<h4>Lucas Jimenez</h4>
+							<h4>Siddesh LC</h4>
 							<span>Manager</span>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.Lorem ipsum dolor .</p>
 						<div class="social-bnr-agileits footer-icons-agileinfo">
@@ -256,42 +259,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div class="clearfix"> </div>
 					</div>
-					<div class="tab3">
-						<div class="col-md-6 team-img-w3-agile">
-						</div>
-						<div class="col-md-6 team-Info-agileits">
-							<h4>Ivan Simpson</h4>
-							<span>Manager</span>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.Lorem ipsum dolor .</p>
-						<div class="social-bnr-agileits footer-icons-agileinfo">
-							<ul class="social-icons3">
-								<li><a href="#" class="fa fa-facebook icon-border facebook"> </a></li>
-								<li><a href="#" class="fa fa-twitter icon-border twitter"> </a></li>
-								<li><a href="#" class="fa fa-google-plus icon-border googleplus"> </a></li> 
-								<li><a href="#" class="fa fa-rss icon-border rss"> </a></li>
-							</ul>
-						</div>							
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					<div class="tab4">
-					<div class="col-md-6 team-img-w3-agile">
-						</div>
-						<div class="col-md-6 team-Info-agileits">
-							<h4>Marc Gutierrez</h4>
-							<span>Receptionist</span>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.Lorem ipsum dolor .</p>
-						<div class="social-bnr-agileits footer-icons-agileinfo">
-							<ul class="social-icons3">
-								<li><a href="#" class="fa fa-facebook icon-border facebook"> </a></li>
-								<li><a href="#" class="fa fa-twitter icon-border twitter"> </a></li>
-								<li><a href="#" class="fa fa-google-plus icon-border googleplus"> </a></li> 
-								<li><a href="#" class="fa fa-rss icon-border rss"> </a></li>
-							</ul>
-						</div>							
-						</div>
-						<div class="clearfix"> </div>
-					</div>
+
 					</div>
 			</div>
 	</div>
@@ -300,102 +268,115 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- Gallery -->
 <section class="portfolio-w3ls" id="gallery">
 		 <h3 class="title-w3-agileits title-black-wthree">Our Gallery</h3>
+
 				<div class="col-md-3 gallery-grid gallery1">
-					<a href="../../static/images/g1.jpg" class="swipebox"><img src="../../static/images/g1.jpg" class="img-responsive" alt="/">
+					<a href="../../static/images/A1.jpg" class="swipebox"><img src="../../static/images/A1.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-						<h4>Resort Inn</h4>
+						<h4>NITK Surathkal</h4>
 							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
 						</div>
 				</a>
 				</div>
+
 				<div class="col-md-3 gallery-grid gallery1">
-					<a href="../../static/images/g2.jpg" class="swipebox"><img src="../../static/images/g2.jpg" class="img-responsive" alt="/">
+					<a href="../../static/images/A1.jpg" class="swipebox"><img src="../../static/images/A1.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-						<h4>Resort Inn</h4>
+						<h4>NITK Surathkal</h4>
 							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
 						</div>
 				</a>
 				</div>
+
 				<div class="col-md-3 gallery-grid gallery1">
-					<a href="../../static/images/g3.jpg" class="swipebox"><img src="../../static/images/g3.jpg" class="img-responsive" alt="/">
+					<a href="../../static/images/A1.jpg" class="swipebox"><img src="../../static/images/A1.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-						<h4>Resort Inn</h4>
+						<h4>NITK Surathkal</h4>
 							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
 						</div>
 				</a>
 				</div>
+
 				<div class="col-md-3 gallery-grid gallery1">
-					<a href="../../static/images/g4.jpg" class="swipebox"><img src="../../static/images/g4.jpg" class="img-responsive" alt="/">
+					<a href="../../static/images/A1.jpg" class="swipebox"><img src="../../static/images/A1.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-						<h4>Resort Inn</h4>
+						<h4>NITK Surathkal</h4>
 							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
 						</div>
 				</a>
 				</div>
+
 				<div class="col-md-3 gallery-grid gallery1">
-					<a href="../../static/images/g5.jpg" class="swipebox"><img src="../../static/images/g5.jpg" class="img-responsive" alt="/">
+					<a href="../../static/images/A1.jpg" class="swipebox"><img src="../../static/images/A1.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-						<h4>Resort Inn</h4>
-							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 gallery-grid gallery1">
-					<a href="../../static/images/g6.jpg" class="swipebox"><img src="../../static/images/g6.jpg" class="img-responsive" alt="/">
-						<div class="textbox">
-						<h4>Resort Inn</h4>
-							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
-					   </div>
-				   </a>
-				</div>
-				<div class="col-md-3 gallery-grid gallery1">
-					<a href="../../static/images/g6.jpg" class="swipebox"><img src="../../static/images/g7.jpg" class="img-responsive" alt="/">
-						<div class="textbox">
-						<h4>Resort Inn</h4>
-							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
-					   </div>
-				   </a>
-				</div>
-				<div class="col-md-3 gallery-grid gallery1">
-					<a href="../../static/images/g6.jpg" class="swipebox"><img src="../../static/images/g8.jpg" class="img-responsive" alt="/">
-						<div class="textbox">
-						<h4>Resort Inn</h4>
-							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
-					   </div>
-				   </a>
-				</div>
-					<div class="col-md-3 gallery-grid gallery1">
-					<a href="../../static/images/g9.jpg" class="swipebox"><img src="../../static/images/g9.jpg" class="img-responsive" alt="/">
-						<div class="textbox">
-						<h4>Resort Inn</h4>
+						<h4>NITK Surathkal</h4>
 							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
 						</div>
 				</a>
 				</div>
+
 				<div class="col-md-3 gallery-grid gallery1">
-					<a href="../../static/images/g10.jpg" class="swipebox"><img src="../../static/images/g10.jpg" class="img-responsive" alt="/">
+					<a href="../../static/images/A1.jpg" class="swipebox"><img src="../../static/images/A1.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-						<h4>Resort Inn</h4>
+						<h4>NITK Surathkal</h4>
 							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
 						</div>
 				</a>
 				</div>
+
 				<div class="col-md-3 gallery-grid gallery1">
-					<a href="../../static/images/g4.jpg" class="swipebox"><img src="../../static/images/g4.jpg" class="img-responsive" alt="/">
+					<a href="../../static/images/A1.jpg" class="swipebox"><img src="../../static/images/A1.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-						<h4>Resort Inn</h4>
+						<h4>NITK Surathkal</h4>
 							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
 						</div>
 				</a>
 				</div>
+
 				<div class="col-md-3 gallery-grid gallery1">
-					<a href="../../static/images/g2.jpg" class="swipebox"><img src="../../static/images/g2.jpg" class="img-responsive" alt="/">
+					<a href="../../static/images/A1.jpg" class="swipebox"><img src="../../static/images/A1.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-						<h4>Resort Inn</h4>
+						<h4>NITK Surathkal</h4>
 							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
 						</div>
 				</a>
 				</div>
+
+				<div class="col-md-3 gallery-grid gallery1">
+					<a href="../../static/images/A1.jpg" class="swipebox"><img src="../../static/images/A1.jpg" class="img-responsive" alt="/">
+						<div class="textbox">
+						<h4>NITK Surathkal</h4>
+							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
+						</div>
+				</a>
+				</div>
+
+				<div class="col-md-3 gallery-grid gallery1">
+					<a href="../../static/images/A1.jpg" class="swipebox"><img src="../../static/images/A1.jpg" class="img-responsive" alt="/">
+						<div class="textbox">
+						<h4>NITK d</h4>
+							<p><i class="" aria-hidden="true" style="background-image: url('{% static 'images/A1.jpg' %}')"></i></p>
+						</div>
+				</a>
+				</div>
+
+				<div class="col-md-3 gallery-grid gallery1">
+					<a href="../../static/images/A1.jpg" class="swipebox"><img src="../../static/images/A1.jpg" class="img-responsive" alt="/">
+						<div class="textbox">
+						<h4>NITK Surathkal</h4>
+							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
+						</div>
+				</a>
+				</div>
+
+				<div class="col-md-3 gallery-grid gallery1">
+					<a href="../../static/images/A1.jpg" class="swipebox"><img src="../../static/images/A1.jpg" class="img-responsive" alt="/">
+						<div class="textbox">
+						<h4>NITK Surathkal</h4>
+							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
+						</div>
+				</a>
+				</div>
+
 				<div class="clearfix"> </div>
 </section>
 <!-- //gallery -->
@@ -408,19 +389,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="price-block agile">
 						<div class="price-gd-top">
 						<img src="../../static/images/r1.jpg" alt=" " class="img-responsive" />
-							<h4>Deluxe Room</h4>
+							<h4>A/C Single Room</h4>
 						</div>
 						<div class="price-gd-bottom">
-							   <div class="price-list">
-									<ul>
-											<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-									
-								     </ul>
-							</div>
+<br>
 							<div class="price-selet">	
 								<h3><span>$</span>320</h3>						
 								<a href="#availability-agileits" class="scroll" >Book Now</a>
@@ -432,18 +404,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="price-block agile">
 						<div class="price-gd-top">
 						<img src="../../static/images/r2.jpg" alt=" " class="img-responsive" />
-							<h4>Luxury Room</h4>
+							<h4>A/C Double Room</h4>
 						</div>
 						<div class="price-gd-bottom">
-							<div class="price-list">
-									<ul>
-									<li><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-								</ul>
-							</div>
+                            <br>
 							<div class="price-selet">
 								<h3><span>$</span>220</h3>
 								<a href="#availability-agileits" class="scroll" >Book Now</a>
@@ -455,18 +419,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="price-block agile">
 						<div class="price-gd-top">
 						<img src="../../static/images/r3.jpg" alt=" " class="img-responsive" />
-							<h4>Guest House</h4>
+							<h4>Non A/C Single Room</h4>
 						</div>
+                        <br>
 						<div class="price-gd-bottom">
-							<div class="price-list">
-								<ul>
-									<li><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-								</ul>
-							</div>
+
 							<div class="price-selet">
 								<h3><span>$</span>180</h3>
 								<a href="#availability-agileits" class="scroll" >Book Now</a>
@@ -478,18 +435,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="price-block agile">
 						<div class="price-gd-top ">
 							<img src="../../static/images/r4.jpg" alt=" " class="img-responsive" />
-							<h4>Single Room</h4>
+							<h4>Non A/C Double Room</h4>
 						</div>
 						<div class="price-gd-bottom">
-							<div class="price-list">
-								<ul>
-									<li><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-								</ul>
-							</div>
+							<br>
 							<div class="price-selet">
 								<h3><span>$</span> 150</h3>
 								<a href="#availability-agileits" class="scroll" >Book Now</a>
@@ -504,7 +453,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	 <!--// rooms & rates -->
   
 <!-- contact -->
-<section class="contact-w3ls" id="contact">
+<section class="contact-w3ls" id="contact" style="background-image: url('{% static 'images/NIT-Karnataka.jpg' %}')">
 	<div class="container">
 		<div class="col-lg-6 col-md-6 col-sm-6 contact-w3-agile2" data-aos="flip-left">
 			<div class="contact-agileits">
@@ -542,7 +491,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<h4>Connect With Us</h4>
 			<p class="contact-agile1"><strong>Phone :</strong> +1 (100)222-23-33</p>
 			<p class="contact-agile1"><strong>Email :</strong> <a href="mailto:name@example.com">info@example.com</a></p>
-			<p class="contact-agile1"><strong>Address :</strong> Interstate 81 SB, Williamsport, WV 25419, USA.</p>
+			<p class="contact-agile1"><strong>Address :</strong> NH 66, Srinivas Nagar, Surathkal, Surathkal, Mangaluru, Karnataka 575025, India</p>
 																
 			<div class="social-bnr-agileits footer-icons-agileinfo">
 				<ul class="social-icons3">
@@ -552,15 +501,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li><a href="#" class="fa fa-rss icon-border rss"> </a></li>
 							</ul>
 			</div>
-			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3074.7905052320443!2d-77.84987248482734!3d39.586871613613056!2m3!1f0!2f0!
-			3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c9f6a80ccf0661%3A0x7210426c67abc40!2sVirginia+Welcome+Center%2FSafety+Rest+Area!5e0!3m2!1sen!2sin!4v1485760915662" ></iframe>
+			<div style="width: 100%"><iframe width="100%" height="600" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;coord=13.010591,74.794485&amp;q=NH%2066%2C%20Srinivas%20Nagar%2C%20Surathkal%2C%20Surathkal%2C%20Mangaluru%2C%20Karnataka%20575025%2C%20India+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/create-google-map/">Create Google Map</a></iframe></div><br />
 		</div>
 		<div class="clearfix"></div>
 	</div>
 </section>
 <!-- /contact -->
 			<div class="copy">
-		        <p>© 2017 Resort Inn . All Rights Reserved | Design by <a href="http://w3layouts.com/">W3layouts</a> </p>
+		        <p>© 2018 NITK Surathkal . All Rights Reserved | Design by Siddesh LC</p>
 		    </div>
 <!--/footer -->
 <!-- js -->

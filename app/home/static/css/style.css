@@ -567,16 +567,17 @@ li.menu__item:nth-child(6) {
     text-decoration: none;
     height: 34px;
     width: 34px;
-    background: url(../images/left.png) no-repeat 0px 0px;
+
+
 }
 .callbacks_nav.next {
     left: auto;
-    background: url(../images/right.png) no-repeat 0px 0px;
+
     right: -62px;
 }
 .callbacks_nav.prev {
     left: auto;
-    background: url(../images/left.png) no-repeat 0px 0px;
+
     left: -58px;
 }
 #slider3-pager a {
@@ -1167,16 +1168,16 @@ p.about-para-w3ls {
 /*-- team --*/
 
 .tab1 .team-img-w3-agile{
-	  background: url(../images/teamb1.jpg)no-repeat 0px 0px;
+	  background: url(../images/siddesh.jpg)no-repeat 0px 0px;
 }
 .tab2 .team-img-w3-agile{
-	  background: url(../images/teamb2.jpg)no-repeat 0px 0px;
+	  background: url(../images/siddesh.jpg)no-repeat 0px 0px;
 }
 .tab3 .team-img-w3-agile{
-	  background: url(../images/teamb3.jpg)no-repeat 0px 0px;
+	  background: url(../images/siddesh.jpg)no-repeat 0px 0px;
 }
 .tab4 .team-img-w3-agile{
-	  background: url(../images/teamb4.jpg)no-repeat 0px 0px;
+	  background: url(../images/siddesh.jpg)no-repeat 0px 0px;
 }
 .tab1 .team-img-w3-agile,.tab2 .team-img-w3-agile,.tab3 .team-img-w3-agile,.tab4 .team-img-w3-agile{
 	-webkit-background-size: cover;

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 
@@ -9,3 +9,7 @@ def home(request):
 
 def error(request):
     return render(request, 'home/error.html')
+
+
+
+

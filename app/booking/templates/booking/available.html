@@ -52,102 +52,36 @@
 	</div>
 
         <div class="banner-top" style="background-color: #0f2453; margin-top: 50px">
-				<h2>Book Your Room Today</h2>
+				<h2>Please Login Using your Institute Email Address to continue booking.</h2>
 				<div class="banner-bottom">
-                    <form>
-					<div class="bnr-one">
-						<div class="bnr-left">
-							<p>Check In Date</p>
-						</div>
-						<div class="bnr-right">
-							<input class="date" id="datepicker" type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required=>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="bnr-one">
-						<div class="bnr-left">
-							<p>Check Out Date</p>
-						</div>
-						<div class="bnr-right">
-							<input class="date" id="datepicker1" type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required=>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="bnr-one">
-						<div class="bnr-left">
-							<p>Check In Time</p>
-						</div>
-						<div class="bnr-right time-pic">
-							<input type="text" id="timepicker" name="timepicker" class="timepicker form-control"><br>
-						</div>
-
-						<div class="clearfix"></div>
-					</div>
-					<div class="bnr-one">
-						<div class="bnr-left">
-							<p>Check Out Time</p>
-						</div>
-						<div class="bnr-right time-pic">
-							<input type="text" id="timepicker" name="timepicker" class="timepicker form-control"><br>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="bnr-one">
-						<div class="bnr-left">
-							<p>Adults</p>
-						</div>
-						<div class="bnr-right">
-							<select>
-								<option  class="rm" value="volvo">0</option>
-								<option  class="rm" value="saab">1</option>
-								<option  class="rm" value="opel">2</option>
-								<option  class="rm" value="audi">3 or 3+</option>
-							</select>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="bnr-one">
-						<div class="bnr-left">
-							<p>Children</p>
-						</div>
-						<div class="bnr-right">
-							<select>
-								<option  class="rm" value="volvo">0</option>
-								<option  class="rm" value="saab">1</option>
-								<option  class="rm" value="opel">2</option>
-								<option  class="rm" value="audi">3 or 3+</option>
-							</select>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="bnr-one">
-						<div class="bnr-left">
-							<p>Room</p>
-						</div>
-						<div class="bnr-right">
-							<select>
-								<option value="volvo">Select a type</option>
-								<option value="saab">Single</option>
-								<option value="opel">Double</option>
-								<option value="audi">Suite</option>
-							</select>
-						</div>
-						<div class="clearfix"></div>
-					</div>
+					<form method="post" action="{% url 'book' %}">{% csrf_token %}
                     <div class="bnr-one">
 						<div class="bnr-left">
 							<p>Institute Email</p>
 						</div>
-						<div class="bnr-right time-pic">
-							<input type="email" id="email" name="email" class=" form-control" ><br>
+						<div class="bnr-right time-pic" >
+							<input style="margin-left: -40px;" type="email" id="email" name="email" class=" form-control" required ><br>
 						</div>
 						<div class="clearfix"></div>
 					</div>
-					<div class="bnr-btn">
 
-							<input type="submit" value="Book Now">
-						</form>
+
+                     <div class="bnr-one">
+						<div class="bnr-left">
+							<p>Password</p>
+						</div>
+						<div class="bnr-right time-pic" >
+							<input style="margin-left: -40px;" type="password" id="password" name="password" class=" form-control" required ><br>
+						</div>
+						<div class="clearfix"></div>
 					</div>
+
+					<div class="bnr-btn" style="width: 50%; margin-top: 100px;">
+
+							<input type="submit" value="Continue">
+
+					</div>
+                    </form>
 				</div>
 				<!---start-date-piker---->
 		<link rel="stylesheet" href="../../static/booking/css/jquery-ui.css" />
@@ -159,8 +93,8 @@
 			</script>
 	<!---/End-date-piker---->
 </div>
-<div class="footer">
-    <div class="copy"><p>© 2018 NITK Surathkal . All Rights Reserved | Design by Siddesh LC</p>></div>
+<div class="footer" style="position: absolute; bottom: 0; width: 100%">
+    <div class="copy"><p>© 2018 NITK Surathkal . All Rights Reserved | Design by Siddesh LC</p></div>
 
 </div>
 <!-- js for time-picker -->

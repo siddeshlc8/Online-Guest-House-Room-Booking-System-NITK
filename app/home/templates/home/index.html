@@ -154,12 +154,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 <!-- //Modal1 -->
 <div id="availability-agileits">
-<div class="col-md-3 book-form-left-w3layouts">
+<div class="col-md-3 book-form-left-w3layouts" >
 	<h2>CHECK AVAILABILITY</h2>
 </div>
 <div class="col-md-9 book-form">
 
-			   <form action="#" method="post">{% csrf_token %}
+			   <form action="{% url 'availability' %}" method="post">{% csrf_token %}
 					<div class="fields-w3ls form-left-agileits-w3layouts ">
 							<p>Room Type</p>
 							<select class="form-control">

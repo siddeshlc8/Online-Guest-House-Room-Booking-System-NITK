@@ -76,9 +76,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 					<nav class="menu menu--iris">
 						<ul class="nav navbar-nav menu__list">
-							<li class="menu__item menu__item--current"><a href="{% url 'index' %}" class="menu__link">BooK Room</a></li>
+							<li class="menu__item "><a href="{% url 'index' %}" class="menu__link">BooK Room</a></li>
 							<li class="menu__item "><a href="{% url 'my_bookings' %}" class="menu__link">My Bookings</a></li>
-							<li class="menu__item "><a href="{% url 'account' %}" class="menu__link">Account</a></li>
+							<li class="menu__item menu__item--current"><a href="{% url 'account' %}" class="menu__link">Account</a></li>
 							<li class="menu__item "><a href="{% url 'home' %}" class="menu__link">Logout</a></li>
 						</ul>
 					</nav>
@@ -89,124 +89,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 <!-- //header -->
 
-<div class="banner-top" style="background-color: #0f2453; margin-top: 50px">
-				<h2>Book Your Room Today</h2>
-				<div class="banner-bottom">
-                    <form>
-					<div class="bnr-one">
-						<div class="bnr-left">
-							<p>Check In Date</p>
-						</div>
-						<div class="bnr-right">
-							<input class="date" id="datepicker" type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required=>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="bnr-one">
-						<div class="bnr-left">
-							<p>Check Out Date</p>
-						</div>
-						<div class="bnr-right">
-							<input class="date" id="datepicker1" type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required=>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="bnr-one">
-						<div class="bnr-left">
-							<p>Check In Time</p>
-						</div>
-						<div class="bnr-right time-pic">
-							<input type="text" id="timepicker" name="timepicker" class="timepicker form-control"><br>
-						</div>
 
-						<div class="clearfix"></div>
-					</div>
-					<div class="bnr-one">
-						<div class="bnr-left">
-							<p>Check Out Time</p>
-						</div>
-						<div class="bnr-right time-pic">
-							<input type="text" id="timepicker" name="timepicker" class="timepicker form-control"><br>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="bnr-one">
-						<div class="bnr-left">
-							<p>Adults</p>
-						</div>
-						<div class="bnr-right">
-							<select>
-								<option  class="rm" value="volvo">0</option>
-								<option  class="rm" value="saab">1</option>
-								<option  class="rm" value="opel">2</option>
-								<option  class="rm" value="audi">3 or 3+</option>
-							</select>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="bnr-one">
-						<div class="bnr-left">
-							<p>Children</p>
-						</div>
-						<div class="bnr-right">
-							<select>
-								<option  class="rm" value="volvo">0</option>
-								<option  class="rm" value="saab">1</option>
-								<option  class="rm" value="opel">2</option>
-								<option  class="rm" value="audi">3 or 3+</option>
-							</select>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="bnr-one">
-						<div class="bnr-left">
-							<p>Room</p>
-						</div>
-						<div class="bnr-right">
-							<select>
-								<option value="volvo">Select a type</option>
-								<option value="saab">Single</option>
-								<option value="opel">Double</option>
-								<option value="audi">Suite</option>
-							</select>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-                    <div class="bnr-one">
-						<div class="bnr-left">
-							<p>Institute Email</p>
-						</div>
-						<div class="bnr-right time-pic">
-							<input type="email" id="email" name="email" class=" form-control" ><br>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="bnr-btn">
-
-							<input type="submit" value="Book Now">
-						</form>
-					</div>
-				</div>
-				<!---start-date-piker---->
-		<link rel="stylesheet" href="../../static/booking/css/jquery-ui.css" />
-		<script src="../../static/booking/js/jquery-ui.js"></script>
-			<script>
-				$(function() {
-				$( "#datepicker,#datepicker1" ).datepicker();
-				});
-			</script>
-	<!---/End-date-piker---->
-</div>
-<!-- js for time-picker -->
-<script type="text/javascript" src="../../static/booking/js/wickedpicker.js"></script>
-<script type="text/javascript">
-	$('.timepicker').wickedpicker({twentyFour: false});
-	$('.timepicker-two').wickedpicker({twentyFour: true});
-</script>
-<!-- /js for time-picker -->
 
 <!-- /contact -->
-<div class="footer" style="position:relative; bottom: 0;width: 100%">
+<div class="footer" style="position:absolute; bottom: 0;width: 100%">
     <div class="copy">
 		        <p>© 2018 NITK Surathkal . All Rights Reserved | Design by Siddesh LC</p>
 		    </div>

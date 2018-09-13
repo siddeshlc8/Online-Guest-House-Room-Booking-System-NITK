@@ -20,7 +20,10 @@
 <!-- js files -->
 <script src="../../static/booking/js/jquery.min.js"></script>
 
-
+<!--fonts-->
+<link href="//fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Federo" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
 
 <!-- /js files -->
 </head>
@@ -54,7 +57,7 @@
         <div class="banner-top" style="background-color: #0f2453; margin-top: 50px">
 				<h2>Please Login Using your Institute Email Address to continue booking.</h2>
 				<div class="banner-bottom">
-					<form method="post" action="{% url 'book' %}">{% csrf_token %}
+					<form method="post" action="{% url 'index' %}">{% csrf_token %}
                     <div class="bnr-one">
 						<div class="bnr-left">
 							<p>Institute Email</p>
@@ -93,7 +96,7 @@
 			</script>
 	<!---/End-date-piker---->
 </div>
-<div class="footer" style="position: absolute; bottom: 0; width: 100%">
+<div class="footer" style="position: fixed; bottom: 0; width: 100%">
     <div class="copy"><p>© 2018 NITK Surathkal . All Rights Reserved | Design by Siddesh LC</p></div>
 
 </div>

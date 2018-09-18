@@ -74,7 +74,22 @@
 					<form  name="register" method="post" action="{% url 'register' %}">{% csrf_token %}
 
 
+                        {% for feild in form %}
 
+                            <div class="bnr-one">
+                                <div class="bnr-left">
+                                    <p> {{ feild.label_tag }}</p>
+                                </div>
+                                <div class="bnr-right time-pic" >
+                                    {{ feild }}
+                                </div>
+                                <div class="clearfix"></div>
+					        </div>
+
+                        {% endfor %}
+
+
+<!--
                     <div class="bnr-one">
 						<div class="bnr-left">
 							<p>Institute Email</p>
@@ -106,7 +121,7 @@
 						</div>
 						<div class="clearfix"></div>
 					</div>
-
+-->
 					<div class="bnr-btn" style="width: 50%; margin-top: 100px;">
 
 							<input type="submit" value="Register">

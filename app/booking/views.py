@@ -11,16 +11,6 @@ def my_bookings(request):
 
 def availability(request):
     if request.method == 'POST':
-        # sg = sendgrid.SendGridAPIClient(apikey='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')
-        # from_email = Email("siddeshlc08@gmail.com")
-        # to_email = Email("siddeshlc8@gmail.com")
-        # subject = "Sending with SendGrid is Fun"
-        # content = Content("text/plain", "and easy to do anywhere, even with Python")
-        # mail = Mail(from_email, subject, to_email, content)
-        # response = sg.client.mail.send.post(request_body=mail.get())
-        # print(response.status_code)
-        # print(response.body)
-        # print(response.headers)
          return redirect('email')
         #else
         #return redirect('not_avaialable')

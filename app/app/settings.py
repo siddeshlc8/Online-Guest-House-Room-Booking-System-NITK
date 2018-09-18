@@ -131,10 +131,4 @@ STATICFILES_DIRS = [
     '/var/www/static/',
 ]
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'siddeshlc08@gmail.com'
-EMAIL_HOST_PASSWORD = 'basavannanagara'
-SEND_BROKEN_LINK_EMAILS = False
 

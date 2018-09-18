@@ -57,9 +57,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<ul class="nav navbar-nav menu__list">
 							<li class="menu__item menu__item--current"><a href="{% url 'home' %}" class="menu__link">Home</a></li>
 							<li class="menu__item"><a href="#about" class="menu__link scroll">About</a></li>
-							<li class="menu__item"><a href="#team" class="menu__link scroll">Team</a></li>
+							<!--<li class="menu__item"><a href="#team" class="menu__link scroll">Team</a></li>-->
 							<li class="menu__item"><a href="#gallery" class="menu__link scroll">Gallery</a></li>
-							<li class="menu__item"><a href="#rooms" class="menu__link scroll">Rooms</a></li>
+							<li class="menu__item"><a href="{% url 'login' %}" >Login</a></li>
+							<li class="menu__item"><a href="{% url 'register' %}" >Register</a></li>
+							<!--<li class="menu__item"><a href="#rooms" class="menu__link scroll">Rooms</a></li>-->
 							<li class="menu__item"><a href="#contact" class="menu__link scroll">Contact Us</a></li>
 						</ul>
 					</nav>

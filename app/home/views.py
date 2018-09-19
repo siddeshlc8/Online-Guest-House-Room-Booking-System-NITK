@@ -27,6 +27,9 @@ def sendMail(to_email, subject, content):
 
 
 def home(request):
+    if request.user.username:
+        print(request.user.email)
+        return redirect('index')
     return render(request, 'home/index.html')
 
 

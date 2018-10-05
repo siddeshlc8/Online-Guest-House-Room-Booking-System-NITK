@@ -3,56 +3,56 @@
 <head>
 
 
-<title>Home | Online Guest House Room Booking</title>
+    <title>Home | Online Guest House Room Booking</title>
     <link rel="shortcut icon" href="http://www.nitk.ac.in/sites/default/files/public/favicon.ico" type="image/vnd.microsoft.icon" />
 
-<!-- for-mobile-apps -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Resort Inn Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Resort Inn Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+            function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+
+    {% load staticfiles %}
+
+    <link href="{% static 'home/css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{% static 'home/css/font-awesome.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'home/css/chocolat.css' %}" type="text/css" media="screen">
+    <link href="{% static 'home/css/asy-responsive-tabs.css' %}" rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="{% static 'home/css/flexslider.css' %}" type="text/css" media="screen" property="" />
+    <link rel="stylesheet" href="{% static 'home/css/jquery-ui.css' %}" />
+    <link href="{% static 'home/css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src=".{% static 'home/js/modernizr-2.6.2.min.js' %}"></script>
 
 
-<!-- //for-mobile-apps -->
-<link href="../../static/home/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="../../static/home/css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="../../static/home/css/chocolat.css" type="text/css" media="screen">
-<link href="../../static/home/css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
-<link rel="stylesheet" href="../../static/home/css/flexslider.css" type="text/css" media="screen" property="" />
-<link rel="stylesheet" href="../../static/home/css/jquery-ui.css" />
-<link href="../../static/home/css/style.css" rel="stylesheet" type="text/css" media="all" />
-<script type="text/javascript" src="../../static/home/js/modernizr-2.6.2.min.js"></script>
+    <!--fonts-->
+    <link href="//fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Federo" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <!--//fonts-->
 
 
-<!--fonts-->
-<link href="//fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=Federo" rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
-<!--//fonts-->
-<title>Book | Online Guest house Room Booking System</title>
-    <link rel="shortcut icon" href="http://www.nitk.ac.in/sites/default/files/public/favicon.ico" type="image/vnd.microsoft.icon" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="keywords" content="Elite Hotel Booking Widget Responsive, Login form web template,Flat Pricing tables,Flat Drop downs  Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- font files -->
-<link href='//fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
-<!-- //font files -->
-<!-- css files -->
-<link href="../../static/booking/css/bootstrap.css" rel='stylesheet' type='text/css' media="all">
-<link href="../../static/booking/css/wickedpicker.css" rel="stylesheet" type="text/css" media="all">
-<link href="../../static/booking/css/style.css" rel="stylesheet" type="text/css" media="all">
-<link href="../../static/home/css/style.css" rel="stylesheet" type="text/css" media="all">
-<!-- /css files -->
-<!-- js files -->
-<script src="../../static/booking/js/jquery.min.js"></script>
-<!--fonts-->
-<link href="//fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=Federo" rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <!-- font files -->
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    <!-- //font files -->
+
+    <!-- css files -->
+    <link href="../../static/booking/css/bootstrap.css" rel='stylesheet' type='text/css' media="all">
+    <link href="../../static/booking/css/wickedpicker.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../../static/booking/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../../static/home/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <!-- /css files -->
+
+    <!-- js files -->
+    <script src="../../static/booking/js/jquery.min.js"></script>
+
+    <!--fonts-->
+    <link href="//fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Federo" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
 </head>
 <body>
 

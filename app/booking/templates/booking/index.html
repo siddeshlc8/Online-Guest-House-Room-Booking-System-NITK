@@ -92,13 +92,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="banner-top" style="background-color: #0f2453; margin-top: 50px">
 				<h2>Book Your Room Today</h2>
 				<div class="banner-bottom">
-                    <form>
+                    <form method="post" action="{% url 'book' %}"> {% csrf_token %}
 					<div class="bnr-one">
 						<div class="bnr-left">
 							<p>Check In Date</p>
 						</div>
 						<div class="bnr-right">
-							<input class="date" id="datepicker" type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required=>
+							<input name="startdate" class="date" id="datepicker" type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required=>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -107,7 +107,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<p>Check Out Date</p>
 						</div>
 						<div class="bnr-right">
-							<input class="date" id="datepicker1" type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required=>
+							<input name="enddate" class="date" id="datepicker1" type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required=>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -116,7 +116,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<p>Check In Time</p>
 						</div>
 						<div class="bnr-right time-pic">
-							<input type="text" id="timepicker" name="timepicker" class="timepicker form-control"><br>
+							<input type="text" id="timepicker" name="starttime" class="timepicker form-control"><br>
 						</div>
 
 						<div class="clearfix"></div>
@@ -126,7 +126,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<p>Check Out Time</p>
 						</div>
 						<div class="bnr-right time-pic">
-							<input type="text" id="timepicker" name="timepicker" class="timepicker form-control"><br>
+							<input type="text" id="timepicker" name="endtime" class="timepicker form-control"><br>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -135,11 +135,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<p>Adults</p>
 						</div>
 						<div class="bnr-right">
-							<select>
-								<option  class="rm" value="volvo">0</option>
-								<option  class="rm" value="saab">1</option>
-								<option  class="rm" value="opel">2</option>
-								<option  class="rm" value="audi">3 or 3+</option>
+							<select name="people">
+								<option  class="rm">0</option>
+								<option  class="rm" >1</option>
+								<option  class="rm" >2</option>
+								<option  class="rm" >3 or 3+</option>
 							</select>
 						</div>
 						<div class="clearfix"></div>
@@ -165,22 +165,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="bnr-right">
 							<select>
 								<option value="volvo">Select a type</option>
-								<option value="saab">Single</option>
-								<option value="opel">Double</option>
-								<option value="audi">Suite</option>
+								<option value="saab">Single AC</option>
+								<option value="opel">Double AC</option>
+								<option value="audi">Single NON AC</option>
+								<option value="audi">Double NON AC</option>
 							</select>
 						</div>
 						<div class="clearfix"></div>
 					</div>
-                    <div class="bnr-one">
-						<div class="bnr-left">
-							<p>Institute Email</p>
-						</div>
-						<div class="bnr-right time-pic">
-							<input type="email" id="email" name="email" class=" form-control" ><br>
-						</div>
-						<div class="clearfix"></div>
-					</div>
+
 					<div class="bnr-btn">
 
 							<input type="submit" value="Book Now">

@@ -6,7 +6,7 @@ urlpatterns = [
     path('email/', views.avaialable, name='email'),
     path('not-available/', views.not_avaialable, name='not_available'),
     path('availability/', views.availability, name='availability'),
-    path('send-email/', views.sendEmail, name='sendEmail'),
     path('user/', views.index, name='index'),
+    path('book/', views.book, name='book'),
     path('account/', views.account, name='account'),
 ]

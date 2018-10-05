@@ -1,12 +1,20 @@
 from django.shortcuts import render, redirect
-import sendgrid
-import os
-from sendgrid.helpers.mail import *
 
 
 # Create your views here.
 def my_bookings(request):
     return render(request, 'booking/my_bookings.html')
+
+
+def book(request):
+    if request.method == 'POST':
+        startdate = request.POST['startdate']
+        starttime = request.POST['starttime']
+        enddate = request.POST['enddate']
+        endtime = request.POST['endtime']
+        people = request.POST['people']
+        print(people)
+    return render(request,'booking/my_bookings.html')
 
 
 def availability(request):
@@ -24,11 +32,6 @@ def avaialable(request):
 
 def not_avaialable(request):
     return render(request, 'booking/not_available.html')
-
-
-def sendEmail(request):
-    send_mail('dsds','dsds','siddeshlc08@gmail.com',['siddeshlc8@gmail.com'],fail_silently=False)
-    return redirect('home')
 
 
 def index(request):

@@ -1,77 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends 'home/base.html' %}
 
-    <title></title>
-    <link rel="shortcut icon" href="http://www.nitk.ac.in/sites/default/files/public/favicon.ico" type="image/vnd.microsoft.icon" />
+{% block body %}
 
-<!-- for-mobile-apps -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Resort Inn Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar(){ window.scrollTo(0,1); } </script>
+    {% if messages %}
+        {% for message in messages %}
 
+            <h3 style="color: red; text-align: center;">{{ message }}</h3>
 
-<!-- //for-mobile-apps -->
-<link href="../../static/home/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="../../static/home/css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="../../static/home/css/chocolat.css" type="text/css" media="screen">
-<link href="../../static/home/css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
-<link rel="stylesheet" href="../../static/home/css/flexslider.css" type="text/css" media="screen" property="" />
-<link rel="stylesheet" href="../../static/home/css/jquery-ui.css" />
-<link href="../../static/home/css/style.css" rel="stylesheet" type="text/css" media="all" />
-<script type="text/javascript" src="../../static/home/js/modernizr-2.6.2.min.js"></script>
+        {% endfor %}
+    {% endif %}
 
-
-<!--fonts-->
-<link href="//fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=Federo" rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
-<!--//fonts-->
-
-</head>
-
-
-
-
-<!-- header -->
-<body>
-	<div class="w3_navigation">
-		<div class="container">
-			<nav class="navbar navbar-default">
-				<div class="navbar-header navbar-left">
-					<h1><a class="navbar-brand" href="{% url 'home' %}">NITK <span>Surathkal</span><p class="logo_w3l_agile_caption">Guest House Room Booking Portal</p></a></h1>
-				</div>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-					<nav class="menu menu--iris">
-						<ul class="nav navbar-nav menu__list">
-							<li class="menu__item menu__item--current"><a href="{% url 'home' %}" class="menu__link">Home</a></li>
-						</ul>
-					</nav>
-				</div>
-			</nav>
-
-		</div>
-	</div>
-<!-- //header -->
-
-    <p><h1 style="text-align: center;margin-top: 500px">Error has Occurred!</h1></p>
-
-
-    <div class="copy" style="position: absolute;bottom: 0;width: 100%">
-        <p>© 2018 NITK Surathkal . All Rights Reserved | Design by Siddesh LC</p>
-    </div>
-
-
-
-
-</body>
-
-
-
-
-
-</html>
+{% endblock %}

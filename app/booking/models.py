@@ -1,8 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User
+import os
 
 
 # Create your models here.
+def get_image_path(instance, filename):
+    return os.path.join('users', str(instance.id), filename)
+
+
+class ExtendedUser(models.Model):
+    user = models.ForeignKey(User, unique=True, on_delete=models.CASCADE, null=False, blank=False)
+    mobile = models.CharField(max_length=11, null=True)
+    image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
+
+
 class GuestHouse(models.Model):
     name = models.CharField(max_length=100, null=False, unique=True)
     active = models.BooleanField(default=True)

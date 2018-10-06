@@ -9,4 +9,5 @@ urlpatterns = [
     path('user/', views.index, name='index'),
     path('book/', views.book, name='book'),
     path('account/', views.account, name='account'),
+    path('psw-reset/', views.psw_reset, name='psw-reset'),
 ]

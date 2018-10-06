@@ -1,75 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Register | Online Guest house Room Booking System</title>
-    <link rel="shortcut icon" href="http://www.nitk.ac.in/sites/default/files/public/favicon.ico" type="image/vnd.microsoft.icon" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="keywords" content="Elite Hotel Booking Widget Responsive, Login form web template,Flat Pricing tables,Flat Drop downs  Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- font files -->
-<link href='//fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
-<!-- //font files -->
-<!-- css files -->
-<link href="../../static/booking/css/bootstrap.css" rel='stylesheet' type='text/css' media="all">
-<link href="../../static/booking/css/wickedpicker.css" rel="stylesheet" type="text/css" media="all">
-<link href="../../static/booking/css/style.css" rel="stylesheet" type="text/css" media="all">
-<link href="../../static/home/css/style.css" rel="stylesheet" type="text/css" media="all">
-<!-- /css files -->
-<!-- js files -->
-<script src="../../static/booking/js/jquery.min.js"></script>
+{% extends 'home/base.html' %}
 
-<!--fonts-->
-<link href="//fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=Federo" rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+{% block body %}
+    {% if messages %}
+        {% for message in messages %}
 
-<!-- /js files -->
+            <div class="alert alert-info">
+                <strong style="text-align: center">{{ message }}</strong>
 
-</head>
-{%  load staticfiles %}
-<body>
-<div class="w3_navigation">
-		<div class="container">
-			<nav class="navbar navbar-default">
-				<div class="navbar-header navbar-left">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<h1><a class="navbar-brand" href="{% url 'home' %}">NITK <span>Surathkal</span><p class="logo_w3l_agile_caption">Guest House Room Booking Portal</p></a></h1>
-				</div>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-					<nav class="menu menu--iris">
-						<ul class="nav navbar-nav menu__list">
-							<li class="menu__item menu__item--current"><a href="{% url 'home' %}" class="menu__link">Home</a></li>
-						</ul>
-					</nav>
-				</div>
-			</nav>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
 
-		</div>
-	</div>
+            </div>
 
+        {% endfor %}
+    {% endif %}
 
-
-
-
-
-
-        <div class="banner-top" style="background-color: #0f2453; margin-top: 50px">
+ <div class="banner-top" style="background-color: #0f2453; margin-top: 50px">
 				<h2>Please fill the details to continue.</h2>
-                {% if messages %}
-                       {% for message in messages %}
 
-                           <h3 style="color: red; text-align: center;">{{ message }}</h3>
-
-                       {% endfor %}
-                 {% endif %}
 				<div class="banner-bottom">
 					<form  name="register" method="post" action="{% url 'register' %}">{% csrf_token %}
 
@@ -88,40 +35,6 @@
 
                         {% endfor %}
 
-
-<!--
-                    <div class="bnr-one">
-						<div class="bnr-left">
-							<p>Institute Email</p>
-						</div>
-						<div class="bnr-right time-pic" >
-							<input style="margin-left: -40px;" type="email" id="email" name="email" class=" form-control" required ><br>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-
-
-                     <div class="bnr-one">
-						<div class="bnr-left">
-							<p>Password</p>
-						</div>
-						<div class="bnr-right time-pic" >
-							<input style="margin-left: -40px;" type="password" id="password" name="password" class=" form-control" required ><br>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-
-
-                      <div class="bnr-one">
-						<div class="bnr-left">
-							<p>Repeat Password</p>
-						</div>
-						<div class="bnr-right time-pic" >
-							<input style="margin-left: -40px;" type="password" id="password" name="rpt-password" class=" form-control" required ><br>
-						</div>
-						<div class="clearfix"></div>
-					</div>
--->
 					<div class="bnr-btn" style="width: 50%; margin-top: 100px;">
 
 							<input type="submit" value="Register">
@@ -130,28 +43,5 @@
                     </form>
 				</div>
 
-
-
-				<!---start-date-piker---->
-		<link rel="stylesheet" href="../../static/booking/css/jquery-ui.css" />
-		<script src="../../static/booking/js/jquery-ui.js"></script>
-			<script>
-				$(function() {
-				$( "#datepicker,#datepicker1" ).datepicker();
-				});
-			</script>
-	<!---/End-date-piker---->
 </div>
-<div class="footer" style="position: fixed; bottom: 0; width: 100%">
-    <div class="copy"><p>© 2018 NITK Surathkal . All Rights Reserved | Design by Siddesh LC</p></div>
-
-</div>
-<!-- js for time-picker -->
-<script type="text/javascript" src="../../static/booking/js/wickedpicker.js"></script>
-<script type="text/javascript">
-	$('.timepicker').wickedpicker({twentyFour: false});
-	$('.timepicker-two').wickedpicker({twentyFour: true});
-</script>
-<!-- /js for time-picker -->
-</body>
-</html>
+{% endblock %}

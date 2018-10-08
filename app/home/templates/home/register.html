@@ -16,24 +16,45 @@
 
  <div class="banner-top" style="background-color: #0f2453; margin-top: 50px">
 				<h2>Please fill the details to continue.</h2>
-
+                {% load widget_tweaks %}
 				<div class="banner-bottom">
 					<form  name="register" method="post" action="{% url 'register' %}">{% csrf_token %}
 
 
-                        {% for feild in form %}
+
 
                             <div class="bnr-one">
                                 <div class="bnr-left">
-                                    <p> {{ feild.label_tag }}</p>
+                                    <p> Institute Email</p>
                                 </div>
                                 <div class="bnr-right time-pic" >
-                                    {{ feild }}
+                                    {% render_field form.email placeholder="email" class="form-control" %}
                                 </div>
                                 <div class="clearfix"></div>
 					        </div>
 
-                        {% endfor %}
+                             <div class="bnr-one">
+                                <div class="bnr-left">
+                                    <p> Password</p>
+                                </div>
+                                <div class="bnr-right time-pic" >
+                                    {% render_field form.password1 placeholder="password1" class="form-control" %}
+                                </div>
+                                <div class="clearfix"></div>
+					        </div>
+
+
+                             <div class="bnr-one">
+                                <div class="bnr-left">
+                                    <p> Verify Passowrd</p>
+                                </div>
+                                <div class="bnr-right time-pic" >
+                                    {% render_field form.password2 placeholder="password2" class="form-control" %}
+                                </div>
+                                <div class="clearfix"></div>
+					        </div>
+
+
 
 					<div class="bnr-btn" style="width: 50%; margin-top: 100px;">
 

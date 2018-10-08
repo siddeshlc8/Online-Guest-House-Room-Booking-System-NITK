@@ -54,14 +54,14 @@
                       <div class="form-group">
 
                           <div class="col-xs-6">
-                              <label for="first_name"><h4>First name</h4></label>
+                              <br><label for="first_name"><h4>First name</h4></label>
                               <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any." value="{{ user.first_name }}">
                           </div>
                       </div>
                       <div class="form-group">
 
                           <div class="col-xs-6">
-                            <label for="last_name"><h4>Last name</h4></label>
+                            <br><label for="last_name"><h4>Last name</h4></label>
                               <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any." value="{{ user.last_name }}">
                           </div>
                       </div>
@@ -70,14 +70,14 @@
 
                       <div class="form-group">
                           <div class="col-xs-6">
-                             <label for="mobile"><h4>Mobile</h4></label>
+                             <br><label for="mobile"><h4>Mobile</h4></label>
                               <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any." value="{{ extended_user.mobile }}">
                           </div>
                       </div>
                       <div class="form-group">
 
                           <div class="col-xs-6">
-                              <label for="email"><h4>Email</h4></label>
+                              <br><label for="email"><h4>Email</h4></label>
                               <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." value="{{ user.email }}">
                           </div>
                       </div>
@@ -100,24 +100,36 @@
 
                <h2></h2>
 
-               <hr>
+               <hr>{% load widget_tweaks %}
                   <form class="form" action="{% url 'psw-reset'  %}" method="post" id="registrationForm">{% csrf_token %}
-
-
-                      {% for field in password_form %}
-
-
-
 
                       <div class="form-group">
 
                           <div class="col-xs-6">
-                              <br><label for="password"><h4> {{ field.label_tag }}</h4></label>
-                              {{ field }}
+                              <br><label for="password"><h4> Old Password</h4></label>
+                               {% render_field password_form.old_password placeholder="old password" class="form-control" %}
                           </div>
                       </div>
 
-                       {% endfor %}
+
+                          <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <br><label for="password"><h4> New Password</h4></label>
+                               {% render_field password_form.old_password placeholder="old password" class="form-control" %}
+                          </div>
+                      </div>
+
+
+                          <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <br><label for="password"><h4> Verify New Password</h4></label>
+                               {% render_field password_form.old_password placeholder="old password" class="form-control" %}
+                          </div>
+                      </div>
+
+
                       <div class="form-group">
                            <div class="col-xs-12">
                                 <br>

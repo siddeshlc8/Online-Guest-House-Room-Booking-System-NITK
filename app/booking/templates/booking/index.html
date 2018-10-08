@@ -7,26 +7,34 @@
     <div class="banner-top" style="background-color: #0f2453; margin-top: 50px">
                     <h2>Book Your Room Today</h2>
                     <div class="banner-bottom">
+                        {% load widget_tweaks %}
                         <form method="post" action="{% url 'book' %}"> {% csrf_token %}
-                        <div class="bnr-one">
-                            <div class="bnr-left">
-                                <p>Check In Date</p>
+
+                            <div class="bnr-one">
+                                <div class="bnr-left">
+                                    <p>Check In Date</p>
+                                </div>
+                                <div class="bnr-right">
+                                    {% render_field form.start_date placeholder="start date" class="form-control" %}
+                                </div>
+                                <div class="clearfix"></div>
                             </div>
-                            <div class="bnr-right">
-                                <input name="startdate" class="date" id="datepicker" type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required=>
+
+
+
+                            <div class="bnr-one">
+                                <div class="bnr-left">
+                                    <p>Check In Date</p>
+                                </div>
+                                <div class="bnr-right">
+                                    {% render_field form.end_date placeholder="end date" class="form-control" %}
+                                </div>
+                                <div class="clearfix"></div>
                             </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="bnr-one">
-                            <div class="bnr-left">
-                                <p>Check Out Date</p>
-                            </div>
-                            <div class="bnr-right">
-                                <input name="enddate" class="date" id="datepicker1" type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" required=>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="bnr-one">
+
+
+
+                        <!--<div class="bnr-one">
                             <div class="bnr-left">
                                 <p>Check In Time</p>
                             </div>
@@ -44,10 +52,10 @@
                                 <input type="text" id="timepicker" name="endtime" class="timepicker form-control"><br>
                             </div>
                             <div class="clearfix"></div>
-                        </div>
+                        </div>-->
                         <div class="bnr-one">
                             <div class="bnr-left">
-                                <p>Adults</p>
+                                <p>Number of Persons</p>
                             </div>
                             <div class="bnr-right">
                                 <select name="people">
@@ -59,31 +67,18 @@
                             </div>
                             <div class="clearfix"></div>
                         </div>
-                        <div class="bnr-one">
-                            <div class="bnr-left">
-                                <p>Children</p>
-                            </div>
-                            <div class="bnr-right">
-                                <select>
-                                    <option  class="rm" value="volvo">0</option>
-                                    <option  class="rm" value="saab">1</option>
-                                    <option  class="rm" value="opel">2</option>
-                                    <option  class="rm" value="audi">3 or 3+</option>
-                                </select>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
+
                         <div class="bnr-one">
                             <div class="bnr-left">
                                 <p>Room</p>
                             </div>
                             <div class="bnr-right">
-                                <select>
-                                    <option value="volvo">Select a type</option>
-                                    <option value="saab">Single AC</option>
-                                    <option value="opel">Double AC</option>
-                                    <option value="audi">Single NON AC</option>
-                                    <option value="audi">Double NON AC</option>
+                                <select name="room_type">
+                                    <option >Select a type</option>
+                                    <option >Single AC</option>
+                                    <option >Double AC</option>
+                                    <option >Single NON AC</option>
+                                    <option >Double NON AC</option>
                                 </select>
                             </div>
                             <div class="clearfix"></div>

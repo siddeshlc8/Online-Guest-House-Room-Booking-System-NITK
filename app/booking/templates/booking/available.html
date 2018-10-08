@@ -19,52 +19,47 @@
 						<div class="priceing-table-main">
 
 
-				<div class="list price-grid wthree lost">
-					<div class="price-block agile">
-						<div class="price-gd-top " >
-							<h4 style="margin-top: -170px";>#200 Rooms </h4>
-						</div>
-						<div class="price-gd-bottom">
-							<br>
-							<div class="price-selet">
-								<h3><span>#</span> Available @ Vikram Sarabhai guest house</h3>
-								<a href="{% url 'index' %}" >Book Now</a>
-							</div>
-						</div>
-					</div>
-				</div><br><br><br>
+                            {% for room in rooms %}
+
+                                {% if  room.rcount == 0 %}
+
+                                    <div class="list price-grid wthree lost">
+                                        <div class="price-block agile">
+                                            <div class="price-gd-top " >
+                                                <h4 style="margin-top: -170px";>#{{ room.rcount }} Rooms </h4>
+                                            </div>
+                                            <div class="price-gd-bottom">
+                                                <br>
+                                                <div class="price-selet">
+                                                    <h3><span>#</span> Sorry Rooms are Not Available @ {{ room.guesthouse }}</h3>
+                                                    <a href="{% url 'index' %}" >Go Back</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><br><br><br>
+
+                                {% else %}
+
+                                    <div class="list price-grid wthree lost">
+                                        <div class="price-block agile">
+                                            <div class="price-gd-top " >
+                                                <h4 style="margin-top: -170px";>#{{ room.rcount }} Rooms </h4>
+                                            </div>
+                                            <div class="price-gd-bottom">
+                                                <br>
+                                                <div class="price-selet">
+                                                    <h3><span>#</span> Available @ {{ room.guesthouse }}</h3>
+                                                    <a href="{% url 'index' %}" >Books</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><br><br><br>
+
+                                {% endif %}
 
 
-                 <div class="list price-grid wthree lost">
-					<div class="price-block agile">
-						<div class="price-gd-top " >
-							<h4 style="margin-top: -170px";>#200 Rooms </h4>
-						</div>
-						<div class="price-gd-bottom">
-							<br>
-							<div class="price-selet">
-								<h3><span>#</span> Available @ Vikram Sarabhai guest house</h3>
-								<a href="{% url 'index' %}" >Book Now</a>
-							</div>
-						</div>
-					</div>
-				</div><br><br><br>
 
-
-                 <div class="list price-grid wthree lost">
-					<div class="price-block agile">
-						<div class="price-gd-top " >
-							<h4 style="margin-top: -170px";>#200 Rooms </h4>
-						</div>
-						<div class="price-gd-bottom">
-							<br>
-							<div class="price-selet">
-								<h3><span>#</span> Available @ Vikram Sarabhai guest house</h3>
-								<a href="{% url 'index' %}" >Book Now</a>
-							</div>
-						</div>
-					</div>
-				</div><br><br><br>
+                            {% endfor %}
 				<div class="clearfix"> </div>
 			</div>
 		</div>

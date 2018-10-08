@@ -61,7 +61,8 @@ def registrer(request):
             messages.success(request, 'Registration success full.Please confirm your email to proceed')
             return redirect('register')
         else:
-            messages.error(request, 'Error')
+            for e in form.error_messages:
+                messages.error(request, e)
             return redirect('register')
 
 

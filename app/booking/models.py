@@ -41,8 +41,10 @@ class Rooms(models.Model):
 
 
 class Transactions(models.Model):
-    room_no = models.ForeignKey(Rooms, on_delete=models.DO_NOTHING, null=False, blank=False)
     user_booked = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=False, blank=False)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     no_people = models.IntegerField(null=True, blank=True)
+    no_rooms = models.IntegerField(null=True, blank=True)
+    rooms_allocated = models.ManyToManyField('Rooms')
+    status  = models.BooleanField(default=False)

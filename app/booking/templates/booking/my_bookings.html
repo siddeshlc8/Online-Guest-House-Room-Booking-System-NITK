@@ -3,10 +3,48 @@
 {% block body %}
 
 <style>
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;}
+
     . list{
         width: 100%;
         height: 50%;
     }
+.collapsible {
+    background-color: #ffce14;
+    color: white;
+    cursor: pointer;
+    padding: 12px;
+    width: 15%;
+    border: none;
+    text-align: center;
+    outline: none;
+}
+
+.active, .collapsible:hover {
+    background-color: #ffce14;
+}
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: white;}
+
+
 </style>
 
 
@@ -19,54 +57,62 @@
 						<div class="priceing-table-main">
 
 
-				<div class="list price-grid wthree lost">
-					<div class="price-block agile">
-						<div class="price-gd-top " >
-							<h4 style="margin-top: -170px";>01 / 02 / 2018 </h4>
-						</div>
-						<div class="price-gd-bottom">
-							<br>
-							<div class="price-selet">
-								<h3><span>#</span> 150, Vikram Sarabhai Guest House</h3>
-								<a href="{% url 'index' %}" >Book Again</a>
-							</div>
-						</div>
-					</div>
-				</div><br><br><br>
 
+                            {% for t in bookings %}
+                                <div class="list price-grid wthree lost">
+                                    <div class="price-block agile">
+                                        <div class="price-gd-top " >
+                                            <h4 style="margin-top: -170px";>{{ t.start_date }}</h4>
+                                        </div>
+                                        <div class="price-gd-bottom">
+                                            <br>
+                                            <div class="price-selet">
+                                                <h3><span>#</span> {{ t.N }} Room/s Booked in {{ t.G }}</h3>
+                                                <button class="collapsible">Details</button>
+                                                <div class="content"><br><br><br>
+                                                  <table>
+                                                      <tr style="background-color: #0f2453">
+                                                        <th style="color: white">Room Number</th>
+                                                        <th style="color: white">Guest 1</th>
+                                                        <th style="color: white">Guest 2</th>
+                                                      </tr>
+                                                      {% for r in t.R %}
+                                                      <tr>
+                                                        <td>{{ r.room_no }}</td>
+                                                        <td>Maria Anders</td>
+                                                        <td>Germany</td>
+                                                      </tr>
+                                                          {% endfor %}
+                                                  </table>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                 <div class="list price-grid wthree lost">
-					<div class="price-block agile">
-						<div class="price-gd-top " >
-							<h4 style="margin-top: -170px";>01 / 02 / 2018 </h4>
-						</div>
-						<div class="price-gd-bottom">
-							<br>
-							<div class="price-selet">
-								<h3><span>#</span> 150, Vikram Sarabhai Guest House</h3>
-								<a href="{% url 'index' %}" >Book Again</a>
-							</div>
-						</div>
-					</div>
-				</div><br><br><br>
+                                    </div>
 
+                                </div><br><br><br>
+                            {% endfor %}
 
-                 <div class="list price-grid wthree lost">
-					<div class="price-block agile">
-						<div class="price-gd-top " >
-							<h4 style="margin-top: -170px";>01 / 02 / 2018 </h4>
-						</div>
-						<div class="price-gd-bottom">
-							<br>
-							<div class="price-selet">
-								<h3><span>#</span> 150, Vikram Sarabhai Guest House</h3>
-								<a href="{% url 'index' %}" >Book Again</a>
-							</div>
-						</div>
-					</div>
-				</div><br><br><br>
 				<div class="clearfix"> </div>
 			</div>
 		</div>
 	</div>
+
+    <script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
 {% endblock %}

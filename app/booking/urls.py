@@ -10,4 +10,5 @@ urlpatterns = [
     path('book/', views.book, name='book'),
     path('account/', views.account, name='account'),
     path('psw-reset/', views.psw_reset, name='psw-reset'),
+    path('book/<int:g>/<int:t>', views.book_room, name='book_room'),
 ]

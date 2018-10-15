@@ -4,11 +4,11 @@
 
 
 
-    <div class="banner-top" style="background-color: #0f2453; margin-top: 50px">
+    <div class="banner-top"  style="background-color: #0f2453; margin-top: 50px">
                     <h2>Book Your Room Today</h2>
                     <div class="banner-bottom">
                         {% load widget_tweaks %}
-                        <form method="post" action="{% url 'book' %}"> {% csrf_token %}
+                        <form method="post" action="{% url 'book' %}" id="options_form"> {% csrf_token %}
 
                             <div class="bnr-one">
                                 <div class="bnr-left">
@@ -31,6 +31,26 @@
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
+
+
+                            <div class="bnr-one">
+                            <div class="bnr-left">
+                                <p>Room</p>
+                            </div>
+                            <div class="bnr-right">
+                                <select name="room_type" id="mySeleclt" onChange="checsk(this);">
+                                    <option >Select a type</option>
+                                    <option >Single AC</option>
+                                    <option >Double AC</option>
+                                    <option >Single NON AC</option>
+                                    <option >Double NON AC</option>
+                                </select>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+
+
 
 
 
@@ -68,21 +88,7 @@
                             <div class="clearfix"></div>
                         </div>
 
-                        <div class="bnr-one">
-                            <div class="bnr-left">
-                                <p>Room</p>
-                            </div>
-                            <div class="bnr-right">
-                                <select name="room_type">
-                                    <option >Select a type</option>
-                                    <option >Single AC</option>
-                                    <option >Double AC</option>
-                                    <option >Single NON AC</option>
-                                    <option >Double NON AC</option>
-                                </select>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
+
 
                         <div class="bnr-btn">
 
@@ -91,4 +97,11 @@
                         </div>
                     </div>
     </div>
+
+    <script type="text/javascript">
+            function check(elem) {
+                    alert("jhj");
+
+                }
+    </script>
 {% endblock %}

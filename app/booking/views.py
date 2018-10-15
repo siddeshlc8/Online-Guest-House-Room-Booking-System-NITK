@@ -5,13 +5,22 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from . forms import *
 from django.db.models import Count
+from django.db.models import Q
+import random
 
 
 # Create your views here.
 def my_bookings(request):
     user = request.user
     if user.username:
-        return render(request, 'booking/my_bookings.html')
+        T = Transactions.objects.filter(user_booked=user).order_by('-start_date')
+        bookings = []
+        for t in T:
+            g = t.rooms_allocated.all().first()
+            g = GuestHouse.objects.get(id=g.guesthouse_id).name
+            bookings.append({'id': t.id, 'start_date': t.start_date, 'N': t.rooms_allocated.all().__len__(), 'G': g, 'R': t.rooms_allocated.all()})
+        context = {'bookings': bookings}
+        return render(request, 'booking/my_bookings.html', context)
     else:
         messages.warning(request, 'You are not authorized to acces the requested page. Please Login ')
         return redirect('error')
@@ -19,24 +28,72 @@ def my_bookings(request):
 
 def book(request):
     user = request.user
+    # for g in ['JC Bose Guest House', 'Homi J Bhaba Guest House', 'Vikram Sarabhai Guest House']:
+    #     h=0
+    #     for room_type in ['Single AC', 'Double AC', 'Single Non AC', 'Double Non AC']:
+    #         for i in range(h, h+11):
+    #             r = Rooms()
+    #             r.room_no = i
+    #             r.guesthouse = GuestHouse.objects.get(name=g)
+    #             r.room_type = room_type
+    #             r.save()
+    #         h = h+11
+    # return redirect('my_bookings')
     if user.username:
         if request.method == 'POST':
             form = TransactionForm(request.POST)
             if form.is_valid():
                 start_date = form.cleaned_data['start_date']
                 end_date = form.cleaned_data['end_date']
-                T = Transactions.objects.filter(start_date__gte=start_date, end_date__lte=end_date).values('room_no')
-                R = Rooms.objects.exclude(pk__in=T).values('guesthouse').annotate(rcount=Count('guesthouse'))
+                T = Transactions.objects.filter(Q(start_date__range=(start_date, end_date)) | Q(end_date__range=(start_date, end_date)))
+                R = []
+                for t in T:
+                    f = t.rooms_allocated.all()
+                    for g in f:
+                        if g.id not in R:
+                            R.append(g.id)
+                R = Rooms.objects.exclude(pk__in=R).values('guesthouse').annotate(rcount=Count('guesthouse'))
                 context = []
                 for room in R:
+                    id = room.get('guesthouse')
                     guesthouse = GuestHouse.objects.get(id=room.get('guesthouse')).name
                     rcount = room.get('rcount')
-                    context.append({'guesthouse': guesthouse, 'rcount': rcount})
-                return render(request, 'booking/available.html', {'rooms': context})
+                    context.append({'id': id, 'guesthouse': guesthouse, 'rcount': rcount})
+                T = Transactions()
+                T.start_date = start_date
+                T.end_date = end_date
+                T.user_booked = user
+                T.save()
+                return render(request, 'booking/available.html', {'rooms': context, 'T': T})
         else:
             return render(request, 'booking/index.html', {'form': TransactionForm()})
     else:
         messages.warning(request, 'You are not authorized to acces the requested page. Please Login ')
+        return redirect('error')
+
+
+def book_room(request, g, t):
+    user = request.user
+    if user.username:
+        t = Transactions.objects.get(id=t)
+        start_date = t.start_date
+        end_date = t.end_date
+        T = Transactions.objects.filter(
+            Q(start_date__range=(start_date, end_date)) | Q(end_date__range=(start_date, end_date)))
+        R = []
+        for t in T:
+            f = t.rooms_allocated.all()
+            for g in f:
+                if g.id not in R and g.guesthouse_id == g:
+                    R.append(g.id)
+        R = Rooms.objects.exclude(pk__in=R).values('id')
+        R = random.choice(R)
+        r = Rooms.objects.get(id=R.get('id'))
+        t.rooms_allocated.add(r)
+        t.save()
+        return redirect('my_bookings')
+    else:
+        messages.warning(request, 'Requested Page Not Found ')
         return redirect('error')
 
 

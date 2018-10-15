@@ -57,7 +57,9 @@ def registrer(request):
                 'token': account_activation_token.make_token(user),
             })
             to_email = form.cleaned_data.get('email')
-            sendMail(to_email, mail_subject, message)
+            # sendMail(to_email, mail_subject, message)
+            user.is_active = True
+            user.save()
             messages.success(request, 'Registration success full.Please confirm your email to proceed')
             return redirect('register')
         else:

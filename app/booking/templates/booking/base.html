@@ -15,15 +15,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 
+    {% load staticfiles %}
 <!-- //for-mobile-apps -->
-<link href="../../static/home/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="../../static/home/css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="../../static/home/css/chocolat.css" type="text/css" media="screen">
-<link href="../../static/home/css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
-<link rel="stylesheet" href="../../static/home/css/flexslider.css" type="text/css" media="screen" property="" />
-<link rel="stylesheet" href="../../static/home/css/jquery-ui.css" />
-<link href="../../static/home/css/style.css" rel="stylesheet" type="text/css" media="all" />
-<script type="text/javascript" src="../../static/home/js/modernizr-2.6.2.min.js"></script>
+<link href="{% static 'home/css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'home/css/font-awesome.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'home/css/chocolat.css' %}" type="text/css" media="screen">
+<link href="{% static 'home/css/easy-responsive-tabs.css' %}" rel='stylesheet' type='text/css'/>
+<link rel="stylesheet" href="{% static 'home/css/flexslider.css' %}" type="text/css" media="screen" property="" />
+<link rel="stylesheet" href="{% static 'home/css/jquery-ui.css' %}" />
+<link href="{% static 'home/css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="{% static 'home/js/modernizr-2.6.2.min.js' %}"></script>
 
 
 <!--fonts-->
@@ -42,13 +43,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='//fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 <!-- //font files -->
 <!-- css files -->
-<link href="../../static/booking/css/bootstrap.css" rel='stylesheet' type='text/css' media="all">
-<link href="../../static/booking/css/wickedpicker.css" rel="stylesheet" type="text/css" media="all">
-<link href="../../static/booking/css/style.css" rel="stylesheet" type="text/css" media="all">
-<link href="../../static/home/css/style.css" rel="stylesheet" type="text/css" media="all">
+<link href="{% static 'booking/css/bootstrap.css' %}" rel='stylesheet' type='text/css' media="all">
+<link href="{% static 'booking/css/wickedpicker.css' %}" rel="stylesheet" type="text/css" media="all">
+<link href="{% static 'booking/css/style.css' %}" rel="stylesheet" type="text/css" media="all">
+<link href="{% static 'home/css/style.css' %}" rel="stylesheet" type="text/css" media="all">
 <!-- /css files -->
 <!-- js files -->
-<script src="../../static/booking/js/jquery.min.js"></script>
+<script src="{% static 'booking/js/jquery.min.js' %}"></script>
 <!--fonts-->
 <link href="//fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
 <link href="//fonts.googleapis.com/css?family=Federo" rel="stylesheet">
@@ -59,7 +60,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <div class="w3_navigation">
 		<div class="container">
-			<nav class="navbar navbar-default">
+			<nav class="navbar navbar-default" >
 				<div class="navbar-header navbar-left">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 						<span class="sr-only">Toggle navigation</span>
@@ -93,8 +94,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 <!---start-date-piker---->
-		<link rel="stylesheet" href="../../static/booking/css/jquery-ui.css" />
-		<script src="../../static/booking/js/jquery-ui.js"></script>
+		<link rel="stylesheet" href="{% static 'booking/css/jquery-ui.css' %}" />
+		<script src="{% static 'booking/js/jquery-ui.js' %}"></script>
 			<script>
 				$(function() {
 				$( "#datepicker,#datepicker1" ).datepicker();
@@ -103,7 +104,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!---/End-date-piker---->
 
 <!-- js for time-picker -->
-<script type="text/javascript" src="../../static/booking/js/wickedpicker.js"></script>
+<script type="text/javascript" src="{% static 'booking/js/wickedpicker.js' %}"></script>
 <script type="text/javascript">
 	$('.timepicker').wickedpicker({twentyFour: false});
 	$('.timepicker-two').wickedpicker({twentyFour: true});
@@ -119,13 +120,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!--/footer -->
 <!-- js -->
-<script type="text/javascript" src="../../static/home/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="{% static 'home/js/jquery-2.1.4.min.js' %}"></script>
 <!-- contact form -->
-<script src="../../static/home/js/jqBootstrapValidation.js"></script>
-<script src="../../static/home/js/contact_me.js"></script>
+<script src="{% static 'home/js/jqBootstrapValidation.js' %}"></script>
+<script src="{% static 'home/js/contact_me.js' %}"></script>
 <!-- /contact form -->
 <!-- Calendar -->
-		<script src="../../static/home/js/jquery-ui.js"></script>
+		<script src="{% static 'home/js/jquery-ui.js' %}"></script>
 		<script>
 				$(function() {
 				$( "#datepicker,#datepicker1,#datepicker2,#datepicker3" ).datepicker();
@@ -133,8 +134,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</script>
 <!-- //Calendar -->
 <!-- gallery popup -->
-<link rel="stylesheet" href="../../static/home/css/swipebox.css">
-				<script src="../../static/home/js/jquery.swipebox.min.js"></script>
+<link rel="stylesheet" href="{% static 'home/css/swipebox.css' %}">
+				<script src="{% static 'home/js/jquery.swipebox.min.js' %}"></script>
 					<script type="text/javascript">
 						jQuery(function($) {
 							$(".swipebox").swipebox();
@@ -142,8 +143,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</script>
 <!-- //gallery popup -->
 <!-- start-smoth-scrolling -->
-<script type="text/javascript" src="../../static/home/js/move-top.js"></script>
-<script type="text/javascript" src="../../static/home/js/easing.js"></script>
+<script type="text/javascript" src="{% static 'home/js/move-top.js' %}"></script>
+<script type="text/javascript" src="{% static 'home/js/easing.js' %}"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event){
@@ -154,7 +155,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- start-smoth-scrolling -->
 <!-- flexSlider -->
-				<script defer src="../../static/home/js/jquery.flexslider.js"></script>
+				<script defer src="{% static 'home/js/jquery.flexslider.js' %}"></script>
 				<script type="text/javascript">
 				$(window).load(function(){
 				  $('.flexslider').flexslider({
@@ -166,7 +167,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				});
 			  </script>
 			<!-- //flexSlider -->
-<script src="../../static/home/js/responsiveslides.min.js"></script>
+<script src="{% static 'home/js/responsiveslides.min.js' %}"></script>
 			<script>
 						// You can also use "$(window).load(function() {"
 						$(function () {
@@ -188,10 +189,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						});
 			</script>
 		<!--search-bar-->
-		<script src="../../static/home/js/main.js"></script>
+		<script src="{% static 'home/js/main.js' %}"></script>
 <!--//search-bar-->
 <!--tabs-->
-<script src="../../static/home/js/easy-responsive-tabs.js"></script>
+<script src="{% static 'home/js/easy-responsive-tabs.js' %}"></script>
 <script>
 $(document).ready(function () {
 $('#horizontalTab').easyResponsiveTabs({
@@ -234,6 +235,6 @@ fit: true
 	<a href="#home" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 	</div>
 <!-- //smooth scrolling -->
-<script type="text/javascript" src="../../static/home/js/bootstrap-3.1.1.min.js"></script>
+<script type="text/javascript" src="{% static 'home/js/bootstrap-3.1.1.min.js' %}"></script>
 </body>
 </html>

@@ -18,7 +18,8 @@ def my_bookings(request):
         for t in T:
             g = t.rooms_allocated.all().first()
             g = GuestHouse.objects.get(id=g.guesthouse_id).name
-            bookings.append({'id': t.id, 'start_date': t.start_date, 'N': t.rooms_allocated.all().__len__(), 'G': g, 'R': t.rooms_allocated.all()})
+            d = GuestDetails.objects.filter(transaction=t.id)
+            bookings.append({'id': t.id, 'start_date': t.start_date, 'N': t.rooms_allocated.all().__len__(), 'G': g, 'R': t.rooms_allocated.all(), 'D': d})
         context = {'bookings': bookings}
         return render(request, 'booking/my_bookings.html', context)
     else:
@@ -73,28 +74,59 @@ def book(request):
 
 
 def book_room(request, g, t):
-    user = request.user
-    if user.username:
-        t = Transactions.objects.get(id=t)
-        start_date = t.start_date
-        end_date = t.end_date
-        T = Transactions.objects.filter(
-            Q(start_date__range=(start_date, end_date)) | Q(end_date__range=(start_date, end_date)))
-        R = []
-        for t in T:
-            f = t.rooms_allocated.all()
-            for g in f:
-                if g.id not in R and g.guesthouse_id == g:
-                    R.append(g.id)
-        R = Rooms.objects.exclude(pk__in=R).values('id')
-        R = random.choice(R)
-        r = Rooms.objects.get(id=R.get('id'))
-        t.rooms_allocated.add(r)
-        t.save()
-        return redirect('my_bookings')
-    else:
-        messages.warning(request, 'Requested Page Not Found ')
-        return redirect('error')
+    #try:
+        user = request.user
+        if Transactions.objects.get(id=t).status is True:
+            messages.warning(request, 'Requested Page Not Found ')
+            return redirect('error')
+        if user.username:
+            if request.method == 'POST':
+                form1 = GuestDetailsForm(request.POST)
+                form2 = GuestDetailsForm(request.POST)
+                if not (form1.is_valid() and form2.is_valid()):
+                    return redirect('book_room', g, t)
+                t = Transactions.objects.get(id=t)
+                t.guesthouse = GuestHouse.objects.get(id=g)
+                start_date = t.start_date
+                end_date = t.end_date
+                T = Transactions.objects.filter(
+                    Q(start_date__range=(start_date, end_date)) | Q(end_date__range=(start_date, end_date)))
+                R = []
+                print(GuestHouse.objects.get(id=g))
+                for t in T:
+                    f = t.rooms_allocated.all()
+                    for g in f:
+                        if g.id not in R and g.guesthouse_id == t.guesthouse_id:
+                            R.append(g.id)
+                R = Rooms.objects.exclude(pk__in=R).values('id')
+                if R.__len__() == 0:
+                    t.delete()
+                    messages.warning(request, 'Some thing went wrong. Please book again  ')
+                    return redirect('index')
+                R = random.choice(R)
+                r = Rooms.objects.get(id=R.get('id'))
+                t.rooms_allocated.add(r)
+                t.status = True
+                t.save()
+                D = GuestDetails()
+                D.first_name = form1.cleaned_data['first_name']
+                D.last_name = form1.cleaned_data['last_name']
+                D.room = r
+                D.transaction = t
+                D.save()
+                return redirect('my_bookings')
+            else:
+                form1 = GuestDetailsForm()
+                form2 = GuestDetailsForm()
+                return render(request, 'booking/guest_details.html', {'form1': form1, 'form2': form2, 'g': g, 't': t})
+        else:
+            messages.warning(request, 'Requested Page Not Found ')
+            return redirect('error')
+    # except:
+    #     messages.warning(request, 'Requested Page Not Found ')
+    #     return redirect('error')
+
+
 
 
 def availability(request):

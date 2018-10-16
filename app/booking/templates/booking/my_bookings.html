@@ -62,7 +62,7 @@ tr:nth-child(even) {
                                 <div class="list price-grid wthree lost">
                                     <div class="price-block agile">
                                         <div class="price-gd-top " >
-                                            <h4 style="margin-top: -170px";>{{ t.start_date }}</h4>
+                                            <h4 style="margin-top: -170px;">{{ t.start_date }}</h4>
                                         </div>
                                         <div class="price-gd-bottom">
                                             <br>
@@ -76,10 +76,10 @@ tr:nth-child(even) {
                                                         <th style="color: white">Guest 1</th>
                                                         <th style="color: white">Guest 2</th>
                                                       </tr>
-                                                      {% for r in t.R %}
+                                                      {% for r in t.D %}
                                                       <tr>
-                                                        <td>{{ r.room_no }}</td>
-                                                        <td>Maria Anders</td>
+                                                        <td>{{ r.room }}</td>
+                                                        <td>{{ r.first_name }} {{ r.last_name }}</td>
                                                         <td>Germany</td>
                                                       </tr>
                                                           {% endfor %}

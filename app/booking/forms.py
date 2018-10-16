@@ -18,3 +18,8 @@ class UserImageForm(forms.ModelForm):
 class TransactionForm(forms.Form):
     start_date = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date'}),required=False)
     end_date = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date'}),required=False)
+
+
+class GuestDetailsForm(forms.Form):
+    first_name = forms.CharField(max_length=100)
+    last_name = forms.CharField(max_length=100)

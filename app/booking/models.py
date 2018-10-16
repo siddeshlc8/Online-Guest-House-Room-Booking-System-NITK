@@ -48,3 +48,11 @@ class Transactions(models.Model):
     no_rooms = models.IntegerField(null=True, blank=True)
     rooms_allocated = models.ManyToManyField('Rooms')
     status  = models.BooleanField(default=False)
+    guesthouse = models.ForeignKey(GuestHouse, on_delete=models.CASCADE, null=True, blank=True)
+
+
+class GuestDetails(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    room = models.ForeignKey(Rooms, on_delete=models.DO_NOTHING, null=True, blank=True)
+    transaction = models.ForeignKey(Transactions, on_delete=models.CASCADE, null=True, blank=True)

@@ -6,20 +6,21 @@ from django.contrib.auth.forms import PasswordChangeForm
 from . forms import *
 from django.db.models import Count
 from django.db.models import Q
-import random
+import random, itertools, datetime
 
 
 # Create your views here.
 def my_bookings(request):
     user = request.user
     if user.username:
-        T = Transactions.objects.filter(user_booked=user).order_by('-start_date')
+        T = Transactions.objects.filter(user_booked=user).order_by('-start_date').filter(status=True)
         bookings = []
         for t in T:
-            g = t.rooms_allocated.all().first()
-            g = GuestHouse.objects.get(id=g.guesthouse_id).name
+            g = t.guesthouse
             d = GuestDetails.objects.filter(transaction=t.id)
-            bookings.append({'id': t.id, 'start_date': t.start_date, 'N': t.rooms_allocated.all().__len__(), 'G': g, 'R': t.rooms_allocated.all(), 'D': d})
+            r = t.rooms_allocated.all()
+            z = itertools.zip_longest(d, r)
+            bookings.append({'T': t, 'N': r.__len__(), 'G': g, 'Z': z})
         context = {'bookings': bookings}
         return render(request, 'booking/my_bookings.html', context)
     else:
@@ -27,113 +28,191 @@ def my_bookings(request):
         return redirect('error')
 
 
-def book(request):
+def book(request, t):
     user = request.user
     # for g in ['JC Bose Guest House', 'Homi J Bhaba Guest House', 'Vikram Sarabhai Guest House']:
-    #     h=0
-    #     for room_type in ['Single AC', 'Double AC', 'Single Non AC', 'Double Non AC']:
-    #         for i in range(h, h+11):
+    #     h=1
+    #     for room_type in ['Single-AC', 'Double-AC', 'Single-Non-AC', 'Double-Non-AC']:
+    #         for i in range(h, h+10):
     #             r = Rooms()
     #             r.room_no = i
     #             r.guesthouse = GuestHouse.objects.get(name=g)
     #             r.room_type = room_type
     #             r.save()
-    #         h = h+11
+    #         h = h+10
     # return redirect('my_bookings')
     if user.username:
         if request.method == 'POST':
-            form = TransactionForm(request.POST)
-            if form.is_valid():
-                start_date = form.cleaned_data['start_date']
-                end_date = form.cleaned_data['end_date']
-                T = Transactions.objects.filter(Q(start_date__range=(start_date, end_date)) | Q(end_date__range=(start_date, end_date)))
-                R = []
-                for t in T:
-                    f = t.rooms_allocated.all()
-                    for g in f:
-                        if g.id not in R:
-                            R.append(g.id)
-                R = Rooms.objects.exclude(pk__in=R).values('guesthouse').annotate(rcount=Count('guesthouse'))
-                context = []
-                for room in R:
-                    id = room.get('guesthouse')
-                    guesthouse = GuestHouse.objects.get(id=room.get('guesthouse')).name
-                    rcount = room.get('rcount')
-                    context.append({'id': id, 'guesthouse': guesthouse, 'rcount': rcount})
-                T = Transactions()
-                T.start_date = start_date
-                T.end_date = end_date
-                T.user_booked = user
-                T.save()
-                return render(request, 'booking/available.html', {'rooms': context, 'T': T})
+            messages.warning(request, 'Requested Page Not Found ')
+            return redirect('error')
         else:
-            return render(request, 'booking/index.html', {'form': TransactionForm()})
+            t = Transactions.objects.get(id=t)
+            start_date = t.start_date
+            end_date = t.end_date
+            T = Transactions.objects.filter(
+                Q(start_date__range=(start_date, end_date)) | Q(end_date__range=(start_date, end_date)))
+            R = []
+            for t in T:
+                f = t.rooms_allocated.all()
+                for g in f:
+                    if g.id not in R:
+                        R.append(g.id)
+            G = GuestHouse.objects.all()
+            context = []
+            for g in G:
+                rooms_available = Rooms.objects.exclude(pk__in=R).filter(guesthouse_id=g.id).values(
+                    'room_type').annotate(count=Count('room_type'))
+                no_rooms = 0
+                rooms = []
+                for room in rooms_available:
+                    types = str(room.get('room_type'))
+                    count = room.get('count')
+                    form = NoGuestsRoomForm(count, types)
+                    rooms.append({'type': types, 'count': count, 'form': form})
+                    no_rooms = no_rooms + count
+                context.append({'G': g, 'no_rooms': no_rooms, 'rooms': rooms})
+            return render(request, 'booking/available.html', {'rooms': context, 'T': t})
     else:
         messages.warning(request, 'You are not authorized to acces the requested page. Please Login ')
         return redirect('error')
 
 
-def book_room(request, g, t):
-    #try:
-        user = request.user
-        if Transactions.objects.get(id=t).status is True:
-            messages.warning(request, 'Requested Page Not Found ')
-            return redirect('error')
-        if user.username:
-            if request.method == 'POST':
-                form1 = GuestDetailsForm(request.POST)
-                form2 = GuestDetailsForm(request.POST)
-                if not (form1.is_valid() and form2.is_valid()):
-                    return redirect('book_room', g, t)
-                t = Transactions.objects.get(id=t)
-                t.guesthouse = GuestHouse.objects.get(id=g)
-                start_date = t.start_date
-                end_date = t.end_date
-                T = Transactions.objects.filter(
-                    Q(start_date__range=(start_date, end_date)) | Q(end_date__range=(start_date, end_date)))
-                R = []
-                print(GuestHouse.objects.get(id=g))
-                for t in T:
-                    f = t.rooms_allocated.all()
-                    for g in f:
-                        if g.id not in R and g.guesthouse_id == t.guesthouse_id:
-                            R.append(g.id)
-                R = Rooms.objects.exclude(pk__in=R).values('id')
-                if R.__len__() == 0:
-                    t.delete()
-                    messages.warning(request, 'Some thing went wrong. Please book again  ')
-                    return redirect('index')
-                R = random.choice(R)
-                r = Rooms.objects.get(id=R.get('id'))
-                t.rooms_allocated.add(r)
-                t.status = True
-                t.save()
-                D = GuestDetails()
-                D.first_name = form1.cleaned_data['first_name']
-                D.last_name = form1.cleaned_data['last_name']
-                D.room = r
-                D.transaction = t
-                D.save()
-                return redirect('my_bookings')
+def book_room(g, t):
+    rtype = Transactions.objects.get(id=t).room_type
+    t = Transactions.objects.get(id=t)
+    t.guesthouse = GuestHouse.objects.get(id=g)
+    t.save()
+    start_date = t.start_date
+    end_date = t.end_date
+    T = Transactions.objects.filter(
+        Q(start_date__range=(start_date, end_date)) | Q(end_date__range=(start_date, end_date)))
+    R = []
+    print(GuestHouse.objects.get(id=g))
+    for t in T:
+        f = t.rooms_allocated.all().filter(guesthouse=t.guesthouse).filter(room_type=rtype)
+        for g in f:
+            if g.id not in R:
+                R.append(g.id)
+    R = Rooms.objects.filter(guesthouse=t.guesthouse).filter(room_type=rtype).exclude(pk__in=R).values('id')
+    if R.__len__() == 0:
+        t.delete()
+        return False
+    R = random.choice(R)
+    r = Rooms.objects.get(id=R.get('id'))
+    t.rooms_allocated.add(r)
+    t.status = True
+    t.save()
+    return True
+
+
+def guest_details(request, g, t):
+    # try:
+    user = request.user
+    if user.username:
+        if request.method == 'POST':
+            form = GuestDetailsForm(request.POST)
+            if form.is_valid():
+                first_name = form.cleaned_data['first_name']
+                last_name = form.cleaned_data['last_name']
+                phone = form.cleaned_data['phone']
+                email = form.cleaned_data['email']
+                T = Transactions.objects.get(id=t)
+                G = GuestDetails()
+                G.transaction = T
+                G.first_name = first_name
+                G.last_name = last_name
+                G.phone = phone
+                G.email = email
+                G.save()
+                T.no_people_done = T.no_people_done + 1
+                T.save()
+                if T.no_people_done == T.no_people:
+                    if book_room(g, t):
+                        return redirect('my_bookings')
+                    else:
+                        messages.warning(request, 'Some thing went wrong book again ')
+                        return redirect('index')
+                return redirect('guest_details', g, t)
             else:
-                form1 = GuestDetailsForm()
-                form2 = GuestDetailsForm()
-                return render(request, 'booking/guest_details.html', {'form1': form1, 'form2': form2, 'g': g, 't': t})
+                messages.warning(request, 'Requested Page Not Found ')
+                return redirect('error')
+        else:
+            return render(request, 'booking/guest_details.html', {'form': GuestDetailsForm(), 't': t, 'g': g, 'T': Transactions.objects.get(id=t).no_people_done+1})
+    else:
+        messages.warning(request, 'Requested Page Not Found ')
+        return redirect('error')
+
+
+def book_room_verify(request, g, t, rtype, count):
+    # try:
+    user = request.user
+    if user.username:
+        if request.method == 'POST':
+            form = NoGuestsRoomForm(count, rtype, request.POST)
+            if form.is_valid():
+                no_g = form.cleaned_data['no_guests']
+                no_r = form.cleaned_data['no_rooms']
+                no_guests = 0
+                if rtype == 'Single-AC':
+                    no_guests = no_r
+                elif rtype == 'Single-Non-AC':
+                    no_guests = no_r
+                elif rtype == 'Double-AC':
+                    no_guests = no_r * 2
+                elif rtype == 'Double-Non-AC':
+                    no_guests = no_r * 2
+                if no_g > no_guests:
+                    messages.warning(request, 'Sorry ' + str(no_g) + ' guests ' + 'can not fit in ' + str(no_r) + ' rooms')
+                    return redirect('book', t)
+                T = Transactions.objects.get(id=t)
+                T.room_type = rtype
+                T.no_people = no_g
+                T.no_rooms = no_r
+                T.save()
+                return redirect('guest_details', g, t)
+            else:
+                messages.warning(request, 'Requested Page Not Found ')
+                return redirect('error')
         else:
             messages.warning(request, 'Requested Page Not Found ')
             return redirect('error')
-    # except:
-    #     messages.warning(request, 'Requested Page Not Found ')
-    #     return redirect('error')
-
-
+    else:
+        messages.warning(request, 'Requested Page Not Found ')
+        return redirect('error')
 
 
 def availability(request):
     if request.method == 'POST':
-         return redirect('email')
-        #else
-        #return redirect('not_avaialable')
+        form = TransactionForm(request.POST)
+        if form.is_valid():
+            start_date = form.cleaned_data['start_date']
+            end_date = form.cleaned_data['end_date']
+            T = Transactions.objects.filter(
+                Q(start_date__range=(start_date, end_date)) | Q(end_date__range=(start_date, end_date)))
+            R = []
+            for t in T:
+                f = t.rooms_allocated.all()
+                for g in f:
+                    if g.id not in R:
+                        R.append(g.id)
+            G = GuestHouse.objects.all()
+            context = []
+            for g in G:
+                rooms_available = Rooms.objects.exclude(pk__in=R).filter(guesthouse_id=g.id).values(
+                    'room_type').annotate(count=Count('room_type'))
+                no_rooms = 0
+                rooms = []
+                for room in rooms_available:
+                    types = str(room.get('room_type'))
+                    count = room.get('count')
+                    form = NoGuestsRoomForm(count, types)
+                    rooms.append({'type': types, 'count': count, 'form': form})
+                    no_rooms = no_rooms + count
+                context.append({'G': g, 'no_rooms': no_rooms, 'rooms': rooms})
+            return render(request, 'booking/availability.html', {'rooms': context})
+        else:
+            messages.warning(request, 'Requested Page Not Found ')
+            return redirect('index')
     else:
         return render(request, 'home/error.html')
 
@@ -147,7 +226,45 @@ def not_avaialable(request):
 
 
 def index(request):
-    return redirect('book')
+    user = request.user
+    # for g in ['JC Bose Guest House', 'Homi J Bhaba Guest House', 'Vikram Sarabhai Guest House']:
+    #     h=1
+    #     for room_type in ['Single-AC', 'Double-AC', 'Single-Non-AC', 'Double-Non-AC']:
+    #         for i in range(h, h+10):
+    #             r = Rooms()
+    #             r.room_no = i
+    #             r.guesthouse = GuestHouse.objects.get(name=g)
+    #             r.room_type = room_type
+    #             r.save()
+    #         h = h+10
+    # return redirect('my_bookings')
+    if user.username:
+        if request.method == 'POST':
+            form = TransactionForm(request.POST)
+            if form.is_valid():
+                start_date = form.cleaned_data['start_date']
+                end_date = form.cleaned_data['end_date']
+                if start_date > end_date or start_date < datetime.date.today():
+                    messages.warning(request, 'Please Enter Proper dates')
+                    return redirect('index')
+                T = Transactions()
+                T.start_date = start_date
+                T.end_date = end_date
+                T.user_booked = user
+                T.save()
+                return redirect('book', T.id)
+            else:
+                for e in form.errors:
+                    messages.error(request, e)
+                return redirect('index')
+        else:
+            T = Transactions.objects.filter(user_booked=user).filter(status=False)
+            for t in T:
+                t.delete()
+            return render(request, 'booking/index.html', {'form': TransactionForm()})
+    else:
+        messages.warning(request, 'You are not authorized to acces the requested page. Please Login ')
+        return redirect('error')
 
 
 def account(request):

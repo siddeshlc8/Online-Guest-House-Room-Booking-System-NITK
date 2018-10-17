@@ -32,6 +32,7 @@ tr:nth-child(even) {
     border: none;
     text-align: center;
     outline: none;
+    margin-right: 50px;
 }
 
 .active, .collapsible:hover {
@@ -62,7 +63,7 @@ tr:nth-child(even) {
                                 <div class="list price-grid wthree lost">
                                     <div class="price-block agile">
                                         <div class="price-gd-top " >
-                                            <h4 style="margin-top: -170px;">{{ t.start_date }}</h4>
+                                            <h4 style="margin-top: -170px;">{{ t.T.start_date }}</h4>
                                         </div>
                                         <div class="price-gd-bottom">
                                             <br>
@@ -72,15 +73,23 @@ tr:nth-child(even) {
                                                 <div class="content"><br><br><br>
                                                   <table>
                                                       <tr style="background-color: #0f2453">
-                                                        <th style="color: white">Room Number</th>
-                                                        <th style="color: white">Guest 1</th>
-                                                        <th style="color: white">Guest 2</th>
+                                                        <th style="color: white">Rooms Booked </th>
+                                                        <th style="color: white"></th>
+                                                        <th style="color: white; text-align: center;">Guest Details</th>
+                                                        <th style="color: white"></th>
                                                       </tr>
-                                                      {% for r in t.D %}
+                                                  <tr style="background-color: #0f2453">
+                                                        <th style="color: white"></th>
+                                                        <th style="color: white">Name</th>
+                                                        <th style="color: white">Phone Number</th>
+                                                        <th style="color: white">Email</th>
+                                                      </tr>
+                                                      {% for d, r in t.Z %}
                                                       <tr>
-                                                        <td>{{ r.room }}</td>
-                                                        <td>{{ r.first_name }} {{ r.last_name }}</td>
-                                                        <td>Germany</td>
+                                                        <td>{{ r.room_no }} {{ r.room_type }}</td>
+                                                        <td>{{ d.first_name }} {{ d.last_name }}</td>
+                                                        <td>{{ d.phone }} </td>
+                                                        <td>{{ d.email }} </td>
                                                       </tr>
                                                           {% endfor %}
                                                   </table>

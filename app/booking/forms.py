@@ -16,10 +16,28 @@ class UserImageForm(forms.ModelForm):
 
 
 class TransactionForm(forms.Form):
-    start_date = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date'}),required=False)
-    end_date = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date'}),required=False)
+    start_date = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date'}), required=True)
+    end_date = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date'}), required=True)
 
 
 class GuestDetailsForm(forms.Form):
-    first_name = forms.CharField(max_length=100)
-    last_name = forms.CharField(max_length=100)
+    first_name = forms.CharField(max_length=100, required=True)
+    last_name = forms.CharField(max_length=100, required=True)
+    phone = forms.CharField(max_length=10, required=True)
+    email = forms.EmailField(required=True)
+
+
+class NoGuestsRoomForm(forms.Form):
+    def __init__(self, count, types, *args, **kwargs):
+        super(NoGuestsRoomForm, self).__init__(*args, **kwargs)
+        self.fields['no_rooms'] = forms.IntegerField(max_value=count)
+        no_guests =  0
+        if types == 'Single-AC':
+            no_guests = count
+        elif types == 'Single-Non-AC':
+            no_guests = count
+        elif types == 'Double-AC':
+            no_guests = count * 2
+        elif types == 'Double-Non-AC':
+            no_guests = count * 2
+        self.fields['no_guests'] = forms.IntegerField(max_value=no_guests)

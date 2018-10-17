@@ -28,10 +28,10 @@ class GuestHouse(models.Model):
 class Rooms(models.Model):
     room_no = models.IntegerField(null=False)
     ROOM_TYPES = [
-        ('Single AC', 'Single AC'),
-        ('Double AC', 'Double AC'),
-        ('Single NON AC', 'Single NON AC'),
-        ('Double NON AC', 'Double NON AC'),
+        ('Single-AC', 'Single-AC'),
+        ('Double-AC', 'Double-AC'),
+        ('Single-NON-AC', 'Single NON-AC'),
+        ('Double-NON-AC', 'Double-NON-AC'),
     ]
     room_type = models.CharField(max_length=20, choices=ROOM_TYPES, null=False)
     guesthouse = models.ForeignKey(GuestHouse, on_delete=models.CASCADE, null=False, blank=False)
@@ -45,14 +45,27 @@ class Transactions(models.Model):
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     no_people = models.IntegerField(null=True, blank=True)
+    no_people_done = models.IntegerField(null=True, blank=True,default=0)
     no_rooms = models.IntegerField(null=True, blank=True)
     rooms_allocated = models.ManyToManyField('Rooms')
-    status  = models.BooleanField(default=False)
+    status = models.BooleanField(default=False)
     guesthouse = models.ForeignKey(GuestHouse, on_delete=models.CASCADE, null=True, blank=True)
+    ROOM_TYPES = [
+        ('Single-AC', 'Single-AC'),
+        ('Double-AC', 'Double-AC'),
+        ('Single-NON-AC', 'Single NON-AC'),
+        ('Double-NON-AC', 'Double-NON-AC'),
+    ]
+
+    room_type = models.CharField(max_length=20, choices=ROOM_TYPES, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.user_booked) + ' ' + str(self.guesthouse) + ' || ' + str(self.start_date) + ' - ' + str(self.end_date)
 
 
 class GuestDetails(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    room = models.ForeignKey(Rooms, on_delete=models.DO_NOTHING, null=True, blank=True)
+    first_name = models.CharField(max_length=100, null=True, blank=True)
+    last_name = models.CharField(max_length=100, null=True, blank=True)
+    phone = models.CharField(max_length=100, null=True, blank=True)
+    email = models.CharField(max_length=100, null=True, blank=True)
     transaction = models.ForeignKey(Transactions, on_delete=models.CASCADE, null=True, blank=True)

@@ -160,29 +160,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<h2>CHECK AVAILABILITY</h2>
 </div>
 <div class="col-md-9 book-form">
-
+                {% load widget_tweaks %}
 			   <form action="{% url 'availability' %}" method="post">{% csrf_token %}
-					<div class="fields-w3ls form-left-agileits-w3layouts ">
-							<p>Room Type</p>
-							<select class="form-control">
-								<option>Select a Room</option>
-								<option>A/C Single Room</option>
-								<option>A/C Double Room</option>
-								<option>Non A/C Single Room</option>
-								<option>Non A/C Double Room Room</option>
-							</select>
-					</div>
-					<div class="fields-w3ls form-date-w3-agileits">
+					<div class="fields-w3ls form-date-w3-agileits" style="margin-left: 200px">
 						        <p>Arrival Date</p>
-									<input  id="datepicker1" name="Text" type="text" value="Select Date" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
+                                    {% render_field t_form.start_date placeholder="start date" class="form-control" %}
+
 								</div>
-								<div class="fields-w3ls form-date-w3-agileits">
+								<div class="fields-w3ls form-date-w3-agileits" style="margin-left: 200px">
 						        <p>Departure Date</p>
-									<input  id="datepicker2" name="Text" type="text" value="Select Date" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
+									{% render_field t_form.end_date placeholder="start date" class="form-control" %}
 								</div>
 
-					<div class=" form-left-agileits-submit">
-						  <input type="submit" value="Check Availability">
+					<div class=" form-left-agileits-submit" >
+						  <input type="submit" value="Check Availability" style="margin-left: 55px">
 					</div>
 				</form>
 

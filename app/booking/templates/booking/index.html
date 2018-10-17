@@ -25,7 +25,7 @@
                     <h2>Book Your Room Today</h2>
                     <div class="banner-bottom">
                         {% load widget_tweaks %}
-                        <form method="post" action="{% url 'book' %}" id="options_form"> {% csrf_token %}
+                        <form method="post" action="{% url 'index' %}" id="options_form"> {% csrf_token %}
 
                             <div class="bnr-one">
                                 <div class="bnr-left">
@@ -41,7 +41,7 @@
 
                             <div class="bnr-one">
                                 <div class="bnr-left">
-                                    <p>Check In Date</p>
+                                    <p>Check Out Date</p>
                                 </div>
                                 <div class="bnr-right">
                                     {% render_field form.end_date placeholder="end date" class="form-control" %}
@@ -50,60 +50,60 @@
                             </div>
 
 
-                            <div class="bnr-one">
-                            <div class="bnr-left">
-                                <p>Room</p>
-                            </div>
-                            <div class="bnr-right">
-                                <select name="room_type" id="mySeleclt" onChange="checsk(this);">
-                                    <option >Select a type</option>
-                                    <option >Single AC</option>
-                                    <option >Double AC</option>
-                                    <option >Single NON AC</option>
-                                    <option >Double NON AC</option>
-                                </select>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-
-
-
-
-
-
-                        <!--<div class="bnr-one">
-                            <div class="bnr-left">
-                                <p>Check In Time</p>
-                            </div>
-                            <div class="bnr-right time-pic">
-                                <input type="text" id="timepicker" name="starttime" class="timepicker form-control"><br>
-                            </div>
-
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="bnr-one">
-                            <div class="bnr-left">
-                                <p>Check Out Time</p>
-                            </div>
-                            <div class="bnr-right time-pic">
-                                <input type="text" id="timepicker" name="endtime" class="timepicker form-control"><br>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>-->
-                        <div class="bnr-one">
-                            <div class="bnr-left">
-                                <p>Number of Persons</p>
-                            </div>
-                            <div class="bnr-right">
-                                <select name="people">
-                                    <option  class="rm">0</option>
-                                    <option  class="rm" >1</option>
-                                    <option  class="rm" >2</option>
-                                    <option  class="rm" >3 or 3+</option>
-                                </select>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
+{#                            <div class="bnr-one">#}
+{#                            <div class="bnr-left">#}
+{#                                <p>Room</p>#}
+{#                            </div>#}
+{#                            <div class="bnr-right">#}
+{#                                <select name="room_type" id="mySeleclt" onChange="checsk(this);">#}
+{#                                    <option >Select a type</option>#}
+{#                                    <option >Single AC</option>#}
+{#                                    <option >Double AC</option>#}
+{#                                    <option >Single NON AC</option>#}
+{#                                    <option >Double NON AC</option>#}
+{#                                </select>#}
+{#                            </div>#}
+{#                            <div class="clearfix"></div>#}
+{#                        </div>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#                        <!--<div class="bnr-one">#}
+{#                            <div class="bnr-left">#}
+{#                                <p>Check In Time</p>#}
+{#                            </div>#}
+{#                            <div class="bnr-right time-pic">#}
+{#                                <input type="text" id="timepicker" name="starttime" class="timepicker form-control"><br>#}
+{#                            </div>#}
+{##}
+{#                            <div class="clearfix"></div>#}
+{#                        </div>#}
+{#                        <div class="bnr-one">#}
+{#                            <div class="bnr-left">#}
+{#                                <p>Check Out Time</p>#}
+{#                            </div>#}
+{#                            <div class="bnr-right time-pic">#}
+{#                                <input type="text" id="timepicker" name="endtime" class="timepicker form-control"><br>#}
+{#                            </div>#}
+{#                            <div class="clearfix"></div>#}
+{#                        </div>-->#}
+{#                        <div class="bnr-one">#}
+{#                            <div class="bnr-left">#}
+{#                                <p>Number of Persons</p>#}
+{#                            </div>#}
+{#                            <div class="bnr-right">#}
+{#                                <select name="people">#}
+{#                                    <option  class="rm">0</option>#}
+{#                                    <option  class="rm" >1</option>#}
+{#                                    <option  class="rm" >2</option>#}
+{#                                    <option  class="rm" >3 or 3+</option>#}
+{#                                </select>#}
+{#                            </div>#}
+{#                            <div class="clearfix"></div>#}
+{#                        </div>#}
 
 
 

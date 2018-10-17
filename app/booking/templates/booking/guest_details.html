@@ -3,29 +3,25 @@
 {% block body %}
 
 <style>
-
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
-
 td, th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
 }
-
 tr:nth-child(even) {
     background-color: #dddddd;}
-
     . list{
         width: 100%;
         height: 50%;
     }
 .collapsible {
     background-color: #ffce14;
-    color: white;
+    color: black;
     cursor: pointer;
     padding: 12px;
     width: 15%;
@@ -33,18 +29,14 @@ tr:nth-child(even) {
     text-align: center;
     outline: none;
 }
-
 .active, .collapsible:hover {
     background-color: #ffce14;
 }
-
 .content {
     padding: 0 18px;
     display: none;
     overflow: hidden;
     background-color: white;}
-
-
 </style>
 
 
@@ -57,9 +49,8 @@ tr:nth-child(even) {
 						<div class="priceing-table-main">
 
                             {% load widget_tweaks %}
-                            <form class="form" action="{% url 'book_room' g t%}" method="post" id="registrationForm" enctype="multipart/form-data">{% csrf_token %}
 
-                                <div class="list price-grid wthree lost">
+                                    <div class="list price-grid wthree lost">
                                     <div class="price-block agile">
                                         <div class="price-gd-top " >
 
@@ -67,24 +58,25 @@ tr:nth-child(even) {
                                         <div class="price-gd-bottom">
                                             <br>
                                             <div class="price-selet">
-                                                <h3>  <span>Guest 1</span></h3>
-                                                <button class="collapsible">Enter Details</button>
-                                                <div class="content"><br><br><br>
+                                                <h3>  <span>Guest {{ T }}</span></h3>
+                                                    <button class="collapsible">Enter Details</button>
+                                                    <div class="content"><br><br><br>
 
 
+                                                    <form class="form" action="{% url 'guest_details' g t%}" method="post" id="registrationForm" enctype="multipart/form-data">{% csrf_token %}
 
                                                     <div class="form-group">
 
                                                           <div class="col-xs-6">
                                                               <br><label for="first_name"><h4>First name</h4></label>
-                                                              {% render_field form1.first_name placeholder="old password" class="form-control" %}
+                                                              {% render_field form.first_name placeholder="old password" class="form-control" %}
                                                           </div>
                                                       </div>
                                                       <div class="form-group">
 
                                                           <div class="col-xs-6">
                                                             <br><label for="last_name"><h4>Last name</h4></label>
-                                                              {% render_field form1.last_name placeholder="old password" class="form-control" %}
+                                                              {% render_field form.last_name placeholder="old password" class="form-control" %}
                                                           </div>
                                                       </div>
 
@@ -93,73 +85,27 @@ tr:nth-child(even) {
                                                       <div class="form-group">
                                                           <div class="col-xs-6">
                                                              <br><label for="mobile"><h4>Mobile</h4></label>
-                                                              <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any." value="">
+                                                              {% render_field form.phone placeholder="old password" class="form-control" %}
                                                           </div>
                                                       </div>
                                                       <div class="form-group">
 
                                                           <div class="col-xs-6">
                                                               <br><label for="email"><h4>Email</h4></label>
-                                                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." value="">
+                                                              {% render_field form.email placeholder="old password" class="form-control" %}
                                                           </div>
                                                       </div>
 
-
-
-
+                                                        <div class="form-group" style="margin-left: 300px">
+                                                    <div class="col-xs-12">
+                                                             <br>
+                                                        <button class="btn btn-lg btn-success" type="submit" style="background-color: #0f2453; "><i class="glyphicon glyphicon-ok-sign"></i>Save</button>
+                                                        <button class="btn btn-lg btn-success" type="reset" style="background-color: #0f2453"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div><br><br><br>
 
 
-                             <div class="list price-grid wthree lost">
-                                    <div class="price-block agile">
-                                        <div class="price-gd-top " >
-
-                                        </div>
-                                        <div class="price-gd-bottom">
-                                            <br>
-                                            <div class="price-selet">
-                                                <h3>  <span>Guest 2</span></h3>
-                                                <button class="collapsible">Enter Details</button>
-                                                <div class="content"><br><br><br>
-
-
-
-                                                    <div class="form-group">
-
-                                                          <div class="col-xs-6">
-                                                              <br><label for="first_name"><h4>First name</h4></label>
-                                                              {% render_field form2.first_name placeholder="old password" class="form-control" %}
-                                                          </div>
-                                                      </div>
-                                                      <div class="form-group">
-
-                                                          <div class="col-xs-6">
-                                                            <br><label for="last_name"><h4>Last name</h4></label>
-                                                              {% render_field form2.last_name placeholder="old password" class="form-control" %}
-                                                          </div>
-                                                      </div>
-
-
-
-                                                      <div class="form-group">
-                                                          <div class="col-xs-6">
-                                                             <br><label for="mobile"><h4>Mobile</h4></label>
-                                                              <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any." value="">
-                                                          </div>
-                                                      </div>
-                                                      <div class="form-group">
-
-                                                          <div class="col-xs-6">
-                                                              <br><label for="email"><h4>Email</h4></label>
-                                                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." value="">
-                                                          </div>
-                                                      </div>
+                                                    </form>
 
 
 
@@ -175,15 +121,15 @@ tr:nth-child(even) {
 
 
 
-                            <div class="form-group" style="margin-left: 450px">
-                                <div class="col-xs-12">
-                                         <br>
-                                    <button class="btn btn-lg btn-success" type="submit" style="background-color: #0f2453; "><i class="glyphicon glyphicon-ok-sign"></i>Save</button>
-                                    <button class="btn btn-lg btn-success" type="reset" style="background-color: #0f2453"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
-                                </div>
-                            </div>
 
-                            </form>
+
+
+
+
+
+
+
+
 
 
 				<div class="clearfix"> </div>
@@ -194,7 +140,6 @@ tr:nth-child(even) {
     <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;
-
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
     this.classList.toggle("active");

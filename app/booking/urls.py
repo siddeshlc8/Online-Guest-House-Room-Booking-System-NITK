@@ -4,11 +4,11 @@ from . import views
 urlpatterns = [
     path('my-bookings/', views.my_bookings, name='my_bookings'),
     path('email/', views.avaialable, name='email'),
-    path('not-available/', views.not_avaialable, name='not_available'),
     path('availability/', views.availability, name='availability'),
     path('user/', views.index, name='index'),
-    path('book/', views.book, name='book'),
+    path('book/<int:t>/', views.book, name='book'),
     path('account/', views.account, name='account'),
     path('psw-reset/', views.psw_reset, name='psw-reset'),
-    path('book/<int:g>/<int:t>', views.book_room, name='book_room'),
+    path('book/<int:g>/<int:t>/<slug:rtype>/<int:count>/', views.book_room_verify, name='book_room_verify'),
+    path('guest-details/<int:g>/<int:t>/', views.guest_details, name='guest_details'),
 ]

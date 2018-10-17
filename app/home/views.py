@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 import sendgrid
 from sendgrid.helpers.mail import *
 from . forms import *
+from booking.forms import TransactionForm
 # Create your views here.
 
 
@@ -30,7 +31,7 @@ def home(request):
     if request.user.username:
         print(request.user.email)
         return redirect('index')
-    return render(request, 'home/index.html')
+    return render(request, 'home/index.html', {'t_form': TransactionForm()})
 
 
 def error(request):

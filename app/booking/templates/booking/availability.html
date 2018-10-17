@@ -1,4 +1,4 @@
-{% extends 'booking/base.html' %}
+{% extends 'home/base.html' %}
 
 {% block body %}
 
@@ -102,7 +102,7 @@ tr:nth-child(even) {
                                                 <br>
                                                 <div class="price-selet">
                                                     <h3><span>#</span> Sorry Rooms are Not Available @ {{ room.G.name }}</h3>
-                                                    <a href="{% url 'index' %}" >Go Back</a>
+                                                    <a href="{% url 'home' %}" >Go Back</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -134,18 +134,7 @@ tr:nth-child(even) {
                                                           <tr>
                                                             <td>{{ r.type }}</td>
                                                             <td>{{ r.count }}</td>
-                                                            <td><button class="collapsible" style="width: 50%">Continue</button>
-                                                                <div class="content"><br><br><br>
-                                                                    {% load widget_tweaks %}
-                                                                    <form method="post" action="{% url 'book_room_verify' room.G.id T.id r.type r.count%}">{% csrf_token %}
-                                                                        <label for="first_name"><h4>Number of Rooms</h4></label>
-                                                                        {% render_field r.form.no_rooms placeholder="no_rooms" class="form-control" %}
-                                                                        <br><label for="first_name"><h4>Number of Guests</h4></label>
-                                                                        {% render_field r.form.no_guests placeholder="no_guests" class="form-control" %}
-                                                                        <br><button class="book">Book</button><br><br>
-                                                                    </form>
-                                                                </div>
-                                                            </td>
+                                                            <td><a class="form-control" href="{% url 'login' %}">Book</a></td>
 
                                                           </tr>
                                                               {% endfor %}

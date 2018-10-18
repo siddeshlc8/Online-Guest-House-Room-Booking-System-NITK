@@ -11,6 +11,7 @@ import sendgrid
 from sendgrid.helpers.mail import *
 from . forms import *
 from booking.forms import TransactionForm
+from booking.models import ExtendedUser
 # Create your views here.
 
 
@@ -45,10 +46,17 @@ def registrer(request):
     elif request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
+            email = form.cleaned_data.get('email')
+            if User.objects.filter(email=email).__len__() is not 0:
+                messages.error(request, 'User Already Exist')
+                return redirect('register')
             user = form.save(commit=False)
             user.is_active = False
             user.username = form.cleaned_data.get('email')
             user.save()
+            extended_user = ExtendedUser()
+            extended_user.user = user
+            extended_user.save()
             current_site = get_current_site(request)
             mail_subject = 'Activate your blog account.'
             message = render_to_string('home/acc_active_email.html', {
@@ -61,7 +69,7 @@ def registrer(request):
             # sendMail(to_email, mail_subject, message)
             user.is_active = True
             user.save()
-            messages.success(request, 'Registration success full.Please confirm your email to proceed')
+            messages.success(request, 'Registration success full.Please confirm your email to proceed. Login To Continue')
             return redirect('register')
         else:
             for e in form.error_messages:

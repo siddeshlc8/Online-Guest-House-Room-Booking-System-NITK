@@ -3,7 +3,6 @@ from . import views
 
 urlpatterns = [
     path('my-bookings/', views.my_bookings, name='my_bookings'),
-    path('email/', views.avaialable, name='email'),
     path('availability/', views.availability, name='availability'),
     path('user/', views.index, name='index'),
     path('book/<int:t>/', views.book, name='book'),

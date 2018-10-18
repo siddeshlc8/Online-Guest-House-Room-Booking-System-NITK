@@ -11,10 +11,11 @@ def get_image_path(instance, filename):
 class ExtendedUser(models.Model):
     user = models.ForeignKey(User, unique=True, on_delete=models.CASCADE, null=False, blank=False)
     mobile = models.CharField(max_length=11, null=True)
-    image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
+    image = models.ImageField(upload_to=get_image_path, blank=True, null=True, default='users/no.png')
 
-    def __str__(self):
-        return self.user
+    if user:
+        def __str__(self):
+            return str(self.user)
 
 
 class GuestHouse(models.Model):

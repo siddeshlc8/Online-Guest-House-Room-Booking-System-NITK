@@ -2,10 +2,7 @@
 
 {% block body %}
 
-    <br>
-    <br>
-    <br>
-    <br>
+
 
 
     {% if messages %}
@@ -19,8 +16,10 @@
 
         {% endfor %}
     {% endif %}
+<br><br>
+<br><br>
+<br><br>
 
-    <br>
     <div class="container bootstrap snippet" >
 
     <div class="row">
@@ -30,8 +29,9 @@
         <div class="col-sm-3"><!--left col-->
 
 
-            <div class="text-center">
-                <img src="{{ extended_user.image.url }}" class="avatar img-circle img-thumbnail" alt="avatar">
+            <div class="text-center" >
+            <div style="height: 50%;">
+                <img src="{{ extended_user.image.url }}" class="avatar img-circle img-thumbnail" alt="avatar" >
                   <br><br>
                 <h6>Upload a different photo...</h6>
                    <br><br>
@@ -39,9 +39,10 @@
                     {{ field }}
                 {% endfor %}
 
-
+            </div>
             </div></hr><br>
         </div><!--/col-3-->
+
 
 
     	<div class="col-sm-9">

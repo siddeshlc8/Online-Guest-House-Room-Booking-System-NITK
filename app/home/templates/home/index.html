@@ -161,19 +161,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <div class="col-md-9 book-form">
                 {% load widget_tweaks %}
-			   <form action="{% url 'availability' %}" method="post">{% csrf_token %}
-					<div class="fields-w3ls form-date-w3-agileits" style="margin-left: 200px">
+			   <form action="{% url 'availability' %}" method="post" >{% csrf_token %}
+
+					<div class="fields-w3ls form-date-w3-agileits" style="margin-left: 9%">
 						        <p>Arrival Date</p>
                                     {% render_field t_form.start_date placeholder="start date" class="form-control" %}
 
 								</div>
-								<div class="fields-w3ls form-date-w3-agileits" style="margin-left: 200px">
+
+								<div class="fields-w3ls form-date-w3-agileits" style="margin-left: 9%">
 						        <p>Departure Date</p>
 									{% render_field t_form.end_date placeholder="start date" class="form-control" %}
 								</div>
 
-					<div class=" form-left-agileits-submit" >
-						  <input type="submit" value="Check Availability" style="margin-left: 55px">
+					<div class="" style="">
+						  <input type="submit" value="Check Availability" style="margin-left: 9%">
 					</div>
 				</form>
 

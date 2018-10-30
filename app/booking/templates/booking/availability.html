@@ -30,8 +30,8 @@ tr:nth-child(even) {
     background-color: #ffce14;
     color: black;
     cursor: pointer;
-    padding: 12px;
-    width: 15%;
+    padding: 1%;
+    width: 20%;
     border: none;
     text-align: center;
     outline: none;
@@ -52,6 +52,21 @@ tr:nth-child(even) {
     background-color: #ffce14;
 }
 
+.price-gd-top1 {
+    text-align: center;
+    position: relative;
+}
+.price-gd-top1 h4 {
+    font-size: 1.5em;
+    color: #fff;
+    padding: 0.4em 1em;
+    background: #0f2453;
+    font-weight: 300;
+    position: absolute;
+    top: 0em;
+    right: 0em;
+}
+
 .content {
     padding: 0 18px;
     display: none;
@@ -61,11 +76,7 @@ tr:nth-child(even) {
 
 
 
-
-    <br>
-    <br>
-    <br>
-    <br>
+<br>
 
     {% if messages %}
         {% for message in messages %}
@@ -95,8 +106,8 @@ tr:nth-child(even) {
 
                                     <div class="list price-grid wthree lost">
                                         <div class="price-block agile">
-                                            <div class="price-gd-top " >
-                                                <h4 style="margin-top: -170px";>#{{ room.no_rooms }} Rooms </h4>
+                                            <div class="price-gd-top1" >
+                                                <h4 style="margin-top: -0%";>#{{ room.no_rooms }} Rooms </h4>
                                             </div>
                                             <div class="price-gd-bottom">
                                                 <br>
@@ -110,15 +121,15 @@ tr:nth-child(even) {
 
                                 {% else %}
 
-                                    <div class="list price-grid wthree lost">
+                                    <div class="list">
                                         <div class="price-block agile">
-                                            <div class="price-gd-top " >
-                                                <h4 style="margin-top: -170px";>#{{ room.no_rooms }} Rooms </h4>
+                                            <div class="price-gd-top1 " >
+                                                <h4>#{{ room.no_rooms }} Rooms </h4>
                                             </div>
                                             <div class="price-gd-bottom">
                                                 <br>
                                                 <div class="price-selet">
-                                                    <h3><span>#</span> Available @ {{ room.G.name }}</h3>
+                                                    <h3> Available @ {{ room.G.name }}</h3>
                                                     <button class="collapsible">Details</button>
                                                     <div class="content"><br><br><br>
                                                       <table>
@@ -127,7 +138,7 @@ tr:nth-child(even) {
                                                             <th style="color: white">Number of Rooms Available</th>
 {#                                                            <th style="color: white">Number of Guests</th>#}
 {#                                                            <th style="color: white">Number of Rooms Required</th>#}
-                                                            <th style="color: white">Book</th>
+                                                            <th style="color: white; margin-right: 1%">Book</th>
                                                           </tr>
 
                                                           {% for r in room.rooms %}

@@ -25,23 +25,49 @@ tr:nth-child(even) {
     }
 .collapsible {
     background-color: #ffce14;
-    color: white;
+    color: black;
+    cursor: pointer;
+    padding: 1%;
+    width: 20%;
+    border: none;
+    text-align: center;
+    outline: none;
+}
+
+.book {
+    background-color: #ffce14;
+    color: black;
     cursor: pointer;
     padding: 12px;
     width: 15%;
     border: none;
     text-align: center;
     outline: none;
-    margin-right: 50px;
 }
 
 .active, .collapsible:hover {
     background-color: #ffce14;
 }
 
+.price-gd-top1 {
+    text-align: center;
+    position: relative;
+}
+.price-gd-top1 h4 {
+    font-size: 1.5em;
+    color: #fff;
+    padding: 0.4em 1em;
+    background: #0f2453;
+    font-weight: 300;
+    position: absolute;
+    top: 0em;
+    right: 0em;
+}
+
 .content {
-    padding: 0 18px;
+    padding: 2%;
     display: none;
+    width: 100%;
     overflow: hidden;
     background-color: white;}
 
@@ -50,7 +76,8 @@ tr:nth-child(even) {
 
 
 
-
+<br>
+    <br>
 
 <div class="plans-section" id="rooms">
 				 <div class="container">
@@ -60,10 +87,10 @@ tr:nth-child(even) {
 
 
                             {% for t in bookings %}
-                                <div class="list price-grid wthree lost">
-                                    <div class="price-block agile">
-                                        <div class="price-gd-top " >
-                                            <h4 style="margin-top: -170px;">{{ t.T.start_date }}</h4>
+                                <div class="list">
+                                    <div class="price-block">
+                                        <div class="price-gd-top1 " >
+                                            <h4>{{ t.T.start_date }}</h4>
                                         </div>
                                         <div class="price-gd-bottom">
                                             <br>

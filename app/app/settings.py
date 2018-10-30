@@ -25,7 +25,7 @@ SECRET_KEY = '2ddom#2bphyg(@h9q-lb_mzzo=7!k1p#)#2+o70bnyk@%#i5^='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['nitk-ghbs', '127.0.0.1','0.0.0.0']
+ALLOWED_HOSTS = ['nitk-ghbs', '127.0.0.1','0.0.0.0','*']
 
 
 # Application definition

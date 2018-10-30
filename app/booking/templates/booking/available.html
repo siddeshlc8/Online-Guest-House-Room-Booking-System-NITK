@@ -10,7 +10,7 @@
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    width: 90%;
 }
 
 td, th {
@@ -30,8 +30,8 @@ tr:nth-child(even) {
     background-color: #ffce14;
     color: black;
     cursor: pointer;
-    padding: 12px;
-    width: 15%;
+    padding: 1%;
+    width: 20%;
     border: none;
     text-align: center;
     outline: none;
@@ -52,8 +52,24 @@ tr:nth-child(even) {
     background-color: #ffce14;
 }
 
+.price-gd-top1 {
+    text-align: center;
+    position: relative;
+}
+.price-gd-top1 h4 {
+    font-size: 1.5em;
+    color: #fff;
+    padding: 0.4em 1em;
+    background: #0f2453;
+    font-weight: 300;
+    position: absolute;
+    top: 0em;
+    right: 0em;
+}
+
 .content {
     padding: 0 18px;
+    width: 100%;
     display: none;
     overflow: hidden;
     background-color: white;}
@@ -62,11 +78,12 @@ tr:nth-child(even) {
 
 
 
-    <br>
-    <br>
-    <br>
-    <br>
 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     {% if messages %}
         {% for message in messages %}
 
@@ -93,9 +110,9 @@ tr:nth-child(even) {
 
                                 {% if  room.no_rooms == 0 %}
 
-                                    <div class="list price-grid wthree lost">
+                                    <div class="list ">
                                         <div class="price-block agile">
-                                            <div class="price-gd-top " >
+                                            <div class="price-gd-top1" >
                                                 <h4 style="margin-top: -170px";>#{{ room.no_rooms }} Rooms </h4>
                                             </div>
                                             <div class="price-gd-bottom">
@@ -110,10 +127,10 @@ tr:nth-child(even) {
 
                                 {% else %}
 
-                                    <div class="list price-grid wthree lost">
+                                    <div class="list">
                                         <div class="price-block agile">
-                                            <div class="price-gd-top " >
-                                                <h4 style="margin-top: -170px";>#{{ room.no_rooms }} Rooms </h4>
+                                            <div class="price-gd-top1 " >
+                                                <h4 >#{{ room.no_rooms }} Rooms </h4>
                                             </div>
                                             <div class="price-gd-bottom">
                                                 <br>
@@ -127,22 +144,22 @@ tr:nth-child(even) {
                                                             <th style="color: white">Number of Rooms Available</th>
 {#                                                            <th style="color: white">Number of Guests</th>#}
 {#                                                            <th style="color: white">Number of Rooms Required</th>#}
-                                                            <th style="color: white">Book</th>
+                                                            <th style="color: white;margin-right: 1%">Book</th>
                                                           </tr>
 
                                                           {% for r in room.rooms %}
                                                           <tr>
                                                             <td>{{ r.type }}</td>
                                                             <td>{{ r.count }}</td>
-                                                            <td><button class="collapsible" style="width: 50%">Continue</button>
+                                                            <td><button class="collapsible" style="width: 90%; padding: 5% margin-right: 1%   ">Continue</button>
                                                                 <div class="content"><br><br><br>
                                                                     {% load widget_tweaks %}
                                                                     <form method="post" action="{% url 'book_room_verify' room.G.id T.id r.type r.count%}">{% csrf_token %}
-                                                                        <label for="first_name"><h4>Number of Rooms</h4></label>
+                                                                        <label for="first_name"><h4> Rooms</h4></label>
                                                                         {% render_field r.form.no_rooms placeholder="no_rooms" class="form-control" %}
-                                                                        <br><label for="first_name"><h4>Number of Guests</h4></label>
+                                                                        <br><label for="first_name"><h4>Guests</h4></label>
                                                                         {% render_field r.form.no_guests placeholder="no_guests" class="form-control" %}
-                                                                        <br><button class="book">Book</button><br><br>
+                                                                        <br><button class="book" style="width: 100%">Book</button><br><br>
                                                                     </form>
                                                                 </div>
                                                             </td>

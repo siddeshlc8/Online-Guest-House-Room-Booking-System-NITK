@@ -21,17 +21,17 @@
 
 
 
-    <div class="banner-top"  style="background-color: #0f2453; margin-top: 50px">
+    <div class="banner-top"  style="background-color: #0f2453; ">
                     <h2>Book Your Room Today</h2>
                     <div class="banner-bottom">
                         {% load widget_tweaks %}
                         <form method="post" action="{% url 'index' %}" id="options_form"> {% csrf_token %}
 
                             <div class="bnr-one">
-                                <div class="bnr-left">
+                                <div class="bnr-left" style="margin-top: 2%">
                                     <p>Check In Date</p>
                                 </div>
-                                <div class="bnr-right">
+                                <div class="bnr-right" style="padding: 4%">
                                     {% render_field form.start_date placeholder="start date" class="form-control" %}
                                 </div>
                                 <div class="clearfix"></div>
@@ -40,10 +40,10 @@
 
 
                             <div class="bnr-one">
-                                <div class="bnr-left">
+                                <div class="bnr-left" style="margin-top: 2%">
                                     <p>Check Out Date</p>
                                 </div>
-                                <div class="bnr-right">
+                                <div class="bnr-right" style="padding: 4%">
                                     {% render_field form.end_date placeholder="end date" class="form-control" %}
                                 </div>
                                 <div class="clearfix"></div>
@@ -107,7 +107,7 @@
 
 
 
-                        <div class="bnr-btn">
+                        <br><br><br><br><div class="bnr-btn">
 
                                 <input type="submit" value="Book Now">
                             </form>

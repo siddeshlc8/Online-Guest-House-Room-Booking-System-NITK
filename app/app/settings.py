@@ -23,9 +23,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2ddom#2bphyg(@h9q-lb_mzzo=7!k1p#)#2+o70bnyk@%#i5^='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['nitk-ghbs', '127.0.0.1','0.0.0.0','*']
+ALLOWED_HOSTS = ['nitk-ghbs', '127.0.0.1','0.0.0.0', 'nitk-ghbs.herokuapp.com']
+
+COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 
 # Application definition
@@ -50,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'app.urls'
@@ -57,7 +62,7 @@ ROOT_URLCONF = 'app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': ['templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -79,12 +84,12 @@ WSGI_APPLICATION = 'app.wsgi.application'
 '''
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'siddeshlc08',
-        'USER': 'siddeshlc08',
-        'PASSWORD': 'siddeshlc08',
-        'HOST': 'db4free.net',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'myproject',
+        'USER': 'myprojectuser',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 '''
@@ -133,10 +138,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
-MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
 MEDIA_URL= "/media/"
+
 
 

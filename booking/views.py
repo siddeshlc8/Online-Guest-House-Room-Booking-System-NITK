@@ -23,7 +23,7 @@ def index(request):
         #             r.save()
         #         h = h+10
         # return redirect('my_bookings')
-        if user.username:
+        if user.username and user.is_staff is False and user.is_superuser is False:
             if request.method == 'POST':
                 form = TransactionForm(request.POST)
                 if form.is_valid():
@@ -48,7 +48,7 @@ def index(request):
                     t.delete()
                 return render(request, 'booking/index.html', {'form': TransactionForm()})
         else:
-            return redirect('error')
+            return redirect('home')
     except Exception as e:
         messages.warning(request, str(e))
         return redirect('error')
@@ -57,7 +57,7 @@ def index(request):
 def book(request, t):
     try:
         user = request.user
-        if user.username:
+        if user.username and user.is_staff is False and user.is_superuser is False:
             if request.method == 'POST':
                 messages.warning(request, 'Requested Page Not Found ')
                 return redirect('error')
@@ -90,7 +90,7 @@ def book(request, t):
                 return render(request, 'booking/available.html', {'rooms': context, 'T': t})
         else:
             messages.warning(request, ' Page Not Found ')
-            return redirect('error')
+            return redirect('home')
     except Exception as e:
         messages.warning(request, str(e))
         return redirect('error')
@@ -99,7 +99,7 @@ def book(request, t):
 def book_room_verify(request, g, t, rtype, count):
     try:
         user = request.user
-        if user.username:
+        if user.username and user.is_staff is False and user.is_superuser is False:
             if request.method == 'POST':
                 form = NoGuestsRoomForm(count, rtype, request.POST)
                 if form.is_valid():
@@ -131,7 +131,7 @@ def book_room_verify(request, g, t, rtype, count):
                 return redirect('error')
         else:
             messages.warning(request, 'Requested Page Not Found ')
-            return redirect('error')
+            return redirect('home')
     except Exception as e:
         messages.warning(request, str(e))
         return redirect('error')
@@ -168,7 +168,7 @@ def book_room(g, t):
 def guest_details(request, g, t):
     try:
         user = request.user
-        if user.username:
+        if user.username and user.is_staff is False and user.is_superuser is False:
             if request.method == 'POST':
                 form = GuestDetailsForm(request.POST)
                 if form.is_valid():
@@ -205,7 +205,7 @@ def guest_details(request, g, t):
                 return render(request, 'booking/guest_details.html', {'form': GuestDetailsForm(), 't': t, 'g': g, 'T': Transactions.objects.get(id=t).no_people_done+1})
         else:
             messages.warning(request, 'Requested Page Not Found ')
-            return redirect('error')
+            return redirect('home')
     except Exception as e:
         messages.warning(request, str(e))
         return redirect('error')
@@ -214,7 +214,7 @@ def guest_details(request, g, t):
 def my_bookings(request):
     try:
         user = request.user
-        if user.username:
+        if user.username and user.is_staff is False and user.is_superuser is False:
             T = Transactions.objects.filter(user_booked=user).order_by('-start_date').filter(status=True)
             bookings = []
             for t in T:
@@ -227,7 +227,7 @@ def my_bookings(request):
             return render(request, 'booking/my_bookings.html', context)
         else:
             messages.warning(request, 'You are not authorized to acces the requested page. Please Login ')
-            return redirect('error')
+            return redirect('home')
     except Exception as e:
         messages.warning(request, str(e))
         return redirect('error')
@@ -236,7 +236,7 @@ def my_bookings(request):
 def account(request):
     try:
         user = request.user
-        if user.username:
+        if user.username and user.is_staff is False and user.is_superuser is False:
             if request.method == 'POST':
                 first_name = request.POST['first_name']
                 last_name = request.POST['last_name']
@@ -260,7 +260,7 @@ def account(request):
                 return render(request, 'booking/account.html', context)
         else:
             messages.warning(request, 'You are not authorized to acces the requested page. Please Login ')
-            return redirect('error')
+            return redirect('home')
     except Exception as e:
         messages.warning(request, str(e))
         return redirect('error')
@@ -269,7 +269,7 @@ def account(request):
 def psw_reset(request):
     try:
         user = request.user
-        if user.username:
+        if user.username and user.is_staff is False and user.is_superuser is False:
             if request.method == 'POST':
                 form = PasswordChangeForm(request.user, request.POST)
                 if form.is_valid():
@@ -286,7 +286,7 @@ def psw_reset(request):
                 return redirect('error')
         else:
             messages.warning(request, 'You are not authorized to acces the requested page. Please Login ')
-            return redirect('error')
+            return redirect('home')
     except Exception as e:
         messages.warning(request, str(e))
         return redirect('error')

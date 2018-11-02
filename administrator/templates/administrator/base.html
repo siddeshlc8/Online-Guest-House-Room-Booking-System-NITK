@@ -58,9 +58,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 
 
-    <div class="w3_navigation" >
-		<div class="container">
-			<nav class="navbar navbar-default">
+    <div class="w3_navigation">
+		<div class="container" >
+			<nav class="navbar navbar-default" >
 				<div class="navbar-header navbar-left">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 						<span class="sr-only">Toggle navigation</span>
@@ -68,17 +68,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<h1><a class="navbar-brand" href="{% url 'home' %}">NITK <span>Surathkal</span><p class="logo_w3l_agile_caption">Guest House Room Booking Portal</p></a></h1>
+					<h1><a class="navbar-brand" href="{% url 'admin' %}">NITK <span>Surathkal</span><p class="logo_w3l_agile_caption">Guest House Room Booking Portal</p></a></h1>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 					<nav class="menu menu--iris">
 						<ul class="nav navbar-nav menu__list">
-							<li class="menu__item "><a href="{% url 'home' %}" class="menu__link">Home</a></li>
-							<li class="menu__item "><a href="{% url 'login' %}" class="menu__link">Login</a></li>
-							<li class="menu__item "><a href="{% url 'register' %}" class="menu__link">SignUp</a></li>
-							<li class="menu__item "><a href="#" data-toggle="modal"
-						aria-pressed="false" data-target="#exampleModal" class="menu__link">Admin</a></li>
+							<li class="menu__item "><a href="{% url 'account'  %}" class="menu__link">Account</a></li>
+							<li class="menu__item "><a href="{% url 'logout' %}" class="menu__link">Logout</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -89,9 +86,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //header -->
 
 
-
 {% block body %}
-
 {% endblock %}
 
 
@@ -115,11 +110,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- /js for time-picker -->
 
 <!-- /contact -->
-<div class="footer" style="position:fixed; bottom: 0;width: 100%">
-    <div class="copy">
-		        <p>© 2018 NITK Surathkal . All Rights Reserved | Design by Siddesh LC</p>
-		    </div>
-</div>
+
 
 <!--/footer -->
 <!-- js -->
@@ -239,37 +230,5 @@ fit: true
 	</div>
 <!-- //smooth scrolling -->
 <script type="text/javascript" src="{% static 'home/js/bootstrap-3.1.1.min.js' %}"></script>
-
-<!-- Login modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title text-uppercase" id="exampleModalLabel1">Login</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form action="{% url 'admin' %}" method="post" class="p-3">{% csrf_token %}
-						<div class="form-group">
-							<label for="recipient-name" class="col-form-label">Email Address</label>
-							<input type="email" class="form-control" placeholder="Email" name="email" id="recipient-name" required="">
-						</div>
-						<div class="form-group">
-							<label for="recipient-name1" class="col-form-label">Password</label>
-							<input type="password" class="form-control" placeholder="Password" name="psw" id="recipient-name1" required="">
-						</div><br>
-						<div class="right-w3l mt-4 mb-3">
-							<input type="submit" class="form-control" value="Login" style="background-color: #0f2453; color: white">
-						</div>
-					</form>
-
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- //Login modal -->
-
 </body>
 </html>

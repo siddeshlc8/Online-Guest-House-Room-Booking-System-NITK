@@ -29,10 +29,18 @@ def sendMail(to_email, subject, content):
 
 
 def home(request):
-    if request.user.username:
+    if request.user.username and request.user.is_staff is False and request.user.is_superuser is False:
         print(request.user.email)
         return redirect('index')
     return render(request, 'home/index.html', {'t_form': TransactionForm()})
+
+
+def admin(request):
+    if request.user.username and request.user.is_staff is False and request.user.is_superuser is False:
+        print(request.user.email)
+        return redirect('index')
+    return render(request, 'home/index.html', {'t_form': TransactionForm()})
+
 
 
 def error(request):

@@ -37,6 +37,7 @@ COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 INSTALLED_APPS = [
     'booking',
     'home',
+    'administrator',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

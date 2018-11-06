@@ -12,17 +12,6 @@ import random, itertools, datetime
 def index(request):
     try:
         user = request.user
-        # for g in ['JC Bose Guest House', 'Homi J Bhaba Guest House', 'Vikram Sarabhai Guest House']:
-        #     h=1
-        #     for room_type in ['Single-AC', 'Double-AC', 'Single-Non-AC', 'Double-Non-AC']:
-        #         for i in range(h, h+10):
-        #             r = Rooms()
-        #             r.room_no = i
-        #             r.guesthouse = GuestHouse.objects.get(name=g)
-        #             r.room_type = room_type
-        #             r.save()
-        #         h = h+10
-        # return redirect('my_bookings')
         if user.username and user.is_staff is False and user.is_superuser is False:
             if request.method == 'POST':
                 form = TransactionForm(request.POST)
@@ -59,8 +48,7 @@ def book(request, t):
         user = request.user
         if user.username and user.is_staff is False and user.is_superuser is False:
             if request.method == 'POST':
-                messages.warning(request, 'Requested Page Not Found ')
-                return redirect('error')
+                return redirect('index')
             else:
                 t = Transactions.objects.get(id=t)
                 start_date = t.start_date
@@ -334,3 +322,14 @@ def availability(request):
 
 
 
+        # for g in ['JC Bose Guest House', 'Homi J Bhaba Guest House', 'Vikram Sarabhai Guest House']:
+        #     h=1
+        #     for room_type in ['Single-AC', 'Double-AC', 'Single-Non-AC', 'Double-Non-AC']:
+        #         for i in range(h, h+10):
+        #             r = Rooms()
+        #             r.room_no = i
+        #             r.guesthouse = GuestHouse.objects.get(name=g)
+        #             r.room_type = room_type
+        #             r.save()
+        #         h = h+10
+        # return redirect('my_bookings')

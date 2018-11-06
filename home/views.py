@@ -35,19 +35,14 @@ def home(request):
     return render(request, 'home/index.html', {'t_form': TransactionForm()})
 
 
-def admin(request):
-    if request.user.username and request.user.is_staff is False and request.user.is_superuser is False:
-        print(request.user.email)
-        return redirect('index')
-    return render(request, 'home/index.html', {'t_form': TransactionForm()})
-
-
-
 def error(request):
     return render(request, 'home/error.html')
 
 
 def registrer(request):
+    if request.user.username and request.user.is_staff is False and request.user.is_superuser is False:
+        print(request.user.email)
+        return redirect('index')
     if request.method == 'GET':
         form = SignupForm()
         return render(request, 'home/register.html', {'form': form})
@@ -86,6 +81,9 @@ def registrer(request):
 
 
 def signin(request):
+    if request.user.username and request.user.is_staff is False and request.user.is_superuser is False:
+        print(request.user.email)
+        return redirect('index')
     if request.method == 'POST':
         username = request.POST['email']
         password = request.POST['password']
@@ -105,7 +103,7 @@ def signin(request):
 
 def signout(request):
     logout(request)
-    #messages.success(request, 'You have  successfully logged out!')
+    messages.success(request, 'You have  successfully logged out!')
     return redirect('home')
 
 

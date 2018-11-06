@@ -25,6 +25,7 @@ def index(request):
                     T.start_date = start_date
                     T.end_date = end_date
                     T.user_booked = user
+                    T.date_book = datetime.date.today()
                     T.save()
                     return redirect('book', T.id)
                 else:

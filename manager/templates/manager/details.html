@@ -4,6 +4,21 @@
 
 <style>
 html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
 </style>
     <br>
 <body class="w3-light-grey">
@@ -75,14 +90,41 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
     <div class="w3-twothird">
 
       <div class="w3-container w3-card w3-white w3-margin-bottom">
-        <h2 class="w3-text-grey w3-padding-16"><i class="fas fa-list-ul fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Recent Bookings</h2>
+        <h2 class="w3-text-grey w3-padding-16"><i class="fas fa-list-ul fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Bookings Details</h2>
 
           {% for t in transactions %}
 
               <div class="w3-container">
-                  <h5 class="w3-opacity" ><b >{{ t.guesthouse }} / {{ t.no_rooms}} Room</b></h5>
-                  <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{ t.start_date }} - {{ t.end_date }}<span class="w3-tag w3-teal w3-round" style="margin-left: 60%"><a href="{% url 'booking-details' t.id%}">Details</a></span></h6>
-                  <p>{{ t.no_rooms }}    room/s    is/are   booked   by   {{ t.user_booked.email }}   for   {{ t.no_people }}   guest/s</p>
+                  <h6 class="w3-text-teal" ><b >Guest House</b></h6>
+                  <h5><b >{{ t.guesthouse }}</b></h5>
+                  <h6 class="w3-text-teal" ><b >Number of Rooms Booked</b></h6>
+                  <h5><b >{{ t.no_rooms}} Room/s</b></h5>
+                  <h6 class="w3-text-teal" ><b >Booking Period</b></h6>
+                  <h6 ><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{ t.start_date }} - {{ t.end_date }}</h6>
+                   <h6 class="w3-text-teal" ><b >Date of Booking</b></h6>
+                  <h6 ><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{ t.date_book }}</h6>
+                  <h6 class="w3-text-teal">Guest Details</h6>
+                      <table style="width:100%">
+                      <caption></caption>
+                      <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Phone Number</th>
+                        <th>Email Address</th>
+                      </tr>
+                          {% for guest in guests %}
+                              <tr>
+                        <td>{{ guest.first_name }} </td>
+                        <td>{{ guest.last_name }} </td>
+                        <td> {{ guest.phone }}</td>
+                        <td>{{ guest.email }}</td>
+                      </tr>
+
+                      {% endfor %}
+                    </table>
+                  <h6 class="w3-text-teal" ><b >Payment Details</b></h6>
+
+
                   <hr>
               </div>
 

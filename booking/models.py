@@ -50,6 +50,7 @@ class Transactions(models.Model):
     rooms_allocated = models.ManyToManyField('Rooms')
     status = models.BooleanField(default=False)
     guesthouse = models.ForeignKey(GuestHouse, on_delete=models.CASCADE, null=True, blank=True)
+    date_book = models.DateField(null=True, blank=True)
     ROOM_TYPES = [
         ('Single-AC', 'Single-AC'),
         ('Double-AC', 'Double-AC'),

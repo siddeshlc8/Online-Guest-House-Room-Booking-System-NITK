@@ -111,7 +111,11 @@ def book_room_verify(request, g, t, rtype, count):
                     T.no_people = no_g
                     T.no_rooms = no_r
                     T.save()
-                    return redirect('guest_details', g, t)
+                    if book_room(g, t):
+                        return redirect('my_bookings')
+                    else:
+                        messages.warning(request, 'Some thing went wrong book again ')
+                        return redirect('index')
                 else:
                     messages.warning(request, 'Requested Page Not Found ')
                     return redirect('error')

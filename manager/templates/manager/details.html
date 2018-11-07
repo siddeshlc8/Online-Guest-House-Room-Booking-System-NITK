@@ -3,7 +3,7 @@
 {% block body %}
 
 <style>
-html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+.w3-light-grey,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -122,6 +122,7 @@ tr:nth-child(even) {
 
                       {% endfor %}
                     </table>
+                   <span class="w3-text-teal" style="margin-left: 80%"><a href="{% url 'booking-details' t.id%}"><b >Add Guest </b>  <i class="fas fa-plus-circle"></i></a></span>
                   <h6 class="w3-text-teal" ><b >Payment Details</b></h6>
 
 

@@ -240,18 +240,19 @@ fit: true
 <!-- //smooth scrolling -->
 <script type="text/javascript" src="{% static 'home/js/bootstrap-3.1.1.min.js' %}"></script>
 
-<!-- Login modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title text-uppercase" id="exampleModalLabel1">Login</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form action="{% url 'manager' %}" method="post" class="p-3">{% csrf_token %}
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+						<!-- Modal1 -->
+							<div class="modal-dialog">
+							<!-- Modal content-->
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4>NITK <span>Surathkal</span></h4><br>
+										<h6>Enter Manager Login Credentials</h6><br>
+
+                                    <form action="{% url 'manager' %}" method="post" class="p-3">{% csrf_token %}
 						<div class="form-group">
 							<label for="recipient-name" class="col-form-label">Email Address</label>
 							<input type="email" class="form-control" placeholder="Email" name="email" id="recipient-name" required="">
@@ -264,12 +265,11 @@ fit: true
 							<input type="submit" class="form-control" value="Login" style="background-color: #0f2453; color: white">
 						</div>
 					</form>
-
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- //Login modal -->
+                </div>
+								</div>
+							</div>
+						</div>
+<!-- //Modal1 -->
 
 </body>
 </html>

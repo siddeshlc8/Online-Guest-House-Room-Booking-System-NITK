@@ -7,6 +7,8 @@ from . forms import *
 from django.db.models import Count
 from django.db.models import Q
 import random, itertools, datetime
+from django.template.loader import render_to_string
+from home.views import sendMail
 
 
 def index(request):
@@ -21,11 +23,9 @@ def index(request):
                     if start_date > end_date or start_date < datetime.date.today():
                         messages.warning(request, 'Please Enter Proper dates')
                         return redirect('index')
-                    T = Transactions()
+                    T = PreTransactions()
                     T.start_date = start_date
                     T.end_date = end_date
-                    T.user_booked = user
-                    T.date_book = datetime.date.today()
                     T.save()
                     return redirect('book', T.id)
                 else:
@@ -33,9 +33,6 @@ def index(request):
                         messages.error(request, e)
                     return redirect('index')
             else:
-                T = Transactions.objects.filter(user_booked=user).filter(status=False)
-                for t in T:
-                    t.delete()
                 return render(request, 'booking/index.html', {'form': TransactionForm()})
         else:
             return redirect('home')
@@ -45,17 +42,17 @@ def index(request):
 
 
 def book(request, t):
-    try:
+    #try:
         user = request.user
         if user.username and user.is_staff is False and user.is_superuser is False:
             if request.method == 'POST':
                 return redirect('index')
             else:
-                t = Transactions.objects.get(id=t)
-                start_date = t.start_date
-                end_date = t.end_date
+                tt = PreTransactions.objects.get(id=t)
+                start_date = tt.start_date
+                end_date = tt.end_date
                 T = Transactions.objects.filter(
-                    Q(start_date__range=(start_date, end_date)) | Q(end_date__range=(start_date, end_date)))
+                    Q(start_date__range=(start_date, end_date)) | Q(end_date__range=(start_date, end_date))).filter(status=True)
                 R = []
                 for t in T:
                     f = t.rooms_allocated.all()
@@ -76,17 +73,17 @@ def book(request, t):
                         rooms.append({'type': types, 'count': count, 'form': form})
                         no_rooms = no_rooms + count
                     context.append({'G': g, 'no_rooms': no_rooms, 'rooms': rooms})
-                return render(request, 'booking/available.html', {'rooms': context, 'T': t})
+                return render(request, 'booking/available.html', {'rooms': context, 'T': tt})
         else:
             messages.warning(request, ' Page Not Found ')
             return redirect('home')
-    except Exception as e:
-        messages.warning(request, str(e))
-        return redirect('error')
+    # except Exception as e:
+    #     messages.warning(request, str(e))
+    #     return redirect('error')
 
 
 def book_room_verify(request, g, t, rtype, count):
-    try:
+    #try:
         user = request.user
         if user.username and user.is_staff is False and user.is_superuser is False:
             if request.method == 'POST':
@@ -106,12 +103,21 @@ def book_room_verify(request, g, t, rtype, count):
                     if no_g > no_guests:
                         messages.warning(request, 'Sorry ' + str(no_g) + ' guests ' + 'can not fit in ' + str(no_r) + ' rooms')
                         return redirect('book', t)
-                    T = Transactions.objects.get(id=t)
+                    T = PreTransactions.objects.get(id=t)
                     T.room_type = rtype
                     T.no_people = no_g
                     T.no_rooms = no_r
                     T.save()
-                    if book_room(g, t):
+                    newtransaction = book_room(g, t, request)
+                    if  newtransaction is not False:
+
+                        mail_subject = 'Booking Confirmation at NITK GuestHouse.'
+                        message = render_to_string('booking/booking_confirmation.html', {
+                            'user': request.user,
+                            'newtransaction': newtransaction,
+                        })
+                        to_email = request.user.email
+                        sendMail(to_email, mail_subject, message)
                         return redirect('my_bookings')
                     else:
                         messages.warning(request, 'Some thing went wrong book again ')
@@ -125,20 +131,20 @@ def book_room_verify(request, g, t, rtype, count):
         else:
             messages.warning(request, 'Requested Page Not Found ')
             return redirect('home')
-    except Exception as e:
-        messages.warning(request, str(e))
-        return redirect('error')
+    # except Exception as e:
+    #     messages.warning(request, str(e))
+    #     return redirect('error')
 
 
-def book_room(g, t):
-    rtype = Transactions.objects.get(id=t).room_type
-    t = Transactions.objects.get(id=t)
+def book_room(g, t, request):
+    t = PreTransactions.objects.get(id=t)
+    rtype = t.room_type
     t.guesthouse = GuestHouse.objects.get(id=g)
     t.save()
     start_date = t.start_date
     end_date = t.end_date
     T = Transactions.objects.filter(
-        Q(start_date__range=(start_date, end_date)) | Q(end_date__range=(start_date, end_date)))
+        Q(start_date__range=(start_date, end_date)) | Q(end_date__range=(start_date, end_date))).filter(status=True)
     R = []
     print(GuestHouse.objects.get(id=g))
     for d in T:
@@ -150,58 +156,36 @@ def book_room(g, t):
     if R.__len__() == 0:
         t.delete()
         return False
+
+    newtransaction = Transactions()
+    length = (str(t.guesthouse.code) + str(t.guesthouse.next_transaction_number)).__len__()
+    z = ''
+    while True:
+        if 10 - length == 0:
+            break
+        z = z + str(0)
+        length = length + 1
+    newtransaction.transaction_number = str(t.guesthouse.code) + z + str(t.guesthouse.next_transaction_number)
+    newtransaction.start_date = start_date
+    newtransaction.end_date = end_date
+    newtransaction.user_booked = request.user
+    newtransaction.date_book = datetime.date.today()
+    newtransaction.no_people = t.no_people
+    newtransaction.no_rooms = t.no_rooms
+    newtransaction.guesthouse = t.guesthouse
+    newtransaction.status = True
+    newtransaction.room_type = t.room_type
+    newtransaction.save()
+
     for r in R:
         room = Rooms.objects.get(id=r.get('id'))
-        t.rooms_allocated.add(room)
-        t.status = True
-        t.save()
-    return True
+        newtransaction.rooms_allocated.add(room)
+    newtransaction.save()
+    t.guesthouse.next_transaction_number = t.guesthouse.next_transaction_number + 1
+    t.guesthouse.save()
+    t.delete()
 
-
-def guest_details(request, g, t):
-    try:
-        user = request.user
-        if user.username and user.is_staff is False and user.is_superuser is False:
-            if request.method == 'POST':
-                form = GuestDetailsForm(request.POST)
-                if form.is_valid():
-                    first_name = form.cleaned_data['first_name']
-                    last_name = form.cleaned_data['last_name']
-                    phone = form.cleaned_data['phone']
-                    email = form.cleaned_data['email']
-                    T = Transactions.objects.get(id=t)
-                    G = GuestDetails()
-                    G.transaction = T
-                    G.first_name = first_name
-                    G.last_name = last_name
-                    G.phone = phone
-                    G.email = email
-                    G.save()
-                    T.no_people_done = T.no_people_done + 1
-                    T.save()
-                    if T.no_people_done == T.no_people:
-                        if book_room(g, t):
-                            return redirect('my_bookings')
-                        else:
-                            messages.warning(request, 'Some thing went wrong book again ')
-                            return redirect('index')
-                    if T.no_people_done > T.no_people:
-                        T.delete()
-                        messages.warning(request, 'Some thing went wrong book again ')
-                        return redirect('index')
-                    return redirect('guest_details', g, t)
-                else:
-                    for e in form.error_messages:
-                        messages.error(request, e)
-                    return redirect('error')
-            else:
-                return render(request, 'booking/guest_details.html', {'form': GuestDetailsForm(), 't': t, 'g': g, 'T': Transactions.objects.get(id=t).no_people_done+1})
-        else:
-            messages.warning(request, 'Requested Page Not Found ')
-            return redirect('home')
-    except Exception as e:
-        messages.warning(request, str(e))
-        return redirect('error')
+    return newtransaction
 
 
 def my_bookings(request):

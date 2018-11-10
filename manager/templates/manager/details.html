@@ -23,7 +23,19 @@ tr:nth-child(even) {
     width: 100%;
 }
 </style>
+    {% if messages %}
+        {% for message in messages %}
+
+            <div class="alert alert-info">
+                <strong style="text-align: center">{{ message }}</strong>
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+            </div>
+
+        {% endfor %}
+    {% endif %}
     <br>
+
 <body class="w3-light-grey">
 
 <!-- Page Container -->
@@ -64,21 +76,17 @@ tr:nth-child(even) {
 
 
 
-            <p class="w3-large"><b><i class="fas fa-minus-circle fa-fw w3-margin-right w3-text-teal"></i>Cancel Bookings</b></p>
 
-          <br>
 
             <p class="w3-large"><b><i class="fas fa-chart-line fa-fw w3-margin-right w3-text-teal"></i><a href="{% url 'stats' %}">Room Booking Statistics</a></b></p>
 
           <br>
 
-            <p class="w3-large"><b><i class="fas fa-user-circle fa-fw w3-margin-right w3-text-teal"></i><a href="{% url 'stats' %}">Manager Account</a></b></p>
+            <p class="w3-large"><b><i class="fas fa-user-circle fa-fw w3-margin-right w3-text-teal"></i><a href="{% url 'manager-account' %}">Manager Account</a></b></p>
 
           <br>
 
-            <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Skills</b></p>
 
-          <br>
 
 
 
@@ -95,7 +103,19 @@ tr:nth-child(even) {
       <div class="w3-container w3-card w3-white w3-margin-bottom">
         <h2 class="w3-text-grey w3-padding-16"><i class="fas fa-list-ul fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Bookings Details</h2>
 
+
+
           {% for t in transactions %}
+
+              {% if t.status is False %}
+
+
+
+
+                    <button class="btn btn-lg btn-danger" style="width: 100%;"><i class="glyphicon glyphicon-"></i> This Booking has been Cancelled</button>
+
+
+              {% endif %}
 
               <div class="w3-container">
                   <h6 class="w3-text-teal" ><b >Guest House</b></h6>
@@ -129,12 +149,45 @@ tr:nth-child(even) {
 
                     </table>
 
-
+{% if t.status is True %}
                    <br><span class="w3-text-teal" style="margin-left: 80%"><a href="#"  data-toggle="modal" data-target="#myModal"><b >Add Guest </b>  <i class="fas fa-plus-circle"></i></a></span>
+{% endif %}
 
 
+              <h6 class="w3-text-teal" ><b >Room Details</b></h6>
 
+              <table style="width:100%">
+                      <caption></caption>
+                      <tr>
+                        <th>Room Number</th>
+                        <th>Room Type</th>
+                        <th></th>
+                      </tr>
+                          {% for room in t.rooms_allocated.all %}
+                              <tr>
+                        <td>{{ room.room_no }} </td>
+                        <td>{{ room.room_type }} </td>
+
+                        <td><span class="w3-text-teal" ><a href="{% url 'manager-remove' t.id room.id%}">Remove   <i class="fas fa-minus-circle"></i></a></span></td>
+                      </tr>
+
+                      {% endfor %}
+
+                    </table>
+              {% if t.status is True %}
+              <br><span class="w3-text-teal" style="margin-left: 80%"><a href="{% url 'manager-add' t.id %}"><b >Add Room </b>  <i class="fas fa-plus-circle"></i></a></span>
+{% endif %}
                   <h6 class="w3-text-teal" ><b >Payment Details</b></h6>
+
+              {% if t.status is True %}
+
+                  <br><h6 class="w3-text-teal" ><b >Cancel This Booking</b></h6>
+
+                    <form method="get" action="{% url 'manager-cancel' t.id%}">{% csrf_token %}
+                    <br><button class="btn btn-lg btn-danger" type="submit" style="margin-left: 40%"><i class="glyphicon glyphicon-remove-sign"></i> Cancel Booking</button>
+                        </form>
+
+              {% endif %}
 
 
                   <hr>

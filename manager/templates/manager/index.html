@@ -46,21 +46,16 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 
 
 
-            <p class="w3-large"><b><i class="fas fa-minus-circle fa-fw w3-margin-right w3-text-teal"></i>Cancel Bookings</b></p>
 
-          <br>
 
             <p class="w3-large"><b><i class="fas fa-chart-line fa-fw w3-margin-right w3-text-teal"></i><a href="{% url 'stats' %}">Room Booking Statistics</a></b></p>
 
           <br>
 
-            <p class="w3-large"><b><i class="fas fa-user-circle fa-fw w3-margin-right w3-text-teal"></i><a href="{% url 'stats' %}">Manager Account</a></b></p>
+            <p class="w3-large"><b><i class="fas fa-user-circle fa-fw w3-margin-right w3-text-teal"></i><a href="{% url 'manager-account' %}">Manager Account</a></b></p>
 
           <br>
 
-            <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Skills</b></p>
-
-          <br>
 
 
 
@@ -80,7 +75,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
           {% for t in transactions %}
 
               <div class="w3-container">
-                  <h5 class="w3-opacity" ><b >{{ t.guesthouse }} / {{ t.no_rooms}} Room</b></h5>
+                  <h5 class="w3-opacity" ><b >{{ t.guesthouse }} / {{ t.no_rooms}} Room</b> </h5>
                   <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{ t.start_date }} - {{ t.end_date }}<span class="w3-tag w3-teal w3-round" style="margin-left: 60%"><a href="{% url 'booking-details' t.id%}">Details</a></span></h6>
                   <p>{{ t.no_rooms }}    room/s    is/are   booked   by   {{ t.user_booked.email }}   for   {{ t.no_people }}   guest/s</p>
                   <hr>

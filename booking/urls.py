@@ -9,5 +9,4 @@ urlpatterns = [
     path('account/', views.account, name='account'),
     path('psw-reset/', views.psw_reset, name='psw-reset'),
     path('book/<int:g>/<int:t>/<slug:rtype>/<int:count>/', views.book_room_verify, name='book_room_verify'),
-    path('guest-details/<int:g>/<int:t>/', views.guest_details, name='guest_details'),
 ]

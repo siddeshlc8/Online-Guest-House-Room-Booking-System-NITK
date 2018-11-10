@@ -5,6 +5,9 @@ from booking.models import *
 import datetime
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from booking.forms import GuestDetailsForm
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+from django.db.models import Q
 
 
 # Create your views here.
@@ -114,6 +117,7 @@ def booking_details(request, id):
                 transactions = Transactions.objects.filter(id=id)
                 guesthouse = GuestHouse.objects.all()
                 guests = GuestDetails.objects.filter(transaction_id=id)
+                print(transactions[0].rooms_allocated)
                 return render(request, 'manager/details.html', {'transactions': transactions, 'guesthouse': guesthouse, 'guests': guests, 'form': GuestDetailsForm()})
             else:
                 messages.warning(request, 'Email or Password does not match')
@@ -164,6 +168,112 @@ def delete_guest(request, t, id):
                 if guest is not None:
                     guest.delete()
                 return redirect('booking-details', t)
+            else:
+                messages.warning(request, 'Email or Password does not match')
+                return redirect('login')
+    except Exception as e:
+        messages.warning(request, str(e))
+        return redirect('error')
+
+
+def account(request):
+    try:
+        if request.method == 'POST':
+            user = request.user
+            if user.username and user.is_staff is True and user.is_superuser is False:
+                form = PasswordChangeForm(request.user, request.POST)
+                print(form)
+                if form.is_valid():
+                    user = form.save()
+                    update_session_auth_hash(request, user)  # Important!
+                    messages.success(request, 'Your password was successfully updated!')
+                    return redirect('manager-account')
+                else:
+                    messages.error(request, form.errors)
+
+                return redirect('manager-account')
+            else:
+                messages.warning(request, 'Email or Password does not match')
+                return redirect('login')
+        else:
+            user = request.user
+            if user.username and user.is_staff is True and user.is_superuser is False:
+                guesthouse = GuestHouse.objects.all()
+                return render(request, 'manager/account.html', {'guesthouse': guesthouse, 'password_form': PasswordChangeForm(request.user)})
+            else:
+                messages.warning(request, 'Email or Password does not match')
+                return redirect('login')
+    except Exception as e:
+        messages.warning(request, str(e))
+        return redirect('error')
+
+
+def cancel(request, id):
+    try:
+        if request.method == 'POST':
+            return redirect('manager')
+        else:
+            user = request.user
+            if user.username and user.is_staff is True and user.is_superuser is False:
+                transaction = Transactions.objects.get(id=id)
+                transaction.status = False
+                transaction.save()
+                return redirect('booking-details', id)
+            else:
+                messages.warning(request, 'Email or Password does not match')
+                return redirect('login')
+    except Exception as e:
+        messages.warning(request, str(e))
+        return redirect('error')
+
+
+def remove(request, id, r):
+    try:
+        if request.method == 'POST':
+            return redirect('manager')
+        else:
+            user = request.user
+            if user.username and user.is_staff is True and user.is_superuser is False:
+                transaction = Transactions.objects.get(id=id)
+                r = Rooms.objects.get(id=r)
+                transaction.rooms_allocated.remove(r)
+                transaction.no_rooms = transaction.no_rooms - 1
+                transaction.save()
+                return redirect('booking-details', id)
+            else:
+                messages.warning(request, 'Email or Password does not match')
+                return redirect('login')
+    except Exception as e:
+        messages.warning(request, str(e))
+        return redirect('error')
+
+
+def add(request, id):
+    try:
+        if request.method == 'POST':
+            return redirect('manager')
+        else:
+            user = request.user
+            if user.username and user.is_staff is True and user.is_superuser is False:
+                transaction = Transactions.objects.get(id=id)
+                T = Transactions.objects.filter(
+                    Q(start_date__range=(transaction.start_date, transaction.end_date)) | Q(end_date__range=(transaction.start_date, transaction.end_date))).filter(
+                    status=True)
+                R = []
+                for d in T:
+                    f = d.rooms_allocated.all().filter(guesthouse=transaction.guesthouse).filter(room_type=transaction.room_type)
+                    for g in f:
+                        if g.id not in R:
+                            R.append(g.id)
+                R = Rooms.objects.filter(guesthouse=transaction.guesthouse).filter(room_type=transaction.room_type).exclude(pk__in=R)
+                if R.__len__() == 0:
+                    messages.warning(request, 'Rooms are not available in the guesthouse')
+                    return redirect('booking-details', id)
+                r = R.first()
+                transaction.rooms_allocated.add(r)
+                transaction.no_rooms = transaction.no_rooms + 1
+                transaction.save()
+                return redirect('booking-details', id)
             else:
                 messages.warning(request, 'Email or Password does not match')
                 return redirect('login')

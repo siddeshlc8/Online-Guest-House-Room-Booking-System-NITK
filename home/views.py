@@ -8,6 +8,7 @@ from django.template.loader import render_to_string
 from .token import account_activation_token
 from django.contrib.auth.models import User
 import sendgrid
+import os
 from sendgrid.helpers.mail import *
 from . forms import *
 from booking.forms import TransactionForm
@@ -16,8 +17,9 @@ from booking.models import ExtendedUser
 
 
 def sendMail(to_email, subject, content):
-    sg = sendgrid.SendGridAPIClient(apikey='**************')
-    from_email = Email("siddeshlc08@gmail.com")
+    sg = sendgrid.SendGridAPIClient(apikey='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')
+    from_email = Email("siddeshlc8@gmail.com")
+    print(to_email)
     to_email = Email(to_email)
     subject = subject
     content = Content("text/plain", content)
@@ -26,6 +28,7 @@ def sendMail(to_email, subject, content):
     print(response.status_code)
     print(response.body)
     print(response.headers)
+
 
 
 def home(request):
@@ -69,8 +72,8 @@ def registrer(request):
                 'token': account_activation_token.make_token(user),
             })
             to_email = form.cleaned_data.get('email')
-            # sendMail(to_email, mail_subject, message)
-            user.is_active = True
+            sendMail(to_email, mail_subject, message)
+
             user.save()
             messages.success(request, 'Registration success full.Please confirm your email to proceed. Login To Continue')
             return redirect('register')

@@ -88,7 +88,8 @@ tr:nth-child(even) {
                                 <div class="list">
                                     <div class="price-block">
                                         <div class="price-gd-top1 " >
-                                            <h4>{{ t.T.start_date }}</h4>
+
+                                            <h4 {% if t.T.status is False %} style="background-color: red;"{% endif %}>{{ t.T.start_date }} {% if t.T.status is False %}Cancelled {% endif %}</h4>
                                         </div>
                                         <div class="price-gd-bottom">
                                             <br>
@@ -119,6 +120,11 @@ tr:nth-child(even) {
                                                       </tr>
                                                           {% endfor %}
                                                   </table>
+                                                {% if t.T.status is True %}
+                                                <form method="get" action="{% url 'cancel' t.T.id %}">{% csrf_token %}
+                                                    <br><button class="btn  btn-danger" type="submit" style="margin-left: 85%"><i class="glyphicon glyphicon-remove-sign"></i> Cancel Booking</button>
+                                                 </form>
+                                                {% endif %}
                                                 </div>
                                             </div>
                                         </div>

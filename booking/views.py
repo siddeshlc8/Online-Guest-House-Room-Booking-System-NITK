@@ -192,7 +192,7 @@ def my_bookings(request):
     try:
         user = request.user
         if user.username and user.is_staff is False and user.is_superuser is False:
-            T = Transactions.objects.filter(user_booked=user).order_by('-start_date').filter(status=True)
+            T = Transactions.objects.filter(user_booked=user).order_by('-start_date')
             bookings = []
             for t in T:
                 g = t.guesthouse
@@ -305,20 +305,33 @@ def availability(request):
         return render(request, 'home/error.html')
 
 
+def cancel(request, id):
+    try:
+        if request.method == 'POST':
+            return redirect('my_bookings')
+        else:
+            user = request.user
+            if user.username and user.is_staff is False and user.is_superuser is False:
+                transaction = Transactions.objects.get(id=id)
+                transaction.status = False
+                transaction.save()
+                return redirect('my_bookings')
+            else:
+                messages.warning(request, 'Email or Password does not match')
+                return redirect('login')
+    except Exception as e:
+        messages.warning(request, str(e))
+        return redirect('error')
 
 
-
-
-
-
-        # for g in ['JC Bose Guest House', 'Homi J Bhaba Guest House', 'Vikram Sarabhai Guest House']:
-        #     h=1
-        #     for room_type in ['Single-AC', 'Double-AC', 'Single-Non-AC', 'Double-Non-AC']:
-        #         for i in range(h, h+10):
-        #             r = Rooms()
-        #             r.room_no = i
-        #             r.guesthouse = GuestHouse.objects.get(name=g)
-        #             r.room_type = room_type
-        #             r.save()
-        #         h = h+10
-        # return redirect('my_bookings')
+    # for g in ['JC Bose Guest House', 'Homi J Bhaba Guest House', 'Vikram Sarabhai Guest House']:
+    #     h=1
+    #     for room_type in ['Single-AC', 'Double-AC', 'Single-Non-AC', 'Double-Non-AC']:
+    #         for i in range(h, h+10):
+    #             r = Rooms()
+    #             r.room_no = i
+    #             r.guesthouse = GuestHouse.objects.get(name=g)
+    #             r.room_type = room_type
+    #             r.save()
+    #         h = h+10
+    # return redirect('my_bookings')

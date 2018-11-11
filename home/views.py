@@ -17,8 +17,8 @@ from booking.models import ExtendedUser
 
 
 def sendMail(to_email, subject, content):
-    sg = sendgrid.SendGridAPIClient(apikey='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')
-    from_email = Email("siddeshlc8@gmail.com")
+    sg = sendgrid.SendGridAPIClient(apikey='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')
+    from_email = Email("siddeshlc08@gmail.com")
     print(to_email)
     to_email = Email(to_email)
     subject = subject
@@ -28,7 +28,6 @@ def sendMail(to_email, subject, content):
     print(response.status_code)
     print(response.body)
     print(response.headers)
-
 
 
 def home(request):

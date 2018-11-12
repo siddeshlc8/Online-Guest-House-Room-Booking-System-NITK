@@ -1,6 +1,6 @@
 {% autoescape off %}
 Hi {{ user.email }},
-Your Room Booking at NITK Guest House Successfully Completed.
+Your Room Booking at NITK Guest House has been Cancelled.
     Following are the Booking Details.
     Booking Number : {{ newtransaction.transaction_number }}
     Booking Date : {{ newtransaction.date_book }}
@@ -10,4 +10,5 @@ Your Room Booking at NITK Guest House Successfully Completed.
     {% for r in rooms %}
         Room Number : {{ r.room_no }}
     {% endfor %}
+    If it is not done by you please contact us http://{{ domain }}{% url 'home' %}
 {% endautoescape %}

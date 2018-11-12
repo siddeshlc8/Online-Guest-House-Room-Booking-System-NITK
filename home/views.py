@@ -17,7 +17,7 @@ from booking.models import ExtendedUser
 
 
 def sendMail(to_email, subject, content):
-    sg = sendgrid.SendGridAPIClient(apikey='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')
+    sg = sendgrid.SendGridAPIClient(apikey='********************8')
     from_email = Email("siddeshlc08@gmail.com")
     print(to_email)
     to_email = Email(to_email)
@@ -52,6 +52,9 @@ def registrer(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data.get('email')
+            if (str(email)).find('@nitk.edu.in') == -1:
+                messages.success(request, ' Please Provide your institute email')
+                return redirect('register')
             if User.objects.filter(email=email).__len__() is not 0:
                 messages.error(request, 'User Already Exist')
                 return redirect('register')
@@ -63,7 +66,7 @@ def registrer(request):
             extended_user.user = user
             extended_user.save()
             current_site = get_current_site(request)
-            mail_subject = 'Activate your blog account.'
+            mail_subject = 'Activate your NITK GHBS account.'
             message = render_to_string('home/acc_active_email.html', {
                 'user': user,
                 'domain': current_site.domain,
@@ -72,9 +75,9 @@ def registrer(request):
             })
             to_email = form.cleaned_data.get('email')
             #sendMail(to_email, mail_subject, message)
-            user.is_active = True
+            user.is_active = False
             user.save()
-            messages.success(request, ' Login To Continue')
+            messages.success(request, ' Please go through the confirmation email sent your email')
             return redirect('register')
         else:
             messages.error(request, form.errors)
@@ -118,6 +121,7 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
+        messages.success(request, ' Your Account has been successfully verified.')
         return redirect('index')
     else:
         return render(request, 'home/error.html', {'errors': 'Activation link is invalid!'})

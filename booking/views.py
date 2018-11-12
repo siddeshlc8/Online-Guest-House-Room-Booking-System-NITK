@@ -10,6 +10,7 @@ import random, itertools, datetime
 from django.template.loader import render_to_string
 from home.views import sendMail
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.sites.shortcuts import get_current_site
 
 
 def index(request):
@@ -110,15 +111,16 @@ def book_room_verify(request, g, t, rtype, count):
                     T.no_rooms = no_r
                     T.save()
                     newtransaction = book_room(g, t, request)
-                    if  newtransaction is not False:
+                    if newtransaction is not False:
 
-                        # mail_subject = 'Booking Confirmation at NITK GuestHouse.'
-                        # message = render_to_string('booking/booking_confirmation.html', {
-                        #     'user': request.user,
-                        #     'newtransaction': newtransaction,
-                        # })
-                        # to_email = request.user.email
-                        # sendMail(to_email, mail_subject, message)
+                        mail_subject = 'Booking Confirmation at NITK GuestHouse.'
+                        message = render_to_string('booking/booking_confirmation.html', {
+                            'user': request.user,
+                            'newtransaction': newtransaction,
+                            'rooms': newtransaction.rooms_allocated.all()
+                        })
+                        to_email = request.user.email
+                        #sendMail(to_email, mail_subject, message)
                         messages.warning(request, 'Your Booking is Succesfull. Please Pay the amout While Checking In')
                         return redirect('my_bookings')
                     else:
@@ -194,7 +196,7 @@ def my_bookings(request):
     try:
         user = request.user
         if user.username and user.is_staff is False and user.is_superuser is False:
-            T = Transactions.objects.filter(user_booked=user).order_by('-start_date')
+            T = Transactions.objects.filter(user_booked=user).order_by('-date_book')
             bookings = []
             page = request.GET.get('page', 1)
             paginator = Paginator(T, 3)
@@ -328,7 +330,16 @@ def cancel(request, id):
                 transaction = Transactions.objects.get(id=id)
                 transaction.status = False
                 transaction.save()
-                messages.warning(request, 'Email or Password does not match ' + str(transaction.transaction_number) + ' is cancelled Succesfully')
+                mail_subject = 'Booking Cancellation at NITK GuestHouse.'
+                message = render_to_string('booking/booking_cancel.html', {
+                    'user': request.user,
+                    'newtransaction': transaction,
+                    'rooms': transaction.rooms_allocated.all(),
+                    'domain': get_current_site(request).domain
+                })
+                to_email = request.user.email
+                #sendMail(to_email, mail_subject, message)
+                messages.warning(request, 'Your Booking with Booking number  ' + str(transaction.transaction_number) + ' is cancelled Succesfully')
                 return redirect('my_bookings')
             else:
                 messages.warning(request, 'Email or Password does not match')

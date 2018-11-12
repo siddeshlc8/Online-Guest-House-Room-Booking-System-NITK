@@ -8,6 +8,9 @@ from booking.forms import GuestDetailsForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.db.models import Q
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from home.views import sendMail
 
 
 # Create your views here.
@@ -124,7 +127,7 @@ def booking_details(request, id):
                 return redirect('login')
     except Exception as e:
         messages.warning(request, str(e))
-        return redirect('error')
+        return redirect('manager')
 
 
 def add_guest(request, id):
@@ -223,6 +226,17 @@ def cancel(request, id):
                 transaction = Transactions.objects.get(id=id)
                 transaction.status = False
                 transaction.save()
+                mail_subject = 'Booking Cancellation at NITK GuestHouse.'
+                message = render_to_string('booking/booking_cancel.html', {
+                    'user': request.user,
+                    'newtransaction': transaction,
+                    'rooms': transaction.rooms_allocated.all(),
+                    'domain': get_current_site(request).domain
+                })
+                to_email = transaction.user_booked.email
+                #sendMail(to_email, mail_subject, message)
+                messages.warning(request, 'Your Booking with Booking number  ' + str(
+                    transaction.transaction_number) + ' is cancelled Succesfully')
                 return redirect('booking-details', id)
             else:
                 messages.warning(request, 'Email or Password does not match')

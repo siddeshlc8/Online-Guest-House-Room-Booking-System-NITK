@@ -23,7 +23,7 @@ class TransactionForm(forms.Form):
 class GuestDetailsForm(forms.Form):
     first_name = forms.CharField(max_length=100, required=True)
     last_name = forms.CharField(max_length=100, required=True)
-    phone = forms.CharField(max_length=10, required=True)
+    phone = forms.IntegerField(min_value=1000000000, max_value=9999999999)
     email = forms.EmailField(required=True)
 
 

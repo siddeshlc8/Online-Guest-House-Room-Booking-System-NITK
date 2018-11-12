@@ -73,9 +73,20 @@ tr:nth-child(even) {
 
 
 </style>
+{% if messages %}
+        {% for message in messages %}
+
+            <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+                <strong style="text-align: center">{{ message }}</strong>
 
 
-<br><br>
+            </div>
+
+        {% endfor %}
+    {% endif %}
+
+
 
 <div class="plans-section" id="rooms">
 				 <div class="container">
@@ -134,10 +145,37 @@ tr:nth-child(even) {
                                 </div><br><br><br>
                             {% endfor %}
 
+                        <div class="w3-container" style="margin-left: 80%">
+                {% if t.has_other_pages %}
+                  <ul class="pagination">
+                    {% if t.has_previous %}
+                      <li><a href="?page={{ t.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                      <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in t.paginator.page_range %}
+                      {% if t.number == i %}
+                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                      {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+                    {% if t.has_next %}
+                      <li><a href="?page={{ t.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                      <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                  </ul>
+                {% endif %}
+                  <hr>
+              </div>
+
 				<div class="clearfix"> </div>
 			</div>
 		</div>
 	</div>
+
+
 
     <script>
 var coll = document.getElementsByClassName("collapsible");

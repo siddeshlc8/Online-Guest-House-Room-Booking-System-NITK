@@ -17,7 +17,7 @@ from booking.models import ExtendedUser
 
 
 def sendMail(to_email, subject, content):
-    sg = sendgrid.SendGridAPIClient(apikey='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')
+    sg = sendgrid.SendGridAPIClient(apikey='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')
     from_email = Email("siddeshlc08@gmail.com")
     print(to_email)
     to_email = Email(to_email)
@@ -71,14 +71,13 @@ def registrer(request):
                 'token': account_activation_token.make_token(user),
             })
             to_email = form.cleaned_data.get('email')
-            sendMail(to_email, mail_subject, message)
-
+            #sendMail(to_email, mail_subject, message)
+            user.is_active = True
             user.save()
-            messages.success(request, 'Registration success full.Please confirm your email to proceed. Login To Continue')
+            messages.success(request, ' Login To Continue')
             return redirect('register')
         else:
-            for e in form.error_messages:
-                messages.error(request, e)
+            messages.error(request, form.errors)
             return redirect('register')
 
 

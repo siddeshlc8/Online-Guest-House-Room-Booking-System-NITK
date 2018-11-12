@@ -146,6 +146,11 @@ def add_guest(request, id):
                     G.phone = phone
                     G.email = email
                     G.save()
+                    f = GuestDetails.objects.filter(transaction_id=id)
+                    T.no_people = f.__len__()
+                    T.save()
+                else:
+                    messages.warning(request, form.errors)
                 return redirect('booking-details', id)
             else:
                 messages.warning(request, 'Email or Password does not match')

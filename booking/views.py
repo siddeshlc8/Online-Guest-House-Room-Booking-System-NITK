@@ -9,6 +9,7 @@ from django.db.models import Q
 import random, itertools, datetime
 from django.template.loader import render_to_string
 from home.views import sendMail
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def index(request):
@@ -42,7 +43,7 @@ def index(request):
 
 
 def book(request, t):
-    #try:
+    try:
         user = request.user
         if user.username and user.is_staff is False and user.is_superuser is False:
             if request.method == 'POST':
@@ -77,13 +78,13 @@ def book(request, t):
         else:
             messages.warning(request, ' Page Not Found ')
             return redirect('home')
-    # except Exception as e:
-    #     messages.warning(request, str(e))
-    #     return redirect('error')
+    except Exception as e:
+        messages.warning(request, 'Something Went Wrong. Please Try agin')
+        return redirect('index')
 
 
 def book_room_verify(request, g, t, rtype, count):
-    #try:
+    try:
         user = request.user
         if user.username and user.is_staff is False and user.is_superuser is False:
             if request.method == 'POST':
@@ -111,13 +112,14 @@ def book_room_verify(request, g, t, rtype, count):
                     newtransaction = book_room(g, t, request)
                     if  newtransaction is not False:
 
-                        mail_subject = 'Booking Confirmation at NITK GuestHouse.'
-                        message = render_to_string('booking/booking_confirmation.html', {
-                            'user': request.user,
-                            'newtransaction': newtransaction,
-                        })
-                        to_email = request.user.email
-                        sendMail(to_email, mail_subject, message)
+                        # mail_subject = 'Booking Confirmation at NITK GuestHouse.'
+                        # message = render_to_string('booking/booking_confirmation.html', {
+                        #     'user': request.user,
+                        #     'newtransaction': newtransaction,
+                        # })
+                        # to_email = request.user.email
+                        # sendMail(to_email, mail_subject, message)
+                        messages.warning(request, 'Your Booking is Succesfull. Please Pay the amout While Checking In')
                         return redirect('my_bookings')
                     else:
                         messages.warning(request, 'Some thing went wrong book again ')
@@ -131,9 +133,9 @@ def book_room_verify(request, g, t, rtype, count):
         else:
             messages.warning(request, 'Requested Page Not Found ')
             return redirect('home')
-    # except Exception as e:
-    #     messages.warning(request, str(e))
-    #     return redirect('error')
+    except Exception as e:
+        messages.warning(request, 'Something Went Wrong. Please Try agin')
+        return redirect('index')
 
 
 def book_room(g, t, request):
@@ -194,13 +196,21 @@ def my_bookings(request):
         if user.username and user.is_staff is False and user.is_superuser is False:
             T = Transactions.objects.filter(user_booked=user).order_by('-start_date')
             bookings = []
+            page = request.GET.get('page', 1)
+            paginator = Paginator(T, 3)
+            try:
+                T = paginator.page(page)
+            except PageNotAnInteger:
+                T = paginator.page(1)
+            except EmptyPage:
+                T = paginator.page(paginator.num_pages)
             for t in T:
                 g = t.guesthouse
                 d = GuestDetails.objects.filter(transaction=t.id)
                 r = t.rooms_allocated.all()
                 z = itertools.zip_longest(d, r)
                 bookings.append({'T': t, 'N': r.__len__(), 'G': g, 'Z': z})
-            context = {'bookings': bookings}
+            context = {'bookings': bookings, 't': T}
             return render(request, 'booking/my_bookings.html', context)
         else:
             messages.warning(request, 'You are not authorized to acces the requested page. Please Login ')
@@ -275,6 +285,9 @@ def availability(request):
         if form.is_valid():
             start_date = form.cleaned_data['start_date']
             end_date = form.cleaned_data['end_date']
+            if start_date > end_date or start_date < datetime.date.today():
+                messages.warning(request, 'Please Enter Proper dates')
+                return redirect('home')
             T = Transactions.objects.filter(
                 Q(start_date__range=(start_date, end_date)) | Q(end_date__range=(start_date, end_date)))
             R = []
@@ -315,6 +328,7 @@ def cancel(request, id):
                 transaction = Transactions.objects.get(id=id)
                 transaction.status = False
                 transaction.save()
+                messages.warning(request, 'Email or Password does not match ' + str(transaction.transaction_number) + ' is cancelled Succesfully')
                 return redirect('my_bookings')
             else:
                 messages.warning(request, 'Email or Password does not match')

@@ -120,7 +120,7 @@ def book_room_verify(request, g, t, rtype, count):
                             'rooms': newtransaction.rooms_allocated.all()
                         })
                         to_email = request.user.email
-                        sendMail(to_email, mail_subject, message)
+                        #sendMail(to_email, mail_subject, message)
                         messages.warning(request, 'Your Booking is Succesfull. Please Pay the amout While Checking In')
                         return redirect('my_bookings')
                     else:
@@ -338,7 +338,7 @@ def cancel(request, id):
                     'domain': get_current_site(request).domain
                 })
                 to_email = request.user.email
-                sendMail(to_email, mail_subject, message)
+                #sendMail(to_email, mail_subject, message)
                 messages.warning(request, 'Your Booking with Booking number  ' + str(transaction.transaction_number) + ' is cancelled Succesfully')
                 return redirect('my_bookings')
             else:

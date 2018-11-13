@@ -234,7 +234,7 @@ def cancel(request, id):
                     'domain': get_current_site(request).domain
                 })
                 to_email = transaction.user_booked.email
-                sendMail(to_email, mail_subject, message)
+                #sendMail(to_email, mail_subject, message)
                 messages.warning(request, 'Your Booking with Booking number  ' + str(
                     transaction.transaction_number) + ' is cancelled Succesfully')
                 return redirect('booking-details', id)

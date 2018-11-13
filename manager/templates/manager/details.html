@@ -122,6 +122,9 @@ tr:nth-child(even) {
                   <h5><b >{{ t.guesthouse }}</b></h5>
                   <h6 class="w3-text-teal" ><b >Number of Rooms Booked</b></h6>
                   <h5><b >{{ t.no_rooms}} Room/s</b></h5>
+                  <h6 class="w3-text-teal" ><b > Rooms Booked By</b></h6>
+                  <h5><b >{{ t.user_booked.first_name}} {{ t.user_booked.last_name}}</b></h5>
+                  <h5><b >{{ t.user_booked.email}}</b></h5>
                   <h6 class="w3-text-teal" ><b >Booking Period</b></h6>
                   <h6 ><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{ t.start_date }} - {{ t.end_date }}</h6>
                    <h6 class="w3-text-teal" ><b >Date of Booking</b></h6>

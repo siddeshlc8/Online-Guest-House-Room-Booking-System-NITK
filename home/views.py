@@ -13,11 +13,12 @@ from sendgrid.helpers.mail import *
 from . forms import *
 from booking.forms import TransactionForm
 from booking.models import ExtendedUser
+import api
 # Create your views here.
 
 
 def sendMail(to_email, subject, content):
-    sg = sendgrid.SendGridAPIClient(apikey='********************8')
+    sg = sendgrid.SendGridAPIClient(apikey=api.api())
     from_email = Email("siddeshlc08@gmail.com")
     print(to_email)
     to_email = Email(to_email)
@@ -74,7 +75,7 @@ def registrer(request):
                 'token': account_activation_token.make_token(user),
             })
             to_email = form.cleaned_data.get('email')
-            #sendMail(to_email, mail_subject, message)
+            sendMail(to_email, mail_subject, message)
             user.is_active = False
             user.save()
             messages.success(request, ' Please go through the confirmation email sent your email')

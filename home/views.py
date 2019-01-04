@@ -59,7 +59,7 @@ def registrer(request):
                 messages.error(request, 'User Already Exist')
                 return redirect('register')
             user = form.save(commit=False)
-            user.is_active = False
+            user.is_active = True
             user.username = form.cleaned_data.get('email')
             user.save()
             extended_user = ExtendedUser()
@@ -77,7 +77,7 @@ def registrer(request):
             #sendMail(to_email, mail_subject, message)
             user.is_active = False
             user.save()
-            messages.success(request, ' Please go through the confirmation email sent your email')
+            messages.success(request, ' Please login')
             return redirect('register')
         else:
             messages.error(request, form.errors)

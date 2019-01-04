@@ -52,9 +52,9 @@ def registrer(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data.get('email')
-            if (str(email)).find('@nitk.edu.in') == -1:
-                messages.success(request, ' Please Provide your institute email')
-                return redirect('register')
+#             if (str(email)).find('@nitk.edu.in') == -1:
+#                 messages.success(request, ' Please Provide your institute email')
+#                 return redirect('register')
             if User.objects.filter(email=email).__len__() is not 0:
                 messages.error(request, 'User Already Exist')
                 return redirect('register')

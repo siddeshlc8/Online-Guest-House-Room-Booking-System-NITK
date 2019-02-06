@@ -1,4 +1,12 @@
 # Online-Guest-House-Room-Booking-System-NITK
+
+[**CLICK HERE FOR DEMO**](https://nitk-ghbs.herokuapp.com/)
+
+Following is the Username and Password for Loging Into the website.
+
+Username - siddeshlc8@gmail.com
+
+Password - Django@194
 ## Abstract
 
 ### Objective
